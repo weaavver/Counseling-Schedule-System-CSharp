@@ -1,0 +1,108 @@
+﻿using Counseling_Schedule_System.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+
+namespace Counseling_Schedule_System
+{
+    public partial class Register : Form
+    {
+        public Register()
+        {
+            InitializeComponent();
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            Student student = new Student
+            {
+                Name = txtName.Text,
+                Section = txtYearAndSection.Text,
+                StudentNo = txtStudentNo.Text,
+                MobileNo = txtMobileNo.Text,
+                Email = txtEmail.Text,
+                Username = txtUsername.Text,
+                Password = txtPass.Text,
+                ConfirmPassword = txtConfirmPass.Text
+            };
+
+            // Validate
+            if (!student.IsValid())
+            {
+                MessageBox.Show("Invalid inputs!");
+                return;
+            }
+
+            // Hash the password before storing
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.Password);
+
+            // Database insertion
+            string connectionString = @"Data Source=DESKTOP-IRCI6E2\SQLEXPRESS;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
+            string sql = "INSERT INTO studentTbl(StudentName, Section, StudentNo, MobileNo, Email, Username, Password) " +
+                         "VALUES(@Name, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", student.Name);
+                        cmd.Parameters.AddWithValue("@Section", student.Section);
+                        cmd.Parameters.AddWithValue("@StudentNo", student.StudentNo);
+                        cmd.Parameters.AddWithValue("@MobileNo", student.MobileNo);
+                        cmd.Parameters.AddWithValue("@Email", student.Email);
+                        cmd.Parameters.AddWithValue("@Username", student.Username);
+                        cmd.Parameters.AddWithValue("@Password", hashedPassword); // <-- hashed here
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Registration successful!");
+                MessageBox.Show("Please Login");
+
+                // Clear form
+                txtName.Clear();
+                txtYearAndSection.Clear();
+                txtStudentNo.Clear();
+                txtMobileNo.Clear();
+                txtEmail.Clear();
+                txtUsername.Clear();
+                txtPass.Clear();
+                txtConfirmPass.Clear();
+
+                Form1 form = new Form1();
+                form.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();
+            form.Show();
+            this.Hide();
+        }
+    }
+}
