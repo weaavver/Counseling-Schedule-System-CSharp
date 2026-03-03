@@ -71,7 +71,7 @@ namespace Counseling_Schedule_System.UserDAO
         public static int? UserLogin(string username, string password)
     {
         string connectionString = @"Data Source=DESKTOP-IRCI6E2\SQLEXPRESS;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
-        string sql = "SELECT ID, password FROM studentTbl WHERE username = @username";
+        string sql = "SELECT studentID, password FROM studentTbl WHERE username = @username";
 
         try
         {
@@ -87,12 +87,13 @@ namespace Counseling_Schedule_System.UserDAO
                     {
                         if (reader.Read())
                         {
-                            int userID = Convert.ToInt32(reader["ID"]);
+                            int userID = Convert.ToInt32(reader["studentID"]);
                             string storedHash = reader["password"].ToString();
 
                             // Compare the entered password (unhashed) with the stored bcrypt hash
                             if (BCrypt.Net.BCrypt.Verify(password, storedHash))
                             {
+                                MessageBox.Show("Stored Hash: " + storedHash);
                                 return userID; // login success
                             }
                             else
@@ -110,8 +111,8 @@ namespace Counseling_Schedule_System.UserDAO
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return null;
+                MessageBox.Show("Login Error: " + ex.Message);
+                return null;
         }
     }
 

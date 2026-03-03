@@ -69,7 +69,7 @@ namespace Counseling_Schedule_System
                         cmd.ExecuteNonQuery();
                     }
                 }
-
+                MessageBox.Show("Stored hash: " + hashedPassword);
                 MessageBox.Show("Registration successful!");
                 MessageBox.Show("Please Login");
 

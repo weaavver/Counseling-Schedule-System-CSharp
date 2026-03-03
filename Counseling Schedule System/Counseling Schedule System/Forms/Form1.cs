@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Counseling_Schedule_System.Forms;
 
 namespace Counseling_Schedule_System
 {
@@ -34,9 +35,10 @@ namespace Counseling_Schedule_System
             int? userID = UserDAO.UserDAO.UserLogin(username, password);
             if (userID.HasValue) {
                 MessageBox.Show("Login successful!");
-
-                //Example of opening a new form after successful login
                 
+                StudentDashboard studentDashboard = new StudentDashboard(userID.Value);
+                studentDashboard.Show();
+                this.Hide();
             }
             else {
                     MessageBox.Show("Invalid username or password.");

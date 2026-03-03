@@ -12,9 +12,16 @@ namespace Counseling_Schedule_System.Forms
 {
     public partial class StudentDashboard : Form
     {
-        public StudentDashboard()
+        private int _userID;
+        public StudentDashboard(int userID)
         {
             InitializeComponent();
+            _userID = userID;
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"The current user ID is {_userID}");
         }
     }
 }
