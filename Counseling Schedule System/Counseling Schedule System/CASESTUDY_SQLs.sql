@@ -1,4 +1,6 @@
 USE CounselingScheduleSystem
+SELECT * FROM requestTbl
+
 
 DROP TABLE studentTbl;
 DROP TABLE counselorTbl;
@@ -42,7 +44,7 @@ CREATE TABLE requestTbl(
     requestID INT IDENTITY(1,1) PRIMARY KEY,
     StudentID INT NOT NULL,
     CounselorID INT NULL,
-    PreferredDate DATETIME NOT NULL,
+    PreferredDateTime DATETIME NOT NULL,
     ScheduledDate DATETIME NULL,
     [Status] VARCHAR(20) NOT NULL DEFAULT 'Pending',
     Reason VARCHAR(500) NULL,
