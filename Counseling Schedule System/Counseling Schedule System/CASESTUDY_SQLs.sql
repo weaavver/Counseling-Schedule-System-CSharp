@@ -1,3 +1,4 @@
+CREATE DATABASE CounselingScheduleSystem
 USE CounselingScheduleSystem
 SELECT * FROM requestTbl
 
@@ -72,8 +73,9 @@ INNER JOIN studentTbl s
     ON r.studentID = s.studentID;
 
 
-    $2a$11$UUxbjPWueqb/2oHCpQbeTOGFhOgrmvlUMpF5I/6ATcKrJzyOpT87u
 SELECT * FROM studentTbl
+SELECT * FROM requestTbl
+SELECT * FROM counselorTbl
 
 SELECT Username, Password FROM studentTbl;
 

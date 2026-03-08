@@ -1,10 +1,12 @@
 ﻿using Counseling_Schedule_System.Models;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,11 +17,25 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Counseling_Schedule_System
 {
-    public partial class Register : Form
+    public partial class StudentRegister : Form
     {
-        public Register()
+        public StudentRegister()
         {
             InitializeComponent();
+            RoundedCorners(25);
+        }
+        public void RoundedCorners(int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.AddArc(0, 0, radius, radius, 180, 90);
+            path.AddArc(this.Width - radius, 0, radius, radius, 270, 90);
+            path.AddArc(this.Width - radius, this.Height - radius, radius, radius, 0, 90);
+            path.AddArc(0, this.Height - radius, radius, radius, 90, 90);
+
+            path.CloseAllFigures();
+
+            this.Region = new Region(path);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -47,7 +63,7 @@ namespace Counseling_Schedule_System
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.Password);
 
             // Database insertion
-            string connectionString = @"Data Source=DESKTOP-IRCI6E2\SQLEXPRESS;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
+            string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
             string sql = "INSERT INTO studentTbl(StudentName, Section, StudentNo, MobileNo, Email, Username, Password) " +
                          "VALUES(@Name, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
 
@@ -83,7 +99,7 @@ namespace Counseling_Schedule_System
                 txtPass.Clear();
                 txtConfirmPass.Clear();
 
-                Form1 form = new Form1();
+                StudentLogin form = new StudentLogin();
                 form.Show();
                 this.Hide();
             }
@@ -100,9 +116,37 @@ namespace Counseling_Schedule_System
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Form1 form = new Form1();
+            StudentLogin form = new StudentLogin();
+            form.Opacity = 0;
             form.Show();
-            this.Hide();
+
+            Timer fadeTimer = new Timer();
+            fadeTimer.Interval = 20;
+
+            fadeTimer.Tick += (s, ev) =>
+            {
+                if (form.Opacity < 1)
+                    form.Opacity += 0.05;
+                else
+                {
+                    fadeTimer.Stop();
+                    this.Hide();
+                }
+            };
+
+            fadeTimer.Start();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(
+            panel1.ClientRectangle,
+            Color.LightSkyBlue,
+            Color.White,
+            90F))
+            {
+                e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
+            }
         }
     }
 }

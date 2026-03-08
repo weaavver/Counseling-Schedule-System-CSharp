@@ -70,7 +70,7 @@ namespace Counseling_Schedule_System.UserDAO
 
         public static int? UserLogin(string username, string password)
     {
-        string connectionString = @"Data Source=DESKTOP-IRCI6E2\SQLEXPRESS;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
+        string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
         string sql = "SELECT studentID, password FROM studentTbl WHERE username = @username";
 
         try

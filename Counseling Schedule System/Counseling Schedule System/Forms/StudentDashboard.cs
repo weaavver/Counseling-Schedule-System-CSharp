@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +21,14 @@ namespace Counseling_Schedule_System.Forms
         {
             InitializeComponent();
             _userID = userID;
-        }
+            LoadPendingRequest();
+            RoundedCorners(25);
 
-        private void btnSubmit_Click(object sender, EventArgs e)
-        {
-            DateTime finalDateTime = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
 
-            string connectionString = @"Data Source=DESKTOP-IRCI6E2\SQLEXPRESS;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
-            string sql = @"INSERT INTO requestTbl (StudentID, PreferredDateTime, Reason)
-                   VALUES (@StudentID, @PreferredDateTime, @Reason)";
+            string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
+            string sql = @"SELECT StudentName FROM studentTbl WHERE studentID = @StudentID";
+
+            string studentName = "";
 
             try
             {
@@ -38,24 +38,155 @@ namespace Counseling_Schedule_System.Forms
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.Add("@StudentID", SqlDbType.Int).Value = _userID;
-                        cmd.Parameters.Add("@PreferredDateTime", SqlDbType.DateTime2).Value = finalDateTime;
-                        cmd.Parameters.Add("@Reason", SqlDbType.NVarChar, 500).Value = richTxtReason.Text; 
 
-                        cmd.ExecuteNonQuery();
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            studentName = result.ToString();
+                        }
                     }
                 }
-
-                MessageBox.Show("Request submitted!");
+                lblGreet.Text = $"Hello, {studentName}!";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error submitting request: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        public void RoundedCorners(int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.AddArc(0, 0, radius, radius, 180, 90);
+            path.AddArc(this.Width - radius, 0, radius, radius, 270, 90);
+            path.AddArc(this.Width - radius, this.Height - radius, radius, radius, 0, 90);
+            path.AddArc(0, this.Height - radius, radius, radius, 90, 90);
+
+            path.CloseAllFigures();
+
+            this.Region = new Region(path);
+        }
+
+        private void LoadPendingRequest()
+        {
+            string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
+
+            string sql = @"SELECT CreatedAt, PreferredDateTime, CounselorID, Status
+                   FROM requestTbl
+                   WHERE StudentID = @StudentID AND Status = 'Pending'";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@StudentID", SqlDbType.Int).Value = _userID;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string dateRequested = reader["CreatedAt"].ToString();
+                                string preferredTime = reader["PreferredDateTime"].ToString();
+                                string counselor = reader["CounselorID"].ToString();
+                                string status = reader["Status"].ToString();
+
+                                txtDateRequested.Text = dateRequested;
+                                txtPreferredTime.Text = preferredTime;
+                                if(counselor == "0")
+                                    txtCounselor.Text = "Not Assigned";
+                                else
+                                    txtCounselor.Text = counselor;
+                                txtStatus.Text = status;
+
+                                PanelScheduleBoard.Visible = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading schedule: " + ex.Message);
+            }
+        }
+
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (richTxtReason.Text.Equals(""))
+            {
+                MessageBox.Show("Please provide a reason for your counseling request.");
+                return;
+            }
+
+            string message = "Are you sure?";
+            string caption = "Confirmation";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+            DialogResult result = MessageBox.Show(message, caption, buttons);
+
+            if (result == DialogResult.Yes)
+            {
+                DateTime finalDateTime = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
+
+                string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
+                string sql = @"INSERT INTO requestTbl (StudentID, PreferredDateTime, Reason)
+                   VALUES (@StudentID, @PreferredDateTime, @Reason)";
+
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.Add("@StudentID", SqlDbType.Int).Value = _userID;
+                            cmd.Parameters.Add("@PreferredDateTime", SqlDbType.DateTime2).Value = finalDateTime;
+                            cmd.Parameters.Add("@Reason", SqlDbType.NVarChar, 500).Value = richTxtReason.Text;
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Request submitted! Wait for an email for further notice");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error submitting request: " + ex.Message);
+                }
+            }
+            else if (result == DialogResult.No)
+            {
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             richTxtReason.Text = "";
+        }
+
+        private void PanelScheduleBoard_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(
+            panel1.ClientRectangle,
+            Color.LightSkyBlue,
+            Color.White,
+            90F))
+            {
+                e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
+            }
         }
     }
 }
