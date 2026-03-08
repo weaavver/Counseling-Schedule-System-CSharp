@@ -12,27 +12,28 @@ namespace Counseling_Schedule_System.UserDAO
     public class LoginResult
     {
         public bool Success { get; set; }
-        public int CounsellorID { get; set; }
+        public int userID { get; set; }
 
-        public LoginResult(bool success, int counsellorID)
+        public LoginResult(bool success, int ID)
         {
             Success = success;
-            CounsellorID = counsellorID;
+            userID = ID;
         }
     }
 
     public class UserDAO
     {
-        public static LoginResult CounsellorLogin(string username, string password)
+        public static int? CounselorLogin(string username, string password)
         {
-            string connectionString = @"Data Source=DESKTOP-IRCI6E2\SQLEXPRESS;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
-            string sql = "SELECT ID, password FROM studentTbl WHERE username = @username";
+            string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
+            string sql = "SELECT counselorID, password FROM counselorTbl WHERE username = @username";
 
             try
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
+
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
@@ -41,21 +42,23 @@ namespace Counseling_Schedule_System.UserDAO
                         {
                             if (reader.Read())
                             {
+                                int userID = Convert.ToInt32(reader["counselorID"]);
                                 string storedHash = reader["password"].ToString();
-                                int counsellorID = Convert.ToInt32(reader["ID"]);
 
+                                // Compare the entered password (unhashed) with the stored bcrypt hash
                                 if (BCrypt.Net.BCrypt.Verify(password, storedHash))
                                 {
-                                    return new LoginResult(true, counsellorID);
+                                    MessageBox.Show("Stored Hash: " + storedHash);
+                                    return userID; // login success
                                 }
                                 else
                                 {
-                                    return new LoginResult(false, -1);
+                                    return null; // wrong password
                                 }
                             }
                             else
                             {
-                                return new LoginResult(false, -1);
+                                return null; // no such user
                             }
                         }
                     }
@@ -63,12 +66,12 @@ namespace Counseling_Schedule_System.UserDAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new LoginResult(false, -1);
+                MessageBox.Show("Login Error: " + ex.Message);
+                return null;
             }
         }
 
-        public static int? UserLogin(string username, string password)
+        public static int? StudentLogin(string username, string password)
     {
         string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
         string sql = "SELECT studentID, password FROM studentTbl WHERE username = @username";

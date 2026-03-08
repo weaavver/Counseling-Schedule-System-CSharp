@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\CounselorDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CounselorDashboard.Designer.cs">
+      <DependentUpon>CounselorDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CounselorLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,7 @@
     <Compile Include="Forms\StudentDashboard.Designer.cs">
       <DependentUpon>StudentDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Counselor.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,8 +112,14 @@
       <DependentUpon>StudentRegister.cs</DependentUpon>
     </Compile>
     <Compile Include="UserDAO\UserDAO.cs" />
+    <EmbeddedResource Include="Forms\CounselorDashboard.resx">
+      <DependentUpon>CounselorDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CounselorLogin.resx">
       <DependentUpon>CounselorLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CounselorSignup.resx">
+      <DependentUpon>CounselorSignup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ForgotPassword.resx">
       <DependentUpon>ForgotPassword.cs</DependentUpon>

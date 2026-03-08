@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,7 +37,6 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PanelScheduleBoard = new System.Windows.Forms.Panel();
             this.txtPreferredTime = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.Label();
@@ -309,7 +307,6 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DateTimePicker TimePicker;
         private System.Windows.Forms.DateTimePicker DatePicker;
-        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel PanelScheduleBoard;
         private System.Windows.Forms.Label lblDateRequested;
         private System.Windows.Forms.Label lblPreferredTime;

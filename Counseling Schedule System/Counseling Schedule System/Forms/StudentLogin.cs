@@ -65,7 +65,7 @@ namespace Counseling_Schedule_System
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
-            int? userID = UserDAO.UserDAO.UserLogin(username, password);
+            int? userID = UserDAO.UserDAO.StudentLogin(username, password);
             if (userID.HasValue)
             {
                 MessageBox.Show("Login successful!");
@@ -143,6 +143,29 @@ namespace Counseling_Schedule_System
         private void chkPass_CheckedChanged(object sender, EventArgs e)
         {
             txtPassword.UseSystemPasswordChar = !chkPass.Checked;
+        }
+
+        private void btnCounselorLogin_Click(object sender, EventArgs e)
+        {
+            CounselorLogin Login = new CounselorLogin();
+            Login.Opacity = 0;
+            Login.Show();
+
+            Timer fadeTimer = new Timer();
+            fadeTimer.Interval = 20;
+
+            fadeTimer.Tick += (s, ev) =>
+            {
+                if (Login.Opacity < 1)
+                    Login.Opacity += 0.05;
+                else
+                {
+                    fadeTimer.Stop();
+                    this.Hide();
+                }
+            };
+
+            fadeTimer.Start();
         }
     }
 }

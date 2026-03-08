@@ -155,7 +155,7 @@ namespace Counseling_Schedule_System.Forms
                     }
 
                     MessageBox.Show("Request submitted! Wait for an email for further notice");
-
+                    LoadPendingRequest();
                 }
                 catch (Exception ex)
                 {

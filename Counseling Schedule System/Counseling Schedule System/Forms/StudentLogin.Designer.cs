@@ -115,6 +115,7 @@
             this.btnCounselorLogin.TabIndex = 7;
             this.btnCounselorLogin.Text = "Counselor Login";
             this.btnCounselorLogin.UseVisualStyleBackColor = true;
+            this.btnCounselorLogin.Click += new System.EventHandler(this.btnCounselorLogin_Click);
             // 
             // panel1
             // 
