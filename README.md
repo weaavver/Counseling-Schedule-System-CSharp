@@ -1,6 +1,6 @@
 Pre requisite
 
-Microsoft sql server eval
+Microsoft sql server eval and
 SSMS(optional but recommended)
 
 Microsoft Visual Studio (2026 recommended with installed bcrypt tool)
