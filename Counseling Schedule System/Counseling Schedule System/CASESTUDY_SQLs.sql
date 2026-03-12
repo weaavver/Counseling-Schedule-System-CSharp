@@ -29,12 +29,16 @@ CREATE TABLE studentTbl(
 CREATE TABLE counselorTbl(
 	counselorID INT IDENTITY(1,1) PRIMARY KEY,
     CounselorName VARCHAR(100) NOT NULL,
+    Gender VARCHAR(10) NOT NULL,
+    Specialization VARCHAR(50) NOT NULL,
+    PRCLicenseNumber VARCHAR(50) NOT NULL,
     MobileNo VARCHAR(13) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Username VARCHAR(100) NOT NULL,
     [Password] VARCHAR(100) NOT NULL,
 
     --Unique Constraints
+    CONSTRAINT UQ_CounselorPRC UNIQUE (PRCLicenseNumber),   
     CONSTRAINT UQ_CounselorEmail UNIQUE (Email),
     CONSTRAINT UQ_CounselorMobileNo UNIQUE (MobileNo),
     CONSTRAINT UQ_CounselorUsername UNIQUE (Username)
@@ -47,6 +51,7 @@ CREATE TABLE requestTbl(
     CounselorID INT NULL,
     PreferredDateTime DATETIME NOT NULL,
     ScheduledDate DATETIME NULL,
+    ScheduledTime DATETIME NULL,
     [Status] VARCHAR(20) NOT NULL DEFAULT 'Pending',
     Reason VARCHAR(500) NULL,
     CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
@@ -73,6 +78,7 @@ INNER JOIN studentTbl s
     ON r.studentID = s.studentID;
 
 
+SELECT * FROM requestTbl WHERE [Status] = 'Pending'
 SELECT * FROM studentTbl
 SELECT * FROM requestTbl
 SELECT * FROM counselorTbl

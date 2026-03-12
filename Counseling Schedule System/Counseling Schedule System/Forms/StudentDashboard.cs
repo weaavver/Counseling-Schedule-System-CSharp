@@ -16,6 +16,8 @@ namespace Counseling_Schedule_System.Forms
 {
     public partial class StudentDashboard : Form
     {
+        string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;
+        Integrated Security=True;Encrypt=False;";
         private int _userID;
         public StudentDashboard(int userID)
         {
@@ -24,8 +26,6 @@ namespace Counseling_Schedule_System.Forms
             LoadPendingRequest();
             RoundedCorners(25);
 
-
-            string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
             string sql = @"SELECT StudentName FROM studentTbl WHERE studentID = @StudentID";
 
             string studentName = "";
@@ -71,8 +71,6 @@ namespace Counseling_Schedule_System.Forms
 
         private void LoadPendingRequest()
         {
-            string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
-
             string sql = @"SELECT CreatedAt, PreferredDateTime, CounselorID, Status
                    FROM requestTbl
                    WHERE StudentID = @StudentID AND Status = 'Pending'";

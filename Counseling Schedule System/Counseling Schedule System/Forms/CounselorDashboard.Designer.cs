@@ -39,15 +39,15 @@
             this.txtRequestID = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnComplete = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.DatePicker = new System.Windows.Forms.DateTimePicker();
-            this.TimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TimePicker = new System.Windows.Forms.DateTimePicker();
+            this.DatePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchedules)).BeginInit();
             this.panel1.SuspendLayout();
@@ -77,6 +77,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(495, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 13);
@@ -104,6 +105,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(9, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 13);
@@ -154,18 +156,20 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // button3
+            // btnComplete
             // 
-            this.button3.Location = new System.Drawing.Point(104, 330);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 24;
-            this.button3.Text = "Complete";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnComplete.Location = new System.Drawing.Point(104, 330);
+            this.btnComplete.Name = "btnComplete";
+            this.btnComplete.Size = new System.Drawing.Size(75, 23);
+            this.btnComplete.TabIndex = 24;
+            this.btnComplete.Text = "Complete";
+            this.btnComplete.UseVisualStyleBackColor = true;
+            this.btnComplete.Click += new System.EventHandler(this.button3_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(106, 302);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 13);
@@ -175,6 +179,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Location = new System.Drawing.Point(592, 361);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 13);
@@ -203,7 +208,7 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.dgvRequests);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.btnComplete);
             this.panel2.Controls.Add(this.btnRequestRefresh);
             this.panel2.Controls.Add(this.btnConfirm);
             this.panel2.Controls.Add(this.label2);
@@ -217,13 +222,25 @@
             this.panel2.TabIndex = 28;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // DatePicker
+            // label6
             // 
-            this.DatePicker.Location = new System.Drawing.Point(588, 296);
-            this.DatePicker.Name = "DatePicker";
-            this.DatePicker.Size = new System.Drawing.Size(200, 20);
-            this.DatePicker.TabIndex = 29;
-            this.DatePicker.ValueChanged += new System.EventHandler(this.DatePicker_ValueChanged);
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(498, 328);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(84, 13);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Scheduled Time";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(498, 301);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 13);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Scheduled Date";
             // 
             // TimePicker
             // 
@@ -233,23 +250,13 @@
             this.TimePicker.Size = new System.Drawing.Size(99, 20);
             this.TimePicker.TabIndex = 30;
             // 
-            // label3
+            // DatePicker
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(498, 301);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 13);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "Scheduled Date";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(498, 328);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 13);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Scheduled Time";
+            this.DatePicker.Location = new System.Drawing.Point(588, 296);
+            this.DatePicker.Name = "DatePicker";
+            this.DatePicker.Size = new System.Drawing.Size(200, 20);
+            this.DatePicker.TabIndex = 29;
+            this.DatePicker.ValueChanged += new System.EventHandler(this.DatePicker_ValueChanged);
             // 
             // CounselorDashboard
             // 
@@ -283,7 +290,7 @@
         private System.Windows.Forms.TextBox txtRequestID;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnComplete;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;

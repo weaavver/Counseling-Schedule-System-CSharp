@@ -39,10 +39,12 @@ namespace Counseling_Schedule_System.Forms
             {
                 sqlCon.Open();
                 SqlDataAdapter sqlDa = new SqlDataAdapter
-                ("SELECT * FROM requestTbl WHERE [Status] = 'Complete'", sqlCon);
+                ("SELECT \r\n    r.requestID,\r\n    s.StudentName,\r\n    c.CounselorName,\r\n    s.MobileNo,\r\n    s.Email\r\nFROM requestTbl r\r\nINNER JOIN studentTbl s \r\n    ON r.StudentID = s.studentID\r\nINNER JOIN counselorTbl c \r\n    ON r.CounselorID = c.counselorID\r\nWHERE r.[Status] = 'Scheduled'\r\nAND r.CounselorID = @userID;", sqlCon);
+                sqlDa.SelectCommand.Parameters.AddWithValue("@userID", _userID);
                 DataTable dtbl = new DataTable();
                 sqlDa.Fill(dtbl);
-
+                dgvSchedules.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgvSchedules.ReadOnly = true;
                 dgvSchedules.DataSource = dtbl;
             }
         }
@@ -58,7 +60,7 @@ namespace Counseling_Schedule_System.Forms
 
                 DataTable dtbl = new DataTable();
                 sqlDa.Fill(dtbl);
-
+                dgvRequests.ReadOnly = true;
                 dgvRequests.DataSource = dtbl;
             }
         }
@@ -118,6 +120,11 @@ namespace Counseling_Schedule_System.Forms
         }
 
         private void dgvRequests_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
         {
 
         }

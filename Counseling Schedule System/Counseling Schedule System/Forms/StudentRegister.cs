@@ -19,6 +19,8 @@ namespace Counseling_Schedule_System
 {
     public partial class StudentRegister : Form
     {
+        string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;
+        Integrated Security=True;Encrypt=False;";
         public StudentRegister()
         {
             InitializeComponent();
@@ -63,7 +65,6 @@ namespace Counseling_Schedule_System
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.Password);
 
             // Database insertion
-            string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
             string sql = "INSERT INTO studentTbl(StudentName, Section, StudentNo, MobileNo, Email, Username, Password) " +
                          "VALUES(@Name, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
 

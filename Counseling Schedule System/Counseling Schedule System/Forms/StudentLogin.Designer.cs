@@ -35,9 +35,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.btnCounselorLogin = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkPass = new System.Windows.Forms.CheckBox();
+            this.btnCounselorLogin = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,20 +108,10 @@
             this.txtPassword.TabIndex = 6;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
-            // btnCounselorLogin
-            // 
-            this.btnCounselorLogin.Location = new System.Drawing.Point(12, 514);
-            this.btnCounselorLogin.Name = "btnCounselorLogin";
-            this.btnCounselorLogin.Size = new System.Drawing.Size(97, 25);
-            this.btnCounselorLogin.TabIndex = 7;
-            this.btnCounselorLogin.Text = "Counselor Login";
-            this.btnCounselorLogin.UseVisualStyleBackColor = true;
-            this.btnCounselorLogin.Click += new System.EventHandler(this.btnCounselorLogin_Click);
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.chkPass);
-            this.panel1.Controls.Add(this.btnCounselorLogin);
             this.panel1.Controls.Add(this.txtUsername);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.btnRegister);
@@ -128,6 +119,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnCounselorLogin);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(400, 550);
@@ -145,6 +137,27 @@
             this.chkPass.Text = "Show password";
             this.chkPass.UseVisualStyleBackColor = false;
             this.chkPass.CheckedChanged += new System.EventHandler(this.chkPass_CheckedChanged);
+            // 
+            // btnCounselorLogin
+            // 
+            this.btnCounselorLogin.Location = new System.Drawing.Point(358, 513);
+            this.btnCounselorLogin.Name = "btnCounselorLogin";
+            this.btnCounselorLogin.Size = new System.Drawing.Size(30, 25);
+            this.btnCounselorLogin.TabIndex = 7;
+            this.btnCounselorLogin.UseVisualStyleBackColor = true;
+            this.btnCounselorLogin.Click += new System.EventHandler(this.btnCounselorLogin_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(325, 513);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 25);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "asdd";
             // 
             // StudentLogin
             // 
@@ -171,9 +184,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.Button btnCounselorLogin;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox chkPass;
+        private System.Windows.Forms.Button btnCounselorLogin;
+        private System.Windows.Forms.Label label4;
     }
 }
 

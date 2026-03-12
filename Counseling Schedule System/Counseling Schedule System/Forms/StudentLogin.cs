@@ -21,6 +21,15 @@ namespace Counseling_Schedule_System
         {
             InitializeComponent();
             RoundedCorners(25);
+
+            btnCounselorLogin.Size = new Size(30, 25); // Set the size of the button
+            btnCounselorLogin.Location = new Point(358, 513); // Set the location of the button
+            btnCounselorLogin.BackColor = Color.Transparent; // Make the button invisible
+            btnCounselorLogin.FlatAppearance.MouseOverBackColor = Color.Transparent; // Make the button invisible when the mouse is over it
+            btnCounselorLogin.FlatAppearance.MouseDownBackColor = Color.Transparent; // Make the button invisible when it's clicked
+            btnCounselorLogin.FlatStyle = FlatStyle.Flat; // Required to make the button invisible
+            btnCounselorLogin.FlatAppearance.BorderSize = 0; // Required to make the button invisible
+
         }
 
         public void RoundedCorners(int radius)

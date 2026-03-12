@@ -23,6 +23,7 @@ namespace Counseling_Schedule_System.UserDAO
 
     public class UserDAO
     {
+
         public static int? CounselorLogin(string username, string password)
         {
             string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";

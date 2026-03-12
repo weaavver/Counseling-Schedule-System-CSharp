@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Counseling_Schedule_System.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Counseling_Schedule_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StudentLogin());
+            Application.Run(new MainPage());
         }
     }
 }
