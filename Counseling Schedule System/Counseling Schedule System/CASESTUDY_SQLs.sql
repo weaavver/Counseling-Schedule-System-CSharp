@@ -11,6 +11,7 @@ DROP TABLE requestTbl;
 CREATE TABLE studentTbl(
 	studentID INT IDENTITY(1,1) PRIMARY KEY,
     StudentName VARCHAR(100) NOT NULL,
+    Gender VARCHAR(8) NOT NULL,
     Section VARCHAR(20) NOT NULL,
     StudentNo VARCHAR(20) NOT NULL,
     MobileNo VARCHAR(13) NOT NULL,

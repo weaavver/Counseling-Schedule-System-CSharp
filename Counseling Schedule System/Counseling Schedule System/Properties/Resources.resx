@@ -121,10 +121,13 @@
   <data name="counselorIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\counselorIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pdmlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\pdmlogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Counselor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Counselor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pdmlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\pdmlogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pdmbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\pdmbg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

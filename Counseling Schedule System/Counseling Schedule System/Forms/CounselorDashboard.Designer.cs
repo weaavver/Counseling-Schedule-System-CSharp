@@ -59,11 +59,12 @@
             this.lblGreet.AutoSize = true;
             this.lblGreet.BackColor = System.Drawing.Color.Transparent;
             this.lblGreet.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGreet.Location = new System.Drawing.Point(9, 7);
+            this.lblGreet.Location = new System.Drawing.Point(10, 7);
             this.lblGreet.Name = "lblGreet";
             this.lblGreet.Size = new System.Drawing.Size(239, 18);
             this.lblGreet.TabIndex = 13;
             this.lblGreet.Text = "HELLO, [COUNSELOR NAME]";
+            this.lblGreet.Click += new System.EventHandler(this.lblGreet_Click);
             // 
             // dgvRequests
             // 

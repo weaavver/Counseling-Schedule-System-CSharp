@@ -186,5 +186,10 @@ namespace Counseling_Schedule_System.Forms
                 e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
             }
         }
+
+        private void lblGreet_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

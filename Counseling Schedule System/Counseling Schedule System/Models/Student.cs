@@ -16,6 +16,7 @@ namespace Counseling_Schedule_System.Models
         public string MobileNo { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
+        public string Gender { get; set; }   // Added Gender
 
         private string _password;
         public string Password
@@ -32,7 +33,7 @@ namespace Counseling_Schedule_System.Models
 
         public string ConfirmPassword { get; set; }
 
-        // Validation method that shows MessageBox for each error
+        // Validation method
         public bool IsValid()
         {
             if (string.IsNullOrWhiteSpace(Name))
@@ -83,6 +84,12 @@ namespace Counseling_Schedule_System.Models
                 return false;
             }
 
+            if (string.IsNullOrWhiteSpace(Gender))
+            {
+                MessageBox.Show("Gender must be selected!");
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show("Password cannot be empty!");
@@ -101,8 +108,7 @@ namespace Counseling_Schedule_System.Models
                 return false;
             }
 
-            // All checks passed
             return true;
         }
-    } 
+    }
 }

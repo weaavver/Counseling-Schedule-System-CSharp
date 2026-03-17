@@ -50,7 +50,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtConfirmPass = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.rbtnOthers = new System.Windows.Forms.RadioButton();
             this.gBoxGender = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gBoxGender.SuspendLayout();
@@ -168,6 +167,7 @@
             this.rbtnFemale.TabStop = true;
             this.rbtnFemale.Text = "Female";
             this.rbtnFemale.UseVisualStyleBackColor = false;
+            this.rbtnFemale.CheckedChanged += new System.EventHandler(this.rbtnFemale_CheckedChanged);
             // 
             // btnClear
             // 
@@ -260,27 +260,14 @@
             this.label10.TabIndex = 20;
             this.label10.Text = "Confirm Password";
             // 
-            // rbtnOthers
-            // 
-            this.rbtnOthers.AutoSize = true;
-            this.rbtnOthers.BackColor = System.Drawing.Color.Transparent;
-            this.rbtnOthers.Location = new System.Drawing.Point(116, 8);
-            this.rbtnOthers.Name = "rbtnOthers";
-            this.rbtnOthers.Size = new System.Drawing.Size(56, 17);
-            this.rbtnOthers.TabIndex = 22;
-            this.rbtnOthers.TabStop = true;
-            this.rbtnOthers.Text = "Others";
-            this.rbtnOthers.UseVisualStyleBackColor = false;
-            // 
             // gBoxGender
             // 
             this.gBoxGender.BackColor = System.Drawing.Color.Transparent;
             this.gBoxGender.Controls.Add(this.rbtnFemale);
-            this.gBoxGender.Controls.Add(this.rbtnOthers);
             this.gBoxGender.Controls.Add(this.rbtnMale);
             this.gBoxGender.Location = new System.Drawing.Point(173, 151);
             this.gBoxGender.Name = "gBoxGender";
-            this.gBoxGender.Size = new System.Drawing.Size(172, 31);
+            this.gBoxGender.Size = new System.Drawing.Size(109, 31);
             this.gBoxGender.TabIndex = 23;
             this.gBoxGender.TabStop = false;
             this.gBoxGender.Enter += new System.EventHandler(this.gBoxGender_Enter);
@@ -356,7 +343,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtConfirmPass;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RadioButton rbtnOthers;
         private System.Windows.Forms.GroupBox gBoxGender;
         private System.Windows.Forms.Panel panel1;
     }

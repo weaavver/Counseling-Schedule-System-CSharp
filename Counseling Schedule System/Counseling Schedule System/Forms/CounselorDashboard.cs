@@ -20,7 +20,7 @@ namespace Counseling_Schedule_System.Forms
         public CounselorDashboard(int userID)
         {
             InitializeComponent();
-            _userID = userID;
+            _userID = userID;            
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -51,17 +51,36 @@ namespace Counseling_Schedule_System.Forms
 
         private void btnRequestRefresh_Click(object sender, EventArgs e)
         {
-            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            try
             {
-                sqlCon.Open();
-                SqlDataAdapter sqlDa = new SqlDataAdapter
-                ("SELECT * FROM requestTbl WHERE [Status] = 'Pending'", sqlCon);
-                sqlDa.SelectCommand.Parameters.AddWithValue("@userID", _userID);
+                using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                {
+                    sqlCon.Open();
 
-                DataTable dtbl = new DataTable();
-                sqlDa.Fill(dtbl);
-                dgvRequests.ReadOnly = true;
-                dgvRequests.DataSource = dtbl;
+                    string query = @"SELECT r.*,
+                             s.StudentName
+                             FROM requestTbl r
+                             JOIN studentTbl s ON r.StudentID = s.studentID
+                             JOIN counselorTbl c ON c.counselorID = @userID
+                             WHERE r.Status = 'Pending'
+                             AND s.Gender = c.Gender";
+
+                    SqlDataAdapter sqlDa = new SqlDataAdapter(query, sqlCon);
+                    sqlDa.SelectCommand.Parameters.AddWithValue("@userID", _userID);
+
+                    DataTable dtbl = new DataTable();
+                    sqlDa.Fill(dtbl);
+
+                    dgvRequests.ReadOnly = true;
+                    dgvRequests.DataSource = dtbl;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading requests.\n\n" + ex.Message,
+                                "Database Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
 
@@ -125,6 +144,11 @@ namespace Counseling_Schedule_System.Forms
         }
 
         private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblGreet_Click(object sender, EventArgs e)
         {
 
         }

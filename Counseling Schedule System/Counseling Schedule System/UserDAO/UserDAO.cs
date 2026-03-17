@@ -72,6 +72,8 @@ namespace Counseling_Schedule_System.UserDAO
             }
         }
 
+
+
         public static int? StudentLogin(string username, string password)
     {
         string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";

@@ -42,9 +42,20 @@ namespace Counseling_Schedule_System
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            string gender = "";
+            foreach (RadioButton rb in gBoxGender.Controls.OfType<RadioButton>())
+            {
+                if (rb.Checked)
+                {
+                    gender = rb.Text;
+                    break;
+                }
+            }
+
             Student student = new Student
             {
                 Name = txtName.Text,
+                Gender = gender,
                 Section = txtYearAndSection.Text,
                 StudentNo = txtStudentNo.Text,
                 MobileNo = txtMobileNo.Text,
@@ -65,8 +76,8 @@ namespace Counseling_Schedule_System
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.Password);
 
             // Database insertion
-            string sql = "INSERT INTO studentTbl(StudentName, Section, StudentNo, MobileNo, Email, Username, Password) " +
-                         "VALUES(@Name, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
+            string sql = "INSERT INTO studentTbl(StudentName, Gender, Section, StudentNo, MobileNo, Email, Username, Password) " +
+                         "VALUES(@Name, @Gender, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
 
             try
             {
@@ -76,6 +87,7 @@ namespace Counseling_Schedule_System
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@Name", student.Name);
+                        cmd.Parameters.AddWithValue("@Gender", student.Gender);
                         cmd.Parameters.AddWithValue("@Section", student.Section);
                         cmd.Parameters.AddWithValue("@StudentNo", student.StudentNo);
                         cmd.Parameters.AddWithValue("@MobileNo", student.MobileNo);

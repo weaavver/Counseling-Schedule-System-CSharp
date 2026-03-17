@@ -136,5 +136,10 @@ namespace Counseling_Schedule_System.Forms
             txtPass.Clear();
             txtConfirmPass.Clear();
         }
+
+        private void rbtnFemale_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

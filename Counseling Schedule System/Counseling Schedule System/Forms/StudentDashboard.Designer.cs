@@ -258,6 +258,7 @@
             this.lblGreet.Size = new System.Drawing.Size(212, 18);
             this.lblGreet.TabIndex = 12;
             this.lblGreet.Text = "HELLO, [STUDENT NAME]";
+            this.lblGreet.Click += new System.EventHandler(this.lblGreet_Click);
             // 
             // panel1
             // 

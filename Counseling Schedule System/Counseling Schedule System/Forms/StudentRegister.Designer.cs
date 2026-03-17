@@ -49,7 +49,12 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.gBoxGender = new System.Windows.Forms.GroupBox();
+            this.rbtnFemale = new System.Windows.Forms.RadioButton();
+            this.rbtnMale = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
+            this.gBoxGender.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -67,7 +72,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(33, 132);
+            this.label2.Location = new System.Drawing.Point(35, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 1;
@@ -125,7 +130,7 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(125, 129);
+            this.txtName.Location = new System.Drawing.Point(127, 99);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(211, 20);
             this.txtName.TabIndex = 7;
@@ -233,6 +238,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.gBoxGender);
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.txtConfirmPass);
@@ -259,6 +266,51 @@
             this.panel1.TabIndex = 20;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Location = new System.Drawing.Point(35, 136);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 13);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Gender";
+            // 
+            // gBoxGender
+            // 
+            this.gBoxGender.BackColor = System.Drawing.Color.Transparent;
+            this.gBoxGender.Controls.Add(this.rbtnFemale);
+            this.gBoxGender.Controls.Add(this.rbtnMale);
+            this.gBoxGender.Location = new System.Drawing.Point(179, 128);
+            this.gBoxGender.Name = "gBoxGender";
+            this.gBoxGender.Size = new System.Drawing.Size(107, 31);
+            this.gBoxGender.TabIndex = 24;
+            this.gBoxGender.TabStop = false;
+            // 
+            // rbtnFemale
+            // 
+            this.rbtnFemale.AutoSize = true;
+            this.rbtnFemale.BackColor = System.Drawing.Color.Transparent;
+            this.rbtnFemale.Location = new System.Drawing.Point(0, 8);
+            this.rbtnFemale.Name = "rbtnFemale";
+            this.rbtnFemale.Size = new System.Drawing.Size(59, 17);
+            this.rbtnFemale.TabIndex = 10;
+            this.rbtnFemale.TabStop = true;
+            this.rbtnFemale.Text = "Female";
+            this.rbtnFemale.UseVisualStyleBackColor = false;
+            // 
+            // rbtnMale
+            // 
+            this.rbtnMale.AutoSize = true;
+            this.rbtnMale.BackColor = System.Drawing.Color.Transparent;
+            this.rbtnMale.Location = new System.Drawing.Point(62, 8);
+            this.rbtnMale.Name = "rbtnMale";
+            this.rbtnMale.Size = new System.Drawing.Size(48, 17);
+            this.rbtnMale.TabIndex = 2;
+            this.rbtnMale.TabStop = true;
+            this.rbtnMale.Text = "Male";
+            this.rbtnMale.UseVisualStyleBackColor = false;
+            // 
             // StudentRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +323,8 @@
             this.Text = "Register";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.gBoxGender.ResumeLayout(false);
+            this.gBoxGender.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -298,5 +352,9 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox gBoxGender;
+        private System.Windows.Forms.RadioButton rbtnFemale;
+        private System.Windows.Forms.RadioButton rbtnMale;
     }
 }
