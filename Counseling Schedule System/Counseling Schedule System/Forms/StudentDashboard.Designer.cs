@@ -38,17 +38,18 @@
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.PanelScheduleBoard = new System.Windows.Forms.Panel();
-            this.txtPreferredTime = new System.Windows.Forms.Label();
+            this.txtScheduledTime = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.Label();
             this.txtCounselor = new System.Windows.Forms.Label();
             this.txtDateRequested = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblDateRequested = new System.Windows.Forms.Label();
-            this.lblPreferredTime = new System.Windows.Forms.Label();
+            this.lblScheduleTime = new System.Windows.Forms.Label();
             this.lblCounselor = new System.Windows.Forms.Label();
             this.lblScheduleBoard = new System.Windows.Forms.Label();
             this.lblGreet = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.PanelScheduleBoard.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -143,13 +144,13 @@
             // PanelScheduleBoard
             // 
             this.PanelScheduleBoard.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.PanelScheduleBoard.Controls.Add(this.txtPreferredTime);
+            this.PanelScheduleBoard.Controls.Add(this.txtScheduledTime);
             this.PanelScheduleBoard.Controls.Add(this.txtStatus);
             this.PanelScheduleBoard.Controls.Add(this.txtCounselor);
             this.PanelScheduleBoard.Controls.Add(this.txtDateRequested);
             this.PanelScheduleBoard.Controls.Add(this.lblStatus);
             this.PanelScheduleBoard.Controls.Add(this.lblDateRequested);
-            this.PanelScheduleBoard.Controls.Add(this.lblPreferredTime);
+            this.PanelScheduleBoard.Controls.Add(this.lblScheduleTime);
             this.PanelScheduleBoard.Controls.Add(this.lblCounselor);
             this.PanelScheduleBoard.Controls.Add(this.lblScheduleBoard);
             this.PanelScheduleBoard.Location = new System.Drawing.Point(480, 147);
@@ -158,15 +159,15 @@
             this.PanelScheduleBoard.TabIndex = 11;
             this.PanelScheduleBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelScheduleBoard_Paint);
             // 
-            // txtPreferredTime
+            // txtScheduledTime
             // 
-            this.txtPreferredTime.AutoSize = true;
-            this.txtPreferredTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPreferredTime.Location = new System.Drawing.Point(117, 91);
-            this.txtPreferredTime.Name = "txtPreferredTime";
-            this.txtPreferredTime.Size = new System.Drawing.Size(23, 15);
-            this.txtPreferredTime.TabIndex = 8;
-            this.txtPreferredTime.Text = "----";
+            this.txtScheduledTime.AutoSize = true;
+            this.txtScheduledTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScheduledTime.Location = new System.Drawing.Point(117, 91);
+            this.txtScheduledTime.Name = "txtScheduledTime";
+            this.txtScheduledTime.Size = new System.Drawing.Size(23, 15);
+            this.txtScheduledTime.TabIndex = 8;
+            this.txtScheduledTime.Text = "----";
             // 
             // txtStatus
             // 
@@ -218,15 +219,15 @@
             this.lblDateRequested.TabIndex = 3;
             this.lblDateRequested.Text = "Date Requested:";
             // 
-            // lblPreferredTime
+            // lblScheduleTime
             // 
-            this.lblPreferredTime.AutoSize = true;
-            this.lblPreferredTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPreferredTime.Location = new System.Drawing.Point(14, 90);
-            this.lblPreferredTime.Name = "lblPreferredTime";
-            this.lblPreferredTime.Size = new System.Drawing.Size(92, 15);
-            this.lblPreferredTime.TabIndex = 2;
-            this.lblPreferredTime.Text = "Preferred Time:";
+            this.lblScheduleTime.AutoSize = true;
+            this.lblScheduleTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScheduleTime.Location = new System.Drawing.Point(14, 90);
+            this.lblScheduleTime.Name = "lblScheduleTime";
+            this.lblScheduleTime.Size = new System.Drawing.Size(97, 15);
+            this.lblScheduleTime.TabIndex = 2;
+            this.lblScheduleTime.Text = "Scheduled Time";
             // 
             // lblCounselor
             // 
@@ -262,6 +263,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.PanelScheduleBoard);
             this.panel1.Controls.Add(this.lblGreet);
             this.panel1.Controls.Add(this.btnSubmit);
@@ -278,6 +280,16 @@
             this.panel1.Size = new System.Drawing.Size(800, 465);
             this.panel1.TabIndex = 13;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(480, 118);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 13;
+            this.btnRefresh.Text = "Refesh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // StudentDashboard
             // 
@@ -310,15 +322,16 @@
         private System.Windows.Forms.DateTimePicker DatePicker;
         private System.Windows.Forms.Panel PanelScheduleBoard;
         private System.Windows.Forms.Label lblDateRequested;
-        private System.Windows.Forms.Label lblPreferredTime;
+        private System.Windows.Forms.Label lblScheduleTime;
         private System.Windows.Forms.Label lblCounselor;
         private System.Windows.Forms.Label lblScheduleBoard;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblGreet;
-        private System.Windows.Forms.Label txtPreferredTime;
+        private System.Windows.Forms.Label txtScheduledTime;
         private System.Windows.Forms.Label txtStatus;
         private System.Windows.Forms.Label txtCounselor;
         private System.Windows.Forms.Label txtDateRequested;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

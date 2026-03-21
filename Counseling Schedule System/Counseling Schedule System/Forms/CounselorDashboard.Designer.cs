@@ -37,7 +37,7 @@
             this.btnScheduleRefresh = new System.Windows.Forms.Button();
             this.txtRequestID2 = new System.Windows.Forms.TextBox();
             this.txtRequestID = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnComplete = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -73,6 +73,7 @@
             this.dgvRequests.Name = "dgvRequests";
             this.dgvRequests.Size = new System.Drawing.Size(290, 219);
             this.dgvRequests.TabIndex = 14;
+            this.dgvRequests.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRequests_CellClick);
             this.dgvRequests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRequests_CellContentClick);
             // 
             // label1
@@ -102,6 +103,7 @@
             this.dgvSchedules.Name = "dgvSchedules";
             this.dgvSchedules.Size = new System.Drawing.Size(290, 219);
             this.dgvSchedules.TabIndex = 17;
+            this.dgvSchedules.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSchedules_CellContentClick);
             // 
             // label2
             // 
@@ -138,14 +140,15 @@
             this.txtRequestID.TabIndex = 21;
             this.txtRequestID.TextChanged += new System.EventHandler(this.txtRequestID_TextChanged);
             // 
-            // button1
+            // btnCancel
             // 
-            this.button1.Location = new System.Drawing.Point(12, 330);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCancel.Location = new System.Drawing.Point(12, 330);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 22;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnConfirm
             // 
@@ -213,7 +216,7 @@
             this.panel2.Controls.Add(this.btnRequestRefresh);
             this.panel2.Controls.Add(this.btnConfirm);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnScheduleRefresh);
             this.panel2.Controls.Add(this.txtRequestID);
             this.panel2.Controls.Add(this.txtRequestID2);
@@ -289,7 +292,7 @@
         private System.Windows.Forms.Button btnScheduleRefresh;
         private System.Windows.Forms.TextBox txtRequestID2;
         private System.Windows.Forms.TextBox txtRequestID;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnComplete;
         private System.Windows.Forms.Label label4;

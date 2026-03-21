@@ -23,8 +23,8 @@ namespace Counseling_Schedule_System.Forms
         {
             InitializeComponent();
             _userID = userID;
-            LoadPendingRequest();
             RoundedCorners(25);
+            LoadRequest();
 
             string sql = @"SELECT StudentName FROM studentTbl WHERE studentID = @StudentID";
 
@@ -69,11 +69,11 @@ namespace Counseling_Schedule_System.Forms
             this.Region = new Region(path);
         }
 
-        private void LoadPendingRequest()
+        private void LoadRequest()
         {
             string sql = @"SELECT CreatedAt, PreferredDateTime, CounselorID, Status
                    FROM requestTbl
-                   WHERE StudentID = @StudentID AND Status = 'Pending'";
+                   WHERE StudentID = @StudentID AND Status = 'Pending' AND Status = 'Cancelled'";
 
             try
             {
@@ -95,7 +95,7 @@ namespace Counseling_Schedule_System.Forms
                                 string status = reader["Status"].ToString();
 
                                 txtDateRequested.Text = dateRequested;
-                                txtPreferredTime.Text = preferredTime;
+                                txtScheduledTime.Text = preferredTime;
                                 if(counselor == "0")
                                     txtCounselor.Text = "Not Assigned";
                                 else
@@ -117,53 +117,70 @@ namespace Counseling_Schedule_System.Forms
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (richTxtReason.Text.Equals(""))
+            try
             {
-                MessageBox.Show("Please provide a reason for your counseling request.");
-                return;
-            }
+                DialogResult result = MessageBox.Show(
+                "Are you sure you want to perform this action?", 
+                "Confirmation",                                 
+                MessageBoxButtons.YesNo,                        
+                MessageBoxIcon.Question                         
+                );
 
-            string message = "Are you sure?";
-            string caption = "Confirmation";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-
-            DialogResult result = MessageBox.Show(message, caption, buttons);
-
-            if (result == DialogResult.Yes)
-            {
-                DateTime finalDateTime = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
-
-                string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
-                string sql = @"INSERT INTO requestTbl (StudentID, PreferredDateTime, Reason)
-                   VALUES (@StudentID, @PreferredDateTime, @Reason)";
-
-                try
+                if (result == DialogResult.Yes)
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    if (richTxtReason.Text == "")
                     {
-                        conn.Open();
-                        using (SqlCommand cmd = new SqlCommand(sql, conn))
-                        {
-                            cmd.Parameters.Add("@StudentID", SqlDbType.Int).Value = _userID;
-                            cmd.Parameters.Add("@PreferredDateTime", SqlDbType.DateTime2).Value = finalDateTime;
-                            cmd.Parameters.Add("@Reason", SqlDbType.NVarChar, 500).Value = richTxtReason.Text;
-
-                            cmd.ExecuteNonQuery();
-                        }
+                        MessageBox.Show("Please provide a reason for your request.");
                     }
+                    else
+                    {
+                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        {
+                            conn.Open();
 
-                    MessageBox.Show("Request submitted! Wait for an email for further notice");
-                    LoadPendingRequest();
+                            string checkSql = @"SELECT COUNT(*) FROM requestTbl 
+                            WHERE StudentID = @StudentID AND Status = 'Pending'";
+
+                            using (SqlCommand checkCmd = new SqlCommand(checkSql, conn))
+                            {
+                                checkCmd.Parameters.Add("@StudentID", SqlDbType.Int).Value = _userID;
+
+                                int pendingCount = (int)checkCmd.ExecuteScalar();
+
+                                if (pendingCount > 0)
+                                {
+                                    MessageBox.Show("You already have a pending request. Please wait until it is processed.");
+                                    return;
+                                }
+                            }
+
+                            DateTime finalDateTime = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
+
+                            string insertSql = @"INSERT INTO requestTbl (StudentID, PreferredDateTime, Reason)
+                             VALUES (@StudentID, @PreferredDateTime, @Reason)";
+
+                            using (SqlCommand cmd = new SqlCommand(insertSql, conn))
+                            {
+                                cmd.Parameters.Add("@StudentID", SqlDbType.Int).Value = _userID;
+                                cmd.Parameters.Add("@PreferredDateTime", SqlDbType.DateTime2).Value = finalDateTime;
+                                cmd.Parameters.Add("@Reason", SqlDbType.NVarChar, 500).Value = richTxtReason.Text;
+
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        MessageBox.Show("Request submitted! Wait for an email for further notice");
+                        LoadRequest();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error submitting request: " + ex.Message);
-                }
+                
             }
-            else if (result == DialogResult.No)
+            catch (Exception ex)
             {
+                MessageBox.Show("Error submitting request: " + ex.Message);
             }
         }
+    
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -190,6 +207,11 @@ namespace Counseling_Schedule_System.Forms
         private void lblGreet_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadRequest();
         }
     }
 }
