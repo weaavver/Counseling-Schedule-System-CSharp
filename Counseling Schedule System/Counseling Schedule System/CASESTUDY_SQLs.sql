@@ -84,6 +84,10 @@ SELECT * FROM studentTbl
 SELECT * FROM requestTbl
 SELECT * FROM counselorTbl
 
+UPDATE requestTbl
+SET [Status] = 'Pending'
+WHERE requestID = 1;
+
 SELECT Username, Password FROM studentTbl;
 
 EXEC sp_rename 'studentTbl.Pass', 'Password', 'COLUMN';
