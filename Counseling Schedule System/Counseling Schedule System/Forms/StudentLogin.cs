@@ -27,8 +27,6 @@ namespace Counseling_Schedule_System
             btnCounselorLogin.FlatAppearance.MouseDownBackColor = Color.Transparent; // Make the button invisible when it's clicked
             btnCounselorLogin.FlatStyle = FlatStyle.Flat; // Required to make the button invisible
             btnCounselorLogin.FlatAppearance.BorderSize = 0; // Required to make the button invisible
-
-
             
         }
 

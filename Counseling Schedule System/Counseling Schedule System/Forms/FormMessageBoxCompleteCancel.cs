@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Counseling_Schedule_System.Forms
 {
-    public class FormMessageBoxRetryAndForgotPass : Form
-        //GENERATED
+    public partial class FormMessageBoxCompleteCancel : Form
     {
         // Stores which button the user clicked
         public string Result { get; private set; } = "";
 
         // Constructor
-        public FormMessageBoxRetryAndForgotPass(string message, string buttonText1, string buttonText2)
+        public FormMessageBoxCompleteCancel(string message, string buttonText1, string buttonText2)
         {
             // Form properties
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -20,7 +25,7 @@ namespace Counseling_Schedule_System.Forms
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Size = new Size(300, 140);
             this.Font = new Font("Segoe UI", 9);
-            this.Text = "Invalid Input";
+            this.Text = "Confirm Action";
 
             // Label
             Label lblMessage = new Label();
@@ -33,7 +38,7 @@ namespace Counseling_Schedule_System.Forms
             lblMessage.Left = 20;
             this.Controls.Add(lblMessage);
 
-            // Button 1
+            // Button 1 (Complete)
             Button btn1 = new Button();
             btn1.Text = buttonText1;
             btn1.Size = new Size(90, 25);
@@ -42,7 +47,7 @@ namespace Counseling_Schedule_System.Forms
             btn1.Click += (s, e) => { Result = buttonText1; this.Close(); };
             this.Controls.Add(btn1);
 
-            // Button 2
+            // Button 2 (Cancel)
             Button btn2 = new Button();
             btn2.Text = buttonText2;
             btn2.Size = new Size(110, 25);
@@ -53,9 +58,9 @@ namespace Counseling_Schedule_System.Forms
         }
 
         // Static helper method like MessageBox.Show
-        public static string Show(string message, string buttonText1 = "Retry", string buttonText2 = "Forgot Password")
+        public static string Show(string message, string buttonText1 = "Complete", string buttonText2 = "Cancel")
         {
-            using (var box = new FormMessageBoxRetryAndForgotPass(message, buttonText1, buttonText2))
+            using (var box = new FormMessageBoxCompleteCancel(message, buttonText1, buttonText2))
             {
                 box.ShowDialog();
                 return box.Result;

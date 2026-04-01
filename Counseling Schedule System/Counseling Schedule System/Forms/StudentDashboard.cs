@@ -23,6 +23,8 @@ namespace Counseling_Schedule_System.Forms
         {
             InitializeComponent();
             _userID = userID;
+            scheduledDateTime.Format = DateTimePickerFormat.Custom;
+            scheduledDateTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             LoadRequest();
 
             greet();
@@ -61,7 +63,7 @@ namespace Counseling_Schedule_System.Forms
 
         private void LoadRequest()
         {
-            string sql = @"SELECT CreatedAt, PreferredDateTime, CounselorID, Status
+            string sql = @"SELECT CreatedAt, ScheduledDateTime, CounselorID, Status
                    FROM requestTbl
                    WHERE StudentID = @StudentID AND Status = 'Pending' OR Status = 'Cancelled'";
 
@@ -80,13 +82,21 @@ namespace Counseling_Schedule_System.Forms
                             if (reader.Read())
                             {
                                 string dateRequested = reader["CreatedAt"].ToString();
-                                string preferredTime = reader["PreferredDateTime"].ToString();
                                 string counselor = reader["CounselorID"].ToString();
                                 string status = reader["Status"].ToString();
 
                                 txtDateRequested.Text = dateRequested;
-                                txtScheduledTime.Text = preferredTime;
-                                if(counselor == "0")
+                                if (reader["ScheduledDateTime"] != DBNull.Value)
+                                {
+                                    scheduledDateTime.Format = DateTimePickerFormat.Custom;
+                                    scheduledDateTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+                                    scheduledDateTime.Value = Convert.ToDateTime(reader["ScheduledDateTime"]);
+                                }
+                                else
+                                {
+                                    scheduledDateTime.CustomFormat = " "; // shows blank
+                                }
+                                if (counselor == "0")
                                     txtCounselor.Text = "Not Assigned";
                                 else
                                     txtCounselor.Text = counselor;

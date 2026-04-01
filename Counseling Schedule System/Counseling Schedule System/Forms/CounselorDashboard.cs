@@ -125,7 +125,7 @@ namespace Counseling_Schedule_System.Forms
 
                     SqlCommand cmd = new SqlCommand(@"
                         SELECT r.*,
-                               CONCAT(s.FirstName, ' ', s.LastName)
+                        CONCAT(s.FirstName, ' ', s.LastName) AS Name
                         FROM requestTbl r
                         JOIN studentTbl s ON r.StudentID = s.studentID
                         JOIN counselorTbl c ON c.counselorID = @counselorID
@@ -155,7 +155,7 @@ namespace Counseling_Schedule_System.Forms
 
         private void btnRequestRefresh_Click(object sender, EventArgs e)
         {
-            
+            RefreshRequests();
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -165,7 +165,14 @@ namespace Counseling_Schedule_System.Forms
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if(txtRequestID.Text == "")
+            ConfirmRequest();
+            RefreshSchedule();
+            RefreshRequests();
+        }
+
+        private void ConfirmRequest()
+        {
+            if (txtRequestID.Text == "")
             {
                 MessageBox.Show("Please select a request to schedule.", "No Request Selected",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -180,31 +187,31 @@ namespace Counseling_Schedule_System.Forms
 
                 try
                 {
-                    using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
-                        sqlCon.Open();
-                        SqlDataAdapter sqlDa = new SqlDataAdapter
-                        ("UPDATE requestTbl " +
-                        "SET counselorID = @counselorID, " +
-                        "ScheduledDate = @scheduledDate, " +
-                        "ScheduledTime = @scheduledTime, " +
-                        "[Status] = @status, " +
-                        "UpdatedAt = GETDATE() " +
-                        "WHERE requestID = @requestID", sqlCon);
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand(@"
+                            UPDATE requestTbl
+                            SET counselorID = @counselorID, 
+                            ScheduledDateTime = @ScheduledDateTime, 
+                            [Status] = @status, 
+                            UpdatedAt = GETDATE()
+                            WHERE requestID = @requestID"
+                        , conn);
 
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@requestID", requestID);
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@scheduledDate", scheduledDate);
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@scheduledTime", scheduledTime);
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@status", status);
+                        DateTime DateTimeCombined = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
 
-                        DataTable dtbl = new DataTable();
-                        sqlDa.Fill(dtbl);
+                        cmd.Parameters.AddWithValue("@counselorID", _userID);
+                        cmd.Parameters.AddWithValue("@requestID", requestID);
+                        cmd.Parameters.AddWithValue("@ScheduledDateTime", DateTimeCombined);
+                        cmd.Parameters.AddWithValue("@status", status);
 
-                        dgvSchedules.DataSource = dtbl;
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Error loading requests.\n\n" + ex.Message,
                                 "Database Error",
@@ -232,6 +239,7 @@ namespace Counseling_Schedule_System.Forms
         private void button3_Click(object sender, EventArgs e)
         {
             Update("Completed");
+            RefreshSchedule();
         }
 
         private void Update(string Status)
@@ -249,23 +257,26 @@ namespace Counseling_Schedule_System.Forms
 
                 try
                 {
-                    using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
-                        sqlCon.Open();
-                        SqlDataAdapter sqlDa = new SqlDataAdapter
-                        ("UPDATE requestTbl " +
-                        "[Status] = @status, " +
-                        "UpdatedAt = GETDATE() " +
-                        "WHERE requestID = @requestID", sqlCon);
+                        conn.Open();
 
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@requestID", requestID);
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@status", status);
+                        SqlCommand cmd = new SqlCommand(@"
+                            UPDATE requestTbl
+                            SET [Status] = @status,
+                            UpdatedAt = GETDATE(),
+                            WHERE requestID = @requestID"
+                        , conn);
 
-                        DataTable dtbl = new DataTable();
-                        sqlDa.Fill(dtbl);
+                        DateTime DatetTimecombined = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
 
-                        dgvSchedules.DataSource = dtbl;
+                        cmd.Parameters.AddWithValue("@counselorID", _userID);
+                        cmd.Parameters.AddWithValue("@requestID", requestID);
+                        cmd.Parameters.AddWithValue("@status", status);
+
+                        cmd.ExecuteNonQuery();
+
+                        conn.Close();
                     }
                 }
                 catch (Exception ex)
@@ -323,6 +334,7 @@ namespace Counseling_Schedule_System.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             Update("Cancelled");
+            RefreshSchedule();
         }
 
         private void dgvSchedules_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -334,14 +346,19 @@ namespace Counseling_Schedule_System.Forms
                     dgvSchedules.Rows[e.RowIndex].Cells["requestID"].Value
                 );
 
-                DialogResult result = MessageBox.Show(
-                    "Yes = Complete\nNo = Cancel Schedule",
-                    "Complete Or Cancel",
-                    MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question
+                string result = FormMessageBoxCompleteCancel.Show(
+                    "What would you like to do?"
                 );
 
-                if (result == DialogResult.Yes)
+                if (result == "Complete")
+                    {
+                        // mark as completed
+                    }
+                else if (result == "Cancel"){
+                    // cancel schedule
+                }
+
+                if (true)
                 {
                         string status = "Completed";
                         try
@@ -377,7 +394,7 @@ namespace Counseling_Schedule_System.Forms
                                         MessageBoxIcon.Error);
                         }
                 }
-                if (result == DialogResult.Cancel)
+                if (true)
                 {
                     string status = "Cancelled";
                     try

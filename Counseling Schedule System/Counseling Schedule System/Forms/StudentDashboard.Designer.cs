@@ -39,7 +39,6 @@
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.PanelScheduleBoard = new System.Windows.Forms.Panel();
-            this.txtScheduledTime = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.Label();
             this.txtCounselor = new System.Windows.Forms.Label();
             this.txtDateRequested = new System.Windows.Forms.Label();
@@ -54,6 +53,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.scheduledDateTime = new System.Windows.Forms.DateTimePicker();
             this.PanelScheduleBoard.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -157,7 +157,7 @@
             // PanelScheduleBoard
             // 
             this.PanelScheduleBoard.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.PanelScheduleBoard.Controls.Add(this.txtScheduledTime);
+            this.PanelScheduleBoard.Controls.Add(this.scheduledDateTime);
             this.PanelScheduleBoard.Controls.Add(this.txtStatus);
             this.PanelScheduleBoard.Controls.Add(this.txtCounselor);
             this.PanelScheduleBoard.Controls.Add(this.txtDateRequested);
@@ -171,16 +171,6 @@
             this.PanelScheduleBoard.Size = new System.Drawing.Size(308, 226);
             this.PanelScheduleBoard.TabIndex = 11;
             this.PanelScheduleBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelScheduleBoard_Paint);
-            // 
-            // txtScheduledTime
-            // 
-            this.txtScheduledTime.AutoSize = true;
-            this.txtScheduledTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScheduledTime.Location = new System.Drawing.Point(132, 91);
-            this.txtScheduledTime.Name = "txtScheduledTime";
-            this.txtScheduledTime.Size = new System.Drawing.Size(28, 17);
-            this.txtScheduledTime.TabIndex = 8;
-            this.txtScheduledTime.Text = "----";
             // 
             // txtStatus
             // 
@@ -337,6 +327,16 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // scheduledDateTime
+            // 
+            this.scheduledDateTime.Enabled = false;
+            this.scheduledDateTime.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scheduledDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.scheduledDateTime.Location = new System.Drawing.Point(133, 90);
+            this.scheduledDateTime.Name = "scheduledDateTime";
+            this.scheduledDateTime.Size = new System.Drawing.Size(130, 22);
+            this.scheduledDateTime.TabIndex = 15;
+            // 
             // StudentDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -377,7 +377,6 @@
         private System.Windows.Forms.Label lblScheduleBoard;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblGreet;
-        private System.Windows.Forms.Label txtScheduledTime;
         private System.Windows.Forms.Label txtStatus;
         private System.Windows.Forms.Label txtCounselor;
         private System.Windows.Forms.Label txtDateRequested;
@@ -386,5 +385,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker scheduledDateTime;
     }
 }
