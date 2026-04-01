@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>pdmlogo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BCrypt.Net-Next, Version=4.1.0.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
       <HintPath>..\packages\BCrypt.Net-Next.4.1.0\lib\net472\BCrypt.Net-Next.dll</HintPath>
@@ -62,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailSender.cs" />
     <Compile Include="Forms\CounselorDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +120,9 @@
     </Compile>
     <Compile Include="Forms\StudentRegister.Designer.cs">
       <DependentUpon>StudentRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransparentPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserDAO\UserDAO.cs" />
     <EmbeddedResource Include="Forms\CounselorDashboard.resx">
@@ -174,6 +181,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\Counselor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\login.png" />
+    <Content Include="pdmlogo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

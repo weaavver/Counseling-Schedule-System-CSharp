@@ -20,8 +20,6 @@ namespace Counseling_Schedule_System
         public StudentLogin()
         {
             InitializeComponent();
-            RoundedCorners(25);
-
             btnCounselorLogin.Size = new Size(30, 25); // Set the size of the button
             btnCounselorLogin.Location = new Point(358, 513); // Set the location of the button
             btnCounselorLogin.BackColor = Color.Transparent; // Make the button invisible
@@ -30,23 +28,17 @@ namespace Counseling_Schedule_System
             btnCounselorLogin.FlatStyle = FlatStyle.Flat; // Required to make the button invisible
             btnCounselorLogin.FlatAppearance.BorderSize = 0; // Required to make the button invisible
 
+
+            
         }
 
-        public void RoundedCorners(int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-
-            path.AddArc(0, 0, radius, radius, 180, 90);
-            path.AddArc(this.Width - radius, 0, radius, radius, 270, 90);
-            path.AddArc(this.Width - radius, this.Height - radius, radius, radius, 0, 90);
-            path.AddArc(0, this.Height - radius, radius, radius, 90, 90);
-
-            path.CloseAllFigures();
-
-            this.Region = new Region(path);
-        }
 
         private void btnRegister_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Register()
         {
             StudentRegister register = new StudentRegister();
             register.Opacity = 0;
@@ -71,82 +63,12 @@ namespace Counseling_Schedule_System
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
-
-            int? userID = UserDAO.UserDAO.StudentLogin(username, password);
-            if (userID.HasValue)
-            {
-                MessageBox.Show("Login successful!");
-
-                StudentDashboard dashboard = new StudentDashboard(userID.Value);
-                dashboard.Opacity = 0;
-                dashboard.Show();
-
-                Timer fadeTimer = new Timer();
-                fadeTimer.Interval = 20;
-
-                fadeTimer.Tick += (s, ev) =>
-                {
-                    if (dashboard.Opacity < 1)
-                        dashboard.Opacity += 0.05;
-                    else
-                    {
-                        fadeTimer.Stop();
-                        this.Hide();
-                    }
-                };
-
-                fadeTimer.Start();
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password.");
-                string choice = FormMessageBoxRetryAndForgotPass.Show(
-                "Do you want to retry or reset your password?",
-                "Retry",
-                "Forgot Password(NOT YET IMPLEMENTED)"
-                );
-
-                if (choice == "Retry")
-                {
-                    txtPassword.Clear();
-                }
-                else if (choice == "Forgot Password(NOT YET IMPLEMENTED)")
-                {
-                    ForgotPassword forgotPasswordForm = new ForgotPassword();
-                    forgotPasswordForm.Opacity = 0;
-                    forgotPasswordForm.Show();
-
-                    Timer fadeTimer = new Timer();
-                    fadeTimer.Interval = 20;
-
-                    fadeTimer.Tick += (s, ev) =>
-                    {
-                        if (forgotPasswordForm.Opacity < 1)
-                            forgotPasswordForm.Opacity += 0.05;
-                        else
-                        {
-                            fadeTimer.Stop();
-                            this.Hide();
-                        }
-                    };
-
-                    fadeTimer.Start();
-                }
-            }
+            Login();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            using (LinearGradientBrush brush = new LinearGradientBrush(
-                panel1.ClientRectangle,
-                Color.LightSkyBlue,
-                Color.White,
-                90F))
-            {
-                e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
-            }
+            
         }
 
         private void chkPass_CheckedChanged(object sender, EventArgs e)
@@ -175,6 +97,116 @@ namespace Counseling_Schedule_System
             };
 
             fadeTimer.Start();
+        }
+    
+
+        private void Login()
+            {
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
+
+                int? userID = UserDAO.UserDAO.StudentLogin(username, password);
+                if (userID.HasValue)
+                {
+                    MessageBox.Show("Login successful!");
+
+                    StudentDashboard dashboard = new StudentDashboard(userID.Value);
+                    dashboard.Opacity = 0;
+                    dashboard.Show();
+
+                    Timer fadeTimer = new Timer();
+                    fadeTimer.Interval = 20;
+
+                    fadeTimer.Tick += (s, ev) =>
+                    {
+                        if (dashboard.Opacity < 1)
+                            dashboard.Opacity += 0.05;
+                        else
+                        {
+                            fadeTimer.Stop();
+                            this.Hide();
+                        }
+                    };
+
+                    fadeTimer.Start();
+                }
+                else
+                {
+                MessageBox.Show("Invalid username or password.");
+            }
+        }
+
+        private void StudentLogin_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        
+
+        private void btnBacktoLogin_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show(
+                "Do you want to exit the application?",
+                "Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnLogin_Click_1(object sender, EventArgs e)
+        {
+            Login();
+        }
+
+        private void btnRegister_Click_1(object sender, EventArgs e)
+        {
+            Register();
+        }
+
+        private void forgotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string choice = FormMessageBoxRetryAndForgotPass.Show(
+            "Do you want to retry or reset your password?",
+            "Retry",
+            "Forgot Password(NOT YET IMPLEMENTED)"
+            );
+
+            if (choice == "Retry")
+            {
+                txtPassword.Clear();
+            }
+            else if (choice == "Forgot Password(NOT YET IMPLEMENTED)")
+            {
+                ForgotPassword forgotPasswordForm = new ForgotPassword();
+                forgotPasswordForm.Opacity = 0;
+                forgotPasswordForm.Show();
+
+                Timer fadeTimer = new Timer();
+                fadeTimer.Interval = 20;
+
+                fadeTimer.Tick += (s, ev) =>
+                {
+                    if (forgotPasswordForm.Opacity < 1)
+                        forgotPasswordForm.Opacity += 0.05;
+                    else
+                    {
+                        fadeTimer.Stop();
+                        this.Hide();
+                    }
+                };
+
+                fadeTimer.Start();
+            }
         }
     }
 }

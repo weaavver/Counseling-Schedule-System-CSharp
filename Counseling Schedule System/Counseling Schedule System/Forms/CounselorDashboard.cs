@@ -25,7 +25,38 @@ namespace Counseling_Schedule_System.Forms
             RefreshSchedule();
             RefreshRequests();
 
+            greet();
+        }
 
+        public void greet()
+        {
+            string sql = @"SELECT CounselorName AS 'Counselor Name' FROM counselorTbl WHERE counselorID = @counselorID";
+
+            string counselorName = "";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@counselorID", SqlDbType.Int).Value = _userID;
+
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            counselorName = result.ToString();
+                        }
+                    }
+                }
+                lblGreet.Text = $"Hello, {counselorName}!";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -50,12 +81,27 @@ namespace Counseling_Schedule_System.Forms
                 using (SqlConnection sqlCon = new SqlConnection(connectionString))
                 {
                     sqlCon.Open();
-                    SqlDataAdapter sqlDa = new SqlDataAdapter
-                    ("SELECT \r\n    r.requestID,\r\n    s.StudentName,\r\n    c.CounselorName,\r\n    s.MobileNo,\r\n    s.Email\r\nFROM requestTbl r\r\nINNER JOIN studentTbl s \r\n    ON r.StudentID = s.studentID\r\nINNER JOIN counselorTbl c \r\n    ON r.CounselorID = c.counselorID\r\nWHERE r.[Status] = 'Scheduled'\r\nAND r.CounselorID = @counselorID;", sqlCon);
+                    SqlCommand cmd = new SqlCommand(@"
+                        SELECT 
+                            r.requestID,
+                            (s.FirstName + ' ' + s.LastName) AS Name,
+                            c.CounselorName,
+                            s.MobileNo,
+                            s.Email
+                        FROM requestTbl r
+                        INNER JOIN studentTbl s 
+                            ON r.StudentID = s.studentID
+                        INNER JOIN counselorTbl c 
+                            ON r.CounselorID = c.counselorID
+                        WHERE r.[Status] = 'Scheduled'
+                        AND r.CounselorID = @counselorID;", sqlCon);
+
+                    SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
                     sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
                     DataTable dtbl = new DataTable();
                     sqlDa.Fill(dtbl);
                     dgvSchedules.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    dgvSchedules.AllowUserToAddRows = false; // Removes the last row that spawns along with dgv
                     dgvSchedules.ReadOnly = true;
                     dgvSchedules.DataSource = dtbl;
                 }
@@ -71,23 +117,22 @@ namespace Counseling_Schedule_System.Forms
 
         private void RefreshRequests()
         {
-            try
-            {
                 try
                 {
                     using (SqlConnection sqlCon = new SqlConnection(connectionString))
                     {
                         sqlCon.Open();
 
-                        string query = @"SELECT r.*,
-                             s.StudentName
-                             FROM requestTbl r
-                             JOIN studentTbl s ON r.StudentID = s.studentID
-                             JOIN counselorTbl c ON c.counselorID = @counselorID
-                             WHERE r.Status = 'Pending'
-                             AND s.Gender = c.Gender";
+                    SqlCommand cmd = new SqlCommand(@"
+                        SELECT r.*,
+                               CONCAT(s.FirstName, ' ', s.LastName)
+                        FROM requestTbl r
+                        JOIN studentTbl s ON r.StudentID = s.studentID
+                        JOIN counselorTbl c ON c.counselorID = @counselorID
+                        WHERE r.Status = 'Pending'
+                        AND s.Gender = c.Gender", sqlCon);
 
-                        SqlDataAdapter sqlDa = new SqlDataAdapter(query, sqlCon);
+                    SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
                         sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
 
                         DataTable dtbl = new DataTable();
@@ -105,14 +150,7 @@ namespace Counseling_Schedule_System.Forms
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading requests.\n\n" + ex.Message,
-                                "Database Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
+            
         }
 
         private void btnRequestRefresh_Click(object sender, EventArgs e)
@@ -122,14 +160,7 @@ namespace Counseling_Schedule_System.Forms
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            using (LinearGradientBrush brush = new LinearGradientBrush(
-            panel1.ClientRectangle,
-            Color.LightSkyBlue,
-            Color.White,
-            90F))
-            {
-                e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
-            }
+            
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)

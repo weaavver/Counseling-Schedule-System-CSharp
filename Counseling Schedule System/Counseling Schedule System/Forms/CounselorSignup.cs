@@ -22,6 +22,49 @@ namespace Counseling_Schedule_System.Forms
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            Signup();
+        }
+
+        
+
+        private void gBoxGender_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(
+            panel1.ClientRectangle,
+            Color.LightSkyBlue,
+            Color.White,
+            90F))
+            {
+                e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        private void Clear()
+        {
+            txtName.Clear();
+            rbtnFemale.Checked = false;
+            rbtnMale.Checked = false;
+            txtSpecialization.Clear();
+            txtPRCLicense.Clear();
+            txtMobileNumber.Clear();
+            txtEmail.Clear();
+            txtUsername.Clear();
+            txtPass.Clear();
+            txtConfirmPass.Clear();
+        }
+
+        private void Signup()
+        {
             string gender = "";
             foreach (RadioButton rb in gBoxGender.Controls.OfType<RadioButton>())
             {
@@ -104,40 +147,130 @@ namespace Counseling_Schedule_System.Forms
             }
         }
 
-        private void gBoxGender_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            using (LinearGradientBrush brush = new LinearGradientBrush(
-            panel1.ClientRectangle,
-            Color.LightSkyBlue,
-            Color.White,
-            90F))
-            {
-                e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
-            }
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            txtName.Clear();
-            foreach (RadioButton rb in gBoxGender.Controls.OfType<RadioButton>())
-            {
-                rb.Checked = false;
-            }
-            txtSpecialization.Clear();
-            txtPRCLicense.Clear();
-            txtMobileNumber.Clear();
-            txtEmail.Clear();
-            txtUsername.Clear();
-            txtPass.Clear();
-            txtConfirmPass.Clear();
-        }
-
         private void rbtnFemale_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPRCLicense_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtConfirmPass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            CounselorSignup form = new CounselorSignup();
+            form.Opacity = 0;
+            form.Show();
+
+            Timer fadeTimer = new Timer();
+            fadeTimer.Interval = 20;
+
+            fadeTimer.Tick += (s, ev) =>
+            {
+                if (form.Opacity < 1)
+                    form.Opacity += 0.05;
+                else
+                {
+                    fadeTimer.Stop();
+                    this.Hide();
+                }
+            };
+
+            fadeTimer.Start();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbtnMale_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMobileNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSpecialization_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

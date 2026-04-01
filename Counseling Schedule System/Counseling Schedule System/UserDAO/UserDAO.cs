@@ -99,7 +99,6 @@ namespace Counseling_Schedule_System.UserDAO
                             // Compare the entered password (unhashed) with the stored bcrypt hash
                             if (BCrypt.Net.BCrypt.Verify(password, storedHash))
                             {
-                                MessageBox.Show("Stored Hash: " + storedHash);
                                 return userID; // login success
                             }
                             else

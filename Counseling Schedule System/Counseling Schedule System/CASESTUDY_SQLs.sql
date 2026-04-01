@@ -10,7 +10,8 @@ DROP TABLE requestTbl;
 --CREATE TABLE FOR STUDENT
 CREATE TABLE studentTbl(
 	studentID INT IDENTITY(1,1) PRIMARY KEY,
-    StudentName VARCHAR(100) NOT NULL,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
     Gender VARCHAR(8) NOT NULL,
     Section VARCHAR(20) NOT NULL,
     StudentNo VARCHAR(20) NOT NULL,
@@ -51,8 +52,7 @@ CREATE TABLE requestTbl(
     StudentID INT NOT NULL,
     CounselorID INT NULL,
     PreferredDateTime DATETIME NOT NULL,
-    ScheduledDate DATETIME NULL,
-    ScheduledTime DATETIME NULL,
+    ScheduledDateTime DATETIME NULL,
     [Status] VARCHAR(20) NOT NULL DEFAULT 'Pending',
     Reason VARCHAR(500) NULL,
     CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
@@ -62,6 +62,8 @@ CREATE TABLE requestTbl(
     CONSTRAINT FK_Request_Student FOREIGN KEY (StudentID) REFERENCES studentTbl(studentID),
     CONSTRAINT FK_Request_Counselor FOREIGN KEY (CounselorID) REFERENCES counselorTbl(counselorID)
 );
+
+SELECT Concat(FirstName,' ',LastName) FROM studentTbl WHERE studentID = @StudentID
 
 --For getting the counselor name using the counselorID in requestTbl
 --This is for loading the pending requests for counselor dashboard table.

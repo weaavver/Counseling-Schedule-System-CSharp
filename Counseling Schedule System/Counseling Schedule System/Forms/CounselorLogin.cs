@@ -111,19 +111,32 @@ namespace Counseling_Schedule_System.Forms
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            using (LinearGradientBrush brush = new LinearGradientBrush(
-            panel1.ClientRectangle,
-            Color.LightSkyBlue,
-            Color.White,
-            90F))
-            {
-                e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
-            }
+            
         }
 
         private void chkPass_CheckedChanged(object sender, EventArgs e)
         {
             txtPassword.UseSystemPasswordChar = !chkPass.Checked;
+        }
+
+        private void btnStudentLogin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show(
+                "Do you want to exit the application?",
+                "Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

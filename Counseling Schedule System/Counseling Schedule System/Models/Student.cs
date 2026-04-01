@@ -10,7 +10,8 @@ namespace Counseling_Schedule_System.Models
 {
     public class Student
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Section { get; set; }
         public string StudentNo { get; set; }
         public string MobileNo { get; set; }
@@ -36,7 +37,13 @@ namespace Counseling_Schedule_System.Models
         // Validation method
         public bool IsValid()
         {
-            if (string.IsNullOrWhiteSpace(Name))
+            if (string.IsNullOrWhiteSpace(FirstName))
+            {
+                MessageBox.Show("Name cannot be empty!");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(LastName))
             {
                 MessageBox.Show("Name cannot be empty!");
                 return false;

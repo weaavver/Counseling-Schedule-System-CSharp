@@ -23,10 +23,14 @@ namespace Counseling_Schedule_System.Forms
         {
             InitializeComponent();
             _userID = userID;
-            RoundedCorners(25);
             LoadRequest();
 
-            string sql = @"SELECT StudentName FROM studentTbl WHERE studentID = @StudentID";
+            greet();
+        }
+
+        public void greet()
+        {
+            string sql = @"SELECT Concat(FirstName,' ' ,LastName) FROM studentTbl WHERE studentId = @studentId";
 
             string studentName = "";
 
@@ -37,7 +41,7 @@ namespace Counseling_Schedule_System.Forms
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.Add("@StudentID", SqlDbType.Int).Value = _userID;
+                        cmd.Parameters.Add("@studentId", SqlDbType.Int).Value = _userID;
 
                         object result = cmd.ExecuteScalar();
 
@@ -55,25 +59,11 @@ namespace Counseling_Schedule_System.Forms
             }
         }
 
-        public void RoundedCorners(int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-
-            path.AddArc(0, 0, radius, radius, 180, 90);
-            path.AddArc(this.Width - radius, 0, radius, radius, 270, 90);
-            path.AddArc(this.Width - radius, this.Height - radius, radius, radius, 0, 90);
-            path.AddArc(0, this.Height - radius, radius, radius, 90, 90);
-
-            path.CloseAllFigures();
-
-            this.Region = new Region(path);
-        }
-
         private void LoadRequest()
         {
             string sql = @"SELECT CreatedAt, PreferredDateTime, CounselorID, Status
                    FROM requestTbl
-                   WHERE StudentID = @StudentID AND Status = 'Pending' AND Status = 'Cancelled'";
+                   WHERE StudentID = @StudentID AND Status = 'Pending' OR Status = 'Cancelled'";
 
             try
             {
@@ -194,14 +184,7 @@ namespace Counseling_Schedule_System.Forms
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            using (LinearGradientBrush brush = new LinearGradientBrush(
-            panel1.ClientRectangle,
-            Color.LightSkyBlue,
-            Color.White,
-            90F))
-            {
-                e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
-            }
+            
         }
 
         private void lblGreet_Click(object sender, EventArgs e)

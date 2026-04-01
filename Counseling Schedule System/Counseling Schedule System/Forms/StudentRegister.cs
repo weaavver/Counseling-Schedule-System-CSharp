@@ -24,20 +24,6 @@ namespace Counseling_Schedule_System
         public StudentRegister()
         {
             InitializeComponent();
-            RoundedCorners(25);
-        }
-        public void RoundedCorners(int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-
-            path.AddArc(0, 0, radius, radius, 180, 90);
-            path.AddArc(this.Width - radius, 0, radius, radius, 270, 90);
-            path.AddArc(this.Width - radius, this.Height - radius, radius, radius, 0, 90);
-            path.AddArc(0, this.Height - radius, radius, radius, 90, 90);
-
-            path.CloseAllFigures();
-
-            this.Region = new Region(path);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -54,7 +40,8 @@ namespace Counseling_Schedule_System
 
             Student student = new Student
             {
-                Name = txtName.Text,
+                FirstName = txtFName.Text,
+                LastName = txtLName.Text,
                 Gender = gender,
                 Section = txtYearAndSection.Text,
                 StudentNo = txtStudentNo.Text,
@@ -76,8 +63,8 @@ namespace Counseling_Schedule_System
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.Password);
 
             // Database insertion
-            string sql = "INSERT INTO studentTbl(StudentName, Gender, Section, StudentNo, MobileNo, Email, Username, Password) " +
-                         "VALUES(@Name, @Gender, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
+            string sql = "INSERT INTO studentTbl(FirstName, LastName, Gender, Section, StudentNo, MobileNo, Email, Username, Password) " +
+                         "VALUES(@FName, @LName, @Gender, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
 
             try
             {
@@ -86,7 +73,8 @@ namespace Counseling_Schedule_System
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@Name", student.Name);
+                        cmd.Parameters.AddWithValue("@FName", student.FirstName);
+                        cmd.Parameters.AddWithValue("@LName", student.LastName);
                         cmd.Parameters.AddWithValue("@Gender", student.Gender);
                         cmd.Parameters.AddWithValue("@Section", student.Section);
                         cmd.Parameters.AddWithValue("@StudentNo", student.StudentNo);
@@ -98,12 +86,12 @@ namespace Counseling_Schedule_System
                         cmd.ExecuteNonQuery();
                     }
                 }
-                MessageBox.Show("Stored hash: " + hashedPassword);
                 MessageBox.Show("Registration successful!");
                 MessageBox.Show("Please Login");
 
                 // Clear form
-                txtName.Clear();
+                txtFName.Clear();
+                txtLName.Clear();
                 txtYearAndSection.Clear();
                 txtStudentNo.Clear();
                 txtMobileNo.Clear();
@@ -152,14 +140,102 @@ namespace Counseling_Schedule_System
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            using (LinearGradientBrush brush = new LinearGradientBrush(
-            panel1.ClientRectangle,
-            Color.LightSkyBlue,
-            Color.White,
-            90F))
-            {
-                e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
-            }
+            
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMobileNo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtStudentNo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtYearAndSection_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtConfirmPass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtLName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
