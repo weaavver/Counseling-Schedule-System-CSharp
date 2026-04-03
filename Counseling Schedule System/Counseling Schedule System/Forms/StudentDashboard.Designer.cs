@@ -39,6 +39,7 @@
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.PanelScheduleBoard = new System.Windows.Forms.Panel();
+            this.scheduledDateTime = new System.Windows.Forms.DateTimePicker();
             this.txtStatus = new System.Windows.Forms.Label();
             this.txtCounselor = new System.Windows.Forms.Label();
             this.txtDateRequested = new System.Windows.Forms.Label();
@@ -51,9 +52,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.scheduledDateTime = new System.Windows.Forms.DateTimePicker();
             this.PanelScheduleBoard.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -172,6 +172,16 @@
             this.PanelScheduleBoard.TabIndex = 11;
             this.PanelScheduleBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelScheduleBoard_Paint);
             // 
+            // scheduledDateTime
+            // 
+            this.scheduledDateTime.Enabled = false;
+            this.scheduledDateTime.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scheduledDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.scheduledDateTime.Location = new System.Drawing.Point(133, 90);
+            this.scheduledDateTime.Name = "scheduledDateTime";
+            this.scheduledDateTime.Size = new System.Drawing.Size(130, 22);
+            this.scheduledDateTime.TabIndex = 15;
+            // 
             // txtStatus
             // 
             this.txtStatus.AutoSize = true;
@@ -287,7 +297,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gray;
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.btnCancel);
             this.panel3.Controls.Add(this.richTxtReason);
             this.panel3.Controls.Add(this.btnRefresh);
             this.panel3.Controls.Add(this.label4);
@@ -303,17 +313,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(801, 417);
             this.panel3.TabIndex = 15;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
-            // button1
+            // btnCancel
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(473, 347);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 27);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Cancel current schedule";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(617, 314);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(164, 27);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "Cancel pending request";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnRefresh
             // 
@@ -321,21 +333,11 @@
             this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.Location = new System.Drawing.Point(473, 314);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(86, 27);
+            this.btnRefresh.Size = new System.Drawing.Size(67, 27);
             this.btnRefresh.TabIndex = 13;
             this.btnRefresh.Text = "Refesh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // scheduledDateTime
-            // 
-            this.scheduledDateTime.Enabled = false;
-            this.scheduledDateTime.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scheduledDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.scheduledDateTime.Location = new System.Drawing.Point(133, 90);
-            this.scheduledDateTime.Name = "scheduledDateTime";
-            this.scheduledDateTime.Size = new System.Drawing.Size(130, 22);
-            this.scheduledDateTime.TabIndex = 15;
             // 
             // StudentDashboard
             // 
@@ -384,7 +386,7 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DateTimePicker scheduledDateTime;
     }
 }

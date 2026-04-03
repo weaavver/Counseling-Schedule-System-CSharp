@@ -73,7 +73,7 @@
             // dgvRequests
             // 
             this.dgvRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRequests.Location = new System.Drawing.Point(458, 111);
+            this.dgvRequests.Location = new System.Drawing.Point(461, 111);
             this.dgvRequests.Name = "dgvRequests";
             this.dgvRequests.Size = new System.Drawing.Size(290, 219);
             this.dgvRequests.TabIndex = 14;

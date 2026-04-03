@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Counseling_Schedule_System.Forms
 {
@@ -65,7 +66,7 @@ namespace Counseling_Schedule_System.Forms
         {
             string sql = @"SELECT CreatedAt, ScheduledDateTime, CounselorID, Status
                    FROM requestTbl
-                   WHERE StudentID = @StudentID AND Status = 'Pending' OR Status = 'Cancelled'";
+                   WHERE StudentID = @StudentID AND Status = 'Pending'";
 
             try
             {
@@ -103,7 +104,16 @@ namespace Counseling_Schedule_System.Forms
                                 txtStatus.Text = status;
 
                                 PanelScheduleBoard.Visible = true;
-                            }
+                                }
+                            else
+                            {
+                                txtDateRequested.Text = "----";
+                                txtCounselor.Text = "----";
+                                txtStatus.Text = "----";
+                                scheduledDateTime.CustomFormat = " "; // shows blank
+                                PanelScheduleBoard.Visible = false;
+                            }    
+                            
                         }
                     }
                 }
@@ -120,7 +130,7 @@ namespace Counseling_Schedule_System.Forms
             try
             {
                 DialogResult result = MessageBox.Show(
-                "Are you sure you want to perform this action?", 
+                "Are you sure you want to perform this action? Warning: You cannot cancel a schedule once it's confirmed.", 
                 "Confirmation",                                 
                 MessageBoxButtons.YesNo,                        
                 MessageBoxIcon.Question                         
@@ -205,6 +215,67 @@ namespace Counseling_Schedule_System.Forms
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadRequest();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Cancel();
+        }
+
+        private void Cancel()
+        {
+            try
+            {
+                if (txtDateRequested.Text.Equals("----"))
+                {
+                    MessageBox.Show("No pending request to cancel.");
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show(
+                    "Are you sure you want to Cancel your currently pending request?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        {
+                            conn.Open();
+
+                            SqlCommand cmd = new SqlCommand(@"
+                            UPDATE requestTbl
+                            SET Status = 'Cancelled',
+                                UpdatedAt = GETDATE()
+                            WHERE StudentID = @StudentID
+                            AND Status = 'Pending';"
+                            , conn);
+
+                            DateTime DatetTimecombined = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
+
+                            cmd.Parameters.AddWithValue("@studentID", _userID);
+                            cmd.ExecuteNonQuery();
+                            conn.Close();
+                        }
+
+                        MessageBox.Show("Pending request cancelled.");
+                        LoadRequest();
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error submitting request: " + ex.Message);
+            }
+        
         }
     }
 }

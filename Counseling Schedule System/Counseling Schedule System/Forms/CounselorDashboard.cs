@@ -333,7 +333,7 @@ namespace Counseling_Schedule_System.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Update("Cancelled");
+            Update("Cancelled by Counselor");
             RefreshSchedule();
         }
 
