@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -19,8 +20,7 @@ namespace Counseling_Schedule_System
 {
     public partial class StudentRegister : Form
     {
-        string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;
-        Integrated Security=True;Encrypt=False;";
+        string connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
         public StudentRegister()
         {
             InitializeComponent();

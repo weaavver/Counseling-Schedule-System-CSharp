@@ -10,13 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Configuration;
 
 namespace Counseling_Schedule_System.Forms
 {
     public partial class CounselorDashboard : Form
     {
-        string connectionString =
-        @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
+        string connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
         private int _userID;
         public CounselorDashboard(int userID)
         {

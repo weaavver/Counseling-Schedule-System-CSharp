@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -17,8 +18,7 @@ namespace Counseling_Schedule_System.Forms
 {
     public partial class StudentDashboard : Form
     {
-        string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;
-        Integrated Security=True;Encrypt=False;";
+        string connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
         private int _userID;
         public StudentDashboard(int userID)
         {

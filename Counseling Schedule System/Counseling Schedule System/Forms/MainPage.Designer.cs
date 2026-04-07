@@ -29,30 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
-            this.linkLogin = new System.Windows.Forms.LinkLabel();
             this.linkRegister = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLogin = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // linkLogin
-            // 
-            this.linkLogin.ActiveLinkColor = System.Drawing.Color.White;
-            this.linkLogin.AutoSize = true;
-            this.linkLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLogin.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLogin.LinkColor = System.Drawing.Color.Black;
-            this.linkLogin.Location = new System.Drawing.Point(376, 27);
-            this.linkLogin.Name = "linkLogin";
-            this.linkLogin.Size = new System.Drawing.Size(40, 16);
-            this.linkLogin.TabIndex = 0;
-            this.linkLogin.TabStop = true;
-            this.linkLogin.Text = "Login";
-            this.linkLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLogin_LinkClicked);
             // 
             // linkRegister
             // 
@@ -100,6 +85,21 @@
             this.panel1.Size = new System.Drawing.Size(502, 61);
             this.panel1.TabIndex = 3;
             // 
+            // linkLogin
+            // 
+            this.linkLogin.ActiveLinkColor = System.Drawing.Color.White;
+            this.linkLogin.AutoSize = true;
+            this.linkLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLogin.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLogin.LinkColor = System.Drawing.Color.Black;
+            this.linkLogin.Location = new System.Drawing.Point(376, 27);
+            this.linkLogin.Name = "linkLogin";
+            this.linkLogin.Size = new System.Drawing.Size(40, 16);
+            this.linkLogin.TabIndex = 0;
+            this.linkLogin.TabStop = true;
+            this.linkLogin.Text = "Login";
+            this.linkLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLogin_LinkClicked);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,11 +121,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.LinkLabel linkLogin;
         private System.Windows.Forms.LinkLabel linkRegister;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.LinkLabel linkLogin;
     }
 }

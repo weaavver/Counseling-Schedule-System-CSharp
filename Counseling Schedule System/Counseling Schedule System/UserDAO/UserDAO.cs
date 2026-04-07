@@ -6,11 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Configuration;
+
 namespace Counseling_Schedule_System.UserDAO
 {
 
     public class LoginResult
     {
+        // removed SqlConnection here (not used and causes issues)
         public bool Success { get; set; }
         public int userID { get; set; }
 
@@ -18,15 +21,21 @@ namespace Counseling_Schedule_System.UserDAO
         {
             Success = success;
             userID = ID;
+
+            // removed invalid connStr + SqlConnection (not needed here)
         }
     }
 
     public class UserDAO
     {
+        // FIX: declare connection string here so all methods can use it
+        private static string connectionString = ConfigurationManager
+            .ConnectionStrings["DbConnection"]
+            .ConnectionString;
+
 
         public static int? CounselorLogin(string username, string password)
         {
-            string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
             string sql = "SELECT counselorID, password FROM counselorTbl WHERE username = @username";
 
             try
@@ -75,51 +84,51 @@ namespace Counseling_Schedule_System.UserDAO
 
 
         public static int? StudentLogin(string username, string password)
-    {
-        string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
-        string sql = "SELECT studentID, password FROM studentTbl WHERE username = @username";
-
-        try
         {
-            using (SqlConnection con = new SqlConnection(connectionString))
+            // FIX: removed hardcoded connection string, now using shared one above
+            string sql = "SELECT studentID, password FROM studentTbl WHERE username = @username";
+
+            try
             {
-                con.Open();
-
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@username", username);
+                    con.Open();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
-                        if (reader.Read())
-                        {
-                            int userID = Convert.ToInt32(reader["studentID"]);
-                            string storedHash = reader["password"].ToString();
+                        cmd.Parameters.AddWithValue("@username", username);
 
-                            // Compare the entered password (unhashed) with the stored bcrypt hash
-                            if (BCrypt.Net.BCrypt.Verify(password, storedHash))
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
                             {
-                                return userID; // login success
+                                int userID = Convert.ToInt32(reader["studentID"]);
+                                string storedHash = reader["password"].ToString();
+
+                                // Compare the entered password (unhashed) with the stored bcrypt hash
+                                if (BCrypt.Net.BCrypt.Verify(password, storedHash))
+                                {
+                                    return userID; // login success
+                                }
+                                else
+                                {
+                                    return null; // wrong password
+                                }
                             }
                             else
                             {
-                                return null; // wrong password
+                                return null; // no such user
                             }
-                        }
-                        else
-                        {
-                            return null; // no such user
                         }
                     }
                 }
             }
-        }
-        catch (Exception ex)
-        {
+            catch (Exception ex)
+            {
                 MessageBox.Show("Login Error: " + ex.Message);
                 return null;
+            }
         }
-    }
 
     }
 }

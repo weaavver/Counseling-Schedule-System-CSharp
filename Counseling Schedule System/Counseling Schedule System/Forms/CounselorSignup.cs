@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Counseling_Schedule_System.Forms
 {
@@ -95,7 +96,8 @@ namespace Counseling_Schedule_System.Forms
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(counselor.Password);
 
             // Database insertion
-            string connectionString = @"Data Source=DESKTOP-IRCI6E2;Initial Catalog=CounselingScheduleSystem;Integrated Security=True;Encrypt=False;";
+            string connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
+
             string sql = "INSERT INTO counselorTbl " +
             "(CounselorName, Gender, Specialization, PRCLicenseNumber, MobileNo, Email, Username, [Password]) " +
             "VALUES(@Name, @Gender, @Specialization, @PRCLicenseNumber, @MobileNumber, @Email, @Username, @Password)";
