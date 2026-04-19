@@ -17,7 +17,7 @@ namespace Counseling_Schedule_System.Models
         public string MobileNo { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
-        public string Gender { get; set; }   // Added Gender
+        public string Gender { get; set; } 
 
         private string _password;
         public string Password
@@ -34,12 +34,18 @@ namespace Counseling_Schedule_System.Models
 
         public string ConfirmPassword { get; set; }
 
-        // Validation method
+        //Validations
         public bool IsValid()
         {
             if (string.IsNullOrWhiteSpace(FirstName))
             {
                 MessageBox.Show("Name cannot be empty!");
+                return false;
+            }
+
+            if (!Regex.IsMatch(FirstName, @"^[a-zA-Z]+$"))
+            {
+                MessageBox.Show("First Name format is invalid!");
                 return false;
             }
 
@@ -49,15 +55,39 @@ namespace Counseling_Schedule_System.Models
                 return false;
             }
 
+            if (!Regex.IsMatch(LastName, @"^[a-zA-Z]+$"))
+            {
+                MessageBox.Show("Last Name format is invalid!");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Gender))
+            {
+                MessageBox.Show("Gender must be selected!");
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(Section))
             {
                 MessageBox.Show("Section cannot be empty!");
                 return false;
             }
 
+            if (!Regex.IsMatch(StudentNo, "^[0-9]*$"))
+            {
+                MessageBox.Show("Student Number must contain only digits!");
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(StudentNo))
             {
                 MessageBox.Show("Student Number cannot be empty!");
+                return false;
+            }
+
+            if (!Regex.IsMatch(StudentNo, @"^[a-zA-Z0-9]+$"))
+            {
+                MessageBox.Show("Student Number format is invalid!");
                 return false;
             }
 
@@ -88,12 +118,6 @@ namespace Counseling_Schedule_System.Models
             if (string.IsNullOrWhiteSpace(Username))
             {
                 MessageBox.Show("Username cannot be empty!");
-                return false;
-            }
-
-            if (string.IsNullOrWhiteSpace(Gender))
-            {
-                MessageBox.Show("Gender must be selected!");
                 return false;
             }
 

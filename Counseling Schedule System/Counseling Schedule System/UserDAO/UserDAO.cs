@@ -13,7 +13,6 @@ namespace Counseling_Schedule_System.UserDAO
 
     public class LoginResult
     {
-        // removed SqlConnection here (not used and causes issues)
         public bool Success { get; set; }
         public int userID { get; set; }
 
@@ -22,13 +21,11 @@ namespace Counseling_Schedule_System.UserDAO
             Success = success;
             userID = ID;
 
-            // removed invalid connStr + SqlConnection (not needed here)
         }
     }
 
     public class UserDAO
     {
-        // FIX: declare connection string here so all methods can use it
         private static string connectionString = ConfigurationManager
             .ConnectionStrings["DbConnection"]
             .ConnectionString;

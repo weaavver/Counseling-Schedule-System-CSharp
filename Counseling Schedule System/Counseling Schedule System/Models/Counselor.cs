@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Counseling_Schedule_System.Models
 {
     public class Counselor
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Gender { get; set; } // "Male" or "Female" or other options
         public string Specialization { get; set; }
         public string PRCLicenseNumber { get; set; }
@@ -32,9 +34,15 @@ namespace Counseling_Schedule_System.Models
         // Validation method that shows MessageBox for each error
         public bool IsValid()
         {
-            if (string.IsNullOrWhiteSpace(Name))
+            if (string.IsNullOrWhiteSpace(FirstName))
             {
-                MessageBox.Show("Name cannot be empty!");
+                MessageBox.Show("First Name cannot be empty!");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(LastName))
+            {
+                MessageBox.Show("Last Name cannot be empty!");
                 return false;
             }
 

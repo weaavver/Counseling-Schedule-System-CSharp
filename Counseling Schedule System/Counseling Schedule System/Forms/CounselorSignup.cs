@@ -52,7 +52,8 @@ namespace Counseling_Schedule_System.Forms
 
         private void Clear()
         {
-            txtName.Clear();
+            txtFirstName.Clear();
+            txtLastName.Clear();
             rbtnFemale.Checked = false;
             rbtnMale.Checked = false;
             txtSpecialization.Clear();
@@ -77,7 +78,8 @@ namespace Counseling_Schedule_System.Forms
             }
             Counselor counselor = new Counselor
             {
-                Name = txtName.Text,
+                FirstName = txtFirstName.Text,
+                LastName = txtLastName.Text,
                 Gender = gender,
                 Specialization = txtSpecialization.Text,
                 PRCLicenseNumber = txtPRCLicense.Text,
@@ -109,7 +111,8 @@ namespace Counseling_Schedule_System.Forms
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@Name", counselor.Name);
+                        cmd.Parameters.AddWithValue("@FirstName", counselor.FirstName);
+                        cmd.Parameters.AddWithValue("@LastName", counselor.LastName);
                         cmd.Parameters.AddWithValue("@Gender", counselor.Gender);
                         cmd.Parameters.AddWithValue("@Specialization", counselor.Specialization);
                         cmd.Parameters.AddWithValue("@PRCLicenseNumber", counselor.PRCLicenseNumber);
@@ -126,7 +129,7 @@ namespace Counseling_Schedule_System.Forms
                 MessageBox.Show("Please Login");
 
                 // Clear form
-                txtName.Clear();
+                txtLastName.Clear();
                 foreach (RadioButton rb in gBoxGender.Controls.OfType<RadioButton>())
                 {
                     rb.Checked = false;

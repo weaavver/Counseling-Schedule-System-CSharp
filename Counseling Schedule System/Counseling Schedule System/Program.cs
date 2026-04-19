@@ -17,7 +17,8 @@ namespace Counseling_Schedule_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainPage());
+            //Application.Run(new MainPage());
+            Application.Run(new emailVerification("example@example.com"));
         }
     }
 }

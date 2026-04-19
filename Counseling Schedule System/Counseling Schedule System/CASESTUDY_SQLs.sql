@@ -12,17 +12,17 @@ CREATE TABLE studentTbl(
 	studentID INT IDENTITY(1,1) PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
-    Gender VARCHAR(8) NOT NULL,
+    Gender VARCHAR(10) CHECK (Gender IN ('Male','Female')),
     Section VARCHAR(20) NOT NULL,
     StudentNo VARCHAR(20) NOT NULL,
     MobileNo VARCHAR(13) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Username VARCHAR(100) NOT NULL,
-    [Password] VARCHAR(100) NOT NULL,
+    [Password] VARCHAR(255) NOT NULL,
 
     --Unique Constraints
     CONSTRAINT UQ_Email UNIQUE (Email),
-    CONSTRAINT UQ_StudntNo UNIQUE (StudentNo),
+    CONSTRAINT UQ_StudentNo UNIQUE (StudentNo),
     CONSTRAINT UQ_MobileNo UNIQUE (MobileNo),
     CONSTRAINT UQ_Username UNIQUE (Username)
 );
@@ -30,14 +30,15 @@ CREATE TABLE studentTbl(
 --Counselor table
 CREATE TABLE counselorTbl(
 	counselorID INT IDENTITY(1,1) PRIMARY KEY,
-    CounselorName VARCHAR(100) NOT NULL,
-    Gender VARCHAR(10) NOT NULL,
+    FirstName VARCHAR(100) NOT NULL,    
+    LastName VARCHAR(100) NOT NULL,
+    Gender VARCHAR(10) CHECK (Gender IN ('Male','Female')),
     Specialization VARCHAR(50) NOT NULL,
     PRCLicenseNumber VARCHAR(50) NOT NULL,
     MobileNo VARCHAR(13) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Username VARCHAR(100) NOT NULL,
-    [Password] VARCHAR(100) NOT NULL,
+    [Password] VARCHAR(255) NOT NULL,
 
     --Unique Constraints
     CONSTRAINT UQ_CounselorPRC UNIQUE (PRCLicenseNumber),   
@@ -53,14 +54,23 @@ CREATE TABLE requestTbl(
     CounselorID INT NULL,
     PreferredDateTime DATETIME NOT NULL,
     ScheduledDateTime DATETIME NULL,
-    [Status] VARCHAR(20) NOT NULL DEFAULT 'Pending',
-    Reason VARCHAR(500) NULL,
+    [Status] VARCHAR(20) CHECK ([Status] IN ('Pending','Scheduled','Cancelled','Completed')) DEFAULT 'Pending',
+    Reason VARCHAR(255) NULL,
+    CounselingNotes VARCHAR(255) NULL,
     CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
     UpdatedAt DATETIME NULL,
 
     --ForeignKeys
-    CONSTRAINT FK_Request_Student FOREIGN KEY (StudentID) REFERENCES studentTbl(studentID),
-    CONSTRAINT FK_Request_Counselor FOREIGN KEY (CounselorID) REFERENCES counselorTbl(counselorID)
+    CONSTRAINT FK_Request_Student 
+    FOREIGN KEY (StudentID) 
+    REFERENCES studentTbl(studentID)
+    ON DELETE CASCADE,
+
+    -- If counselor is deleted keep request but remove assignment
+    CONSTRAINT FK_Request_Counselor 
+    FOREIGN KEY (CounselorID) 
+    REFERENCES counselorTbl(counselorID)
+    ON DELETE SET NULL
 );
 
 SELECT Concat(FirstName,' ',LastName) FROM studentTbl WHERE studentID = @StudentID

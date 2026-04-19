@@ -1,4 +1,5 @@
 ﻿using Counseling_Schedule_System.Models;
+using Counseling_Schedule_System.Forms;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Net; //for sending emails
+using System.Net.Mail;//sending emails too
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -24,6 +27,16 @@ namespace Counseling_Schedule_System
         public StudentRegister()
         {
             InitializeComponent();
+            panel2.BackColor = ColorTranslator .FromHtml("#3D1B01");
+            Title.ForeColor = ColorTranslator.FromHtml("#FEFEFF");
+            btnConfirm.BackColor = ColorTranslator.FromHtml("#3D1B01");
+            btnClear.BackColor = ColorTranslator.FromHtml("#3D1B01");
+            btnLogin.BackColor = ColorTranslator.FromHtml("#3D1B01");
+
+            btnConfirm.ForeColor = ColorTranslator.FromHtml("#FEFEFF");
+            btnClear.ForeColor = ColorTranslator.FromHtml("#FEFEFF");
+            btnLogin.ForeColor = ColorTranslator.FromHtml("#FEFEFF");
+
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -52,44 +65,64 @@ namespace Counseling_Schedule_System
                 ConfirmPassword = txtConfirmPass.Text
             };
 
-            // Validate
             if (!student.IsValid())
-            {
-                MessageBox.Show("Invalid inputs!");
                 return;
+
+            emailVerification otpForm = new emailVerification(student.Email);
+
+            if (otpForm.ShowDialog() == DialogResult.OK)
+            {
+                RegisterStudent(student);
+            }
+            else
+            {
+                MessageBox.Show("Email verification failed.");
             }
 
-            // Hash the password before storing
+        }
+
+        private void RegisterStudent(Student student)
+        {
+            //Hash the password before storing
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.Password);
 
-            // Database insertion
+            //Insertion
             string sql = "INSERT INTO studentTbl(FirstName, LastName, Gender, Section, StudentNo, MobileNo, Email, Username, Password) " +
-                         "VALUES(@FName, @LName, @Gender, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
+              "VALUES(@FName, @LName, @Gender, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@FName", student.FirstName);
-                        cmd.Parameters.AddWithValue("@LName", student.LastName);
-                        cmd.Parameters.AddWithValue("@Gender", student.Gender);
-                        cmd.Parameters.AddWithValue("@Section", student.Section);
-                        cmd.Parameters.AddWithValue("@StudentNo", student.StudentNo);
-                        cmd.Parameters.AddWithValue("@MobileNo", student.MobileNo);
-                        cmd.Parameters.AddWithValue("@Email", student.Email);
-                        cmd.Parameters.AddWithValue("@Username", student.Username);
-                        cmd.Parameters.AddWithValue("@Password", hashedPassword); // <-- hashed here
 
-                        cmd.ExecuteNonQuery();
+                    using (SqlTransaction sqltrn = conn.BeginTransaction())
+                    {
+                        using (SqlCommand cmd = new SqlCommand(sql, conn, sqltrn))
+                        {
+                            cmd.Parameters.AddWithValue("@FName", student.FirstName);
+                            cmd.Parameters.AddWithValue("@LName", student.LastName);
+                            cmd.Parameters.AddWithValue("@Gender", student.Gender);
+                            cmd.Parameters.AddWithValue("@Section", student.Section);
+                            cmd.Parameters.AddWithValue("@StudentNo", student.StudentNo);
+                            cmd.Parameters.AddWithValue("@MobileNo", student.MobileNo);
+                            cmd.Parameters.AddWithValue("@Email", student.Email);
+                            cmd.Parameters.AddWithValue("@Username", student.Username);
+                            cmd.Parameters.AddWithValue("@Password", hashedPassword);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        sqltrn.Commit();
                     }
+
                 }
+
                 MessageBox.Show("Registration successful!");
                 MessageBox.Show("Please Login");
 
-                // Clear form
+                rbtnFemale.Checked = false;
+                rbtnMale.Checked = false;
                 txtFName.Clear();
                 txtLName.Clear();
                 txtYearAndSection.Clear();
@@ -140,7 +173,7 @@ namespace Counseling_Schedule_System
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -220,7 +253,17 @@ namespace Counseling_Schedule_System
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-
+            rbtnFemale.Checked = false;
+            rbtnMale.Checked = false;
+            txtFName.Clear();
+            txtLName.Clear();
+            txtYearAndSection.Clear();
+            txtStudentNo.Clear();
+            txtMobileNo.Clear();
+            txtEmail.Clear();
+            txtUsername.Clear();
+            txtPass.Clear();
+            txtConfirmPass.Clear();
         }
 
         private void label11_Click(object sender, EventArgs e)
