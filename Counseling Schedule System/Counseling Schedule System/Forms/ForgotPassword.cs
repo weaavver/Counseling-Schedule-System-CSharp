@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Counseling_Schedule_System.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,8 +7,10 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Counseling_Schedule_System.Forms
 {
@@ -31,24 +34,33 @@ namespace Counseling_Schedule_System.Forms
         private void btnNVM_Click(object sender, EventArgs e)
         {
             StudentLogin Login = new StudentLogin();
-            Login.Opacity = 0;
             Login.Show();
+            this.Hide();
+        }
 
-            Timer fadeTimer = new Timer();
-            fadeTimer.Interval = 20;
-
-            fadeTimer.Tick += (s, ev) =>
+        private void btnSendOTP_Click(object sender, EventArgs e)
+        {
+            string Email = txtEmail.Text.Trim();
+            if (!Regex.IsMatch(Email, @"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$"))
             {
-                if (Login.Opacity < 1)
-                    Login.Opacity += 0.05;
-                else
+                MessageBox.Show("Email format is invalid!");
+            }
+            else
+            {
+                emailVerification otpForm = new emailVerification(txtEmail.Text);
+
+                if (otpForm.ShowDialog() == DialogResult.OK)
                 {
-                    fadeTimer.Stop();
+                    studentChangePassword form = new studentChangePassword(txtEmail.Text);
+                    form.Show();
                     this.Hide();
                 }
-            };
+                else
+                {
+                    MessageBox.Show("Email verification failed.");
+                }
+            }
 
-            fadeTimer.Start();
         }
     }
 }

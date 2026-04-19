@@ -47,11 +47,11 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label1.Location = new System.Drawing.Point(158, 73);
+            this.label1.Location = new System.Drawing.Point(160, 73);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(316, 30);
+            this.label1.Size = new System.Drawing.Size(301, 30);
             this.label1.TabIndex = 0;
-            this.label1.Text = "VERIFY YOUR EMAIL ADDRESS";
+            this.label1.Text = "ENTER THE OTP TO PROCEED";
             // 
             // lblText
             // 
@@ -59,18 +59,18 @@
             this.lblText.BackColor = System.Drawing.Color.Transparent;
             this.lblText.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblText.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblText.Location = new System.Drawing.Point(220, 115);
+            this.lblText.Location = new System.Drawing.Point(243, 115);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(193, 13);
+            this.lblText.Size = new System.Drawing.Size(135, 13);
             this.lblText.TabIndex = 1;
-            this.lblText.Text = "A verification code has been sent to";
+            this.lblText.Text = "An OTP has been sent to";
             // 
             // btnVerify
             // 
             this.btnVerify.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnVerify.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerify.ForeColor = System.Drawing.Color.White;
-            this.btnVerify.Location = new System.Drawing.Point(273, 253);
+            this.btnVerify.Location = new System.Drawing.Point(267, 253);
             this.btnVerify.Name = "btnVerify";
             this.btnVerify.Size = new System.Drawing.Size(87, 35);
             this.btnVerify.TabIndex = 3;
@@ -81,9 +81,9 @@
             // txtOTP
             // 
             this.txtOTP.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOTP.Location = new System.Drawing.Point(217, 210);
+            this.txtOTP.Location = new System.Drawing.Point(227, 210);
             this.txtOTP.Name = "txtOTP";
-            this.txtOTP.Size = new System.Drawing.Size(199, 33);
+            this.txtOTP.Size = new System.Drawing.Size(167, 33);
             this.txtOTP.TabIndex = 4;
             // 
             // label3
@@ -92,7 +92,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label3.Location = new System.Drawing.Point(215, 154);
+            this.label3.Location = new System.Drawing.Point(209, 154);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(202, 13);
             this.label3.TabIndex = 5;
@@ -104,11 +104,11 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label4.Location = new System.Drawing.Point(180, 168);
+            this.label4.Location = new System.Drawing.Point(204, 168);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(273, 13);
+            this.label4.Size = new System.Drawing.Size(213, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "verification code below to verify your email address.";
+            this.label4.Text = "code below to verify your email address.";
             // 
             // label5
             // 
@@ -116,7 +116,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label5.Location = new System.Drawing.Point(226, 182);
+            this.label5.Location = new System.Drawing.Point(220, 182);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(181, 13);
             this.label5.TabIndex = 7;
@@ -145,7 +145,7 @@
             this.lblEmail.BackColor = System.Drawing.Color.Transparent;
             this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblEmail.Location = new System.Drawing.Point(273, 134);
+            this.lblEmail.Location = new System.Drawing.Point(267, 134);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(87, 13);
             this.lblEmail.TabIndex = 8;

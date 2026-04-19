@@ -41,10 +41,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(42, 83);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 25);
+            this.label1.Size = new System.Drawing.Size(163, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "Reset Password";
             // 
@@ -52,30 +52,35 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(44, 157);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(32, 157);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 13);
+            this.label3.Size = new System.Drawing.Size(96, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Enter your gmail:";
             // 
             // btnSendOTP
             // 
+            this.btnSendOTP.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendOTP.Location = new System.Drawing.Point(134, 190);
             this.btnSendOTP.Name = "btnSendOTP";
             this.btnSendOTP.Size = new System.Drawing.Size(75, 23);
             this.btnSendOTP.TabIndex = 3;
             this.btnSendOTP.Text = "Send OTP";
             this.btnSendOTP.UseVisualStyleBackColor = true;
+            this.btnSendOTP.Click += new System.EventHandler(this.btnSendOTP_Click);
             // 
             // txtEmail
             // 
+            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(134, 154);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(187, 20);
+            this.txtEmail.Size = new System.Drawing.Size(187, 22);
             this.txtEmail.TabIndex = 4;
             // 
             // btnNVM
             // 
+            this.btnNVM.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNVM.Location = new System.Drawing.Point(246, 190);
             this.btnNVM.Name = "btnNVM";
             this.btnNVM.Size = new System.Drawing.Size(75, 23);

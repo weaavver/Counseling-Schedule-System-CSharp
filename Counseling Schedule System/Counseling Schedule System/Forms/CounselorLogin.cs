@@ -54,58 +54,11 @@ namespace Counseling_Schedule_System.Forms
                 CounselorDashboard dashboard = new CounselorDashboard(userID.Value);
                 dashboard.Opacity = 0;
                 dashboard.Show();
-
-                Timer fadeTimer = new Timer();
-                fadeTimer.Interval = 20;
-
-                fadeTimer.Tick += (s, ev) =>
-                {
-                    if (dashboard.Opacity < 1)
-                        dashboard.Opacity += 0.05;
-                    else
-                    {
-                        fadeTimer.Stop();
-                        this.Hide();
-                    }
-                };
-
-                fadeTimer.Start();
+                this.Hide();
             }
             else
             {
                 MessageBox.Show("Invalid username or password.");
-                string choice = FormMessageBoxRetryAndForgotPass.Show(
-                "Do you want to retry or reset your password?",
-                "Retry",
-                "Forgot Password(NOT YET IMPLEMENTED)"
-                );
-
-                if (choice == "Retry")
-                {
-                    txtPassword.Clear();
-                }
-                else if (choice == "Forgot Password(NOT YET IMPLEMENTED)")
-                {
-                    ForgotPassword forgotPasswordForm = new ForgotPassword();
-                    forgotPasswordForm.Opacity = 0;
-                    forgotPasswordForm.Show();
-
-                    Timer fadeTimer = new Timer();
-                    fadeTimer.Interval = 20;
-
-                    fadeTimer.Tick += (s, ev) =>
-                    {
-                        if (forgotPasswordForm.Opacity < 1)
-                            forgotPasswordForm.Opacity += 0.05;
-                        else
-                        {
-                            fadeTimer.Stop();
-                            this.Hide();
-                        }
-                    };
-
-                    fadeTimer.Start();
-                }
             }
         }
 
@@ -137,6 +90,11 @@ namespace Counseling_Schedule_System.Forms
             {
                 Application.Exit();
             }
+        }
+
+        private void forgotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

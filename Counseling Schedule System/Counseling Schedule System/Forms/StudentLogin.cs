@@ -173,38 +173,9 @@ namespace Counseling_Schedule_System
 
         private void forgotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string choice = FormMessageBoxRetryAndForgotPass.Show(
-            "Do you want to retry or reset your password?",
-            "Retry",
-            "Forgot Password(NOT YET IMPLEMENTED)"
-            );
-
-            if (choice == "Retry")
-            {
-                txtPassword.Clear();
-            }
-            else if (choice == "Forgot Password(NOT YET IMPLEMENTED)")
-            {
-                ForgotPassword forgotPasswordForm = new ForgotPassword();
-                forgotPasswordForm.Opacity = 0;
-                forgotPasswordForm.Show();
-
-                Timer fadeTimer = new Timer();
-                fadeTimer.Interval = 20;
-
-                fadeTimer.Tick += (s, ev) =>
-                {
-                    if (forgotPasswordForm.Opacity < 1)
-                        forgotPasswordForm.Opacity += 0.05;
-                    else
-                    {
-                        fadeTimer.Stop();
-                        this.Hide();
-                    }
-                };
-
-                fadeTimer.Start();
-            }
+            ForgotPassword newForm = new ForgotPassword();
+            newForm.Show();
+            this.Hide();
         }
     }
 }
