@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Configuration;
 
 namespace Counseling_Schedule_System.Forms
 {
@@ -21,7 +24,7 @@ namespace Counseling_Schedule_System.Forms
         public CounselorDashboard(int userID)
         {
             InitializeComponent();
-            _userID = userID;     
+            _userID = userID;
             RefreshSchedule();
             RefreshRequests();
 
@@ -30,7 +33,7 @@ namespace Counseling_Schedule_System.Forms
 
         public void greet()
         {
-            string sql = @"SELECT CounselorName AS 'Counselor Name' FROM counselorTbl WHERE counselorID = @counselorID";
+            string sql = @"SELECT FirstName + ' ' + LastName AS 'Counselor Name' FROM counselorTbl WHERE counselorID = @counselorID";
 
             string counselorName = "";
 
@@ -82,19 +85,20 @@ namespace Counseling_Schedule_System.Forms
                 {
                     sqlCon.Open();
                     SqlCommand cmd = new SqlCommand(@"
-                        SELECT 
-                            r.requestID,
-                            (s.FirstName + ' ' + s.LastName) AS Name,
-                            c.CounselorName,
-                            s.MobileNo,
-                            s.Email
-                        FROM requestTbl r
-                        INNER JOIN studentTbl s 
-                            ON r.StudentID = s.studentID
-                        INNER JOIN counselorTbl c 
-                            ON r.CounselorID = c.counselorID
-                        WHERE r.[Status] = 'Scheduled'
-                        AND r.CounselorID = @counselorID;", sqlCon);
+                    SELECT 
+                        r.requestID,
+                        (s.FirstName + ' ' + s.LastName) AS Name,
+                        (c.FirstName + ' ' + c.LastName) AS CounselorName,
+                        s.MobileNo,
+                        s.Email,
+                        r.ScheduledDateTime  -- CHANGED: added scheduled datetime
+                    FROM requestTbl r
+                    INNER JOIN studentTbl s 
+                        ON r.StudentID = s.studentID
+                    INNER JOIN counselorTbl c 
+                        ON r.CounselorID = c.counselorID
+                    WHERE r.[Status] = 'Scheduled'
+                    AND r.CounselorID = @counselorID;", sqlCon);
 
                     SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
                     sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
@@ -106,7 +110,7 @@ namespace Counseling_Schedule_System.Forms
                     dgvSchedules.DataSource = dtbl;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error loading schedules.\n\n" + ex.Message,
                                 "Database Error",
@@ -117,11 +121,11 @@ namespace Counseling_Schedule_System.Forms
 
         private void RefreshRequests()
         {
-                try
+            try
+            {
+                using (SqlConnection sqlCon = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection sqlCon = new SqlConnection(connectionString))
-                    {
-                        sqlCon.Open();
+                    sqlCon.Open();
 
                     SqlCommand cmd = new SqlCommand(@"
                         SELECT r.*,
@@ -133,24 +137,24 @@ namespace Counseling_Schedule_System.Forms
                         AND s.Gender = c.Gender", sqlCon);
 
                     SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
+                    sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
 
-                        DataTable dtbl = new DataTable();
-                        sqlDa.Fill(dtbl);
+                    DataTable dtbl = new DataTable();
+                    sqlDa.Fill(dtbl);
 
-                        dgvRequests.AllowUserToAddRows = false; // Removes the last row that spawns along with dgv
-                        dgvRequests.ReadOnly = true;
-                        dgvRequests.DataSource = dtbl;
-                    }
+                    dgvRequests.AllowUserToAddRows = false; // Removes the last row that spawns along with dgv
+                    dgvRequests.ReadOnly = true;
+                    dgvRequests.DataSource = dtbl;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error loading requests.\n\n" + ex.Message,
-                                    "Database Error",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
-                }
-            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading requests.\n\n" + ex.Message,
+                                "Database Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+
         }
 
         private void btnRequestRefresh_Click(object sender, EventArgs e)
@@ -160,7 +164,7 @@ namespace Counseling_Schedule_System.Forms
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -168,11 +172,12 @@ namespace Counseling_Schedule_System.Forms
             ConfirmRequest();
             RefreshSchedule();
             RefreshRequests();
+            selectedRequestID = null;
         }
 
         private void ConfirmRequest()
         {
-            if (txtRequestID.Text == "")
+            if (!selectedRequestID.HasValue)
             {
                 MessageBox.Show("Please select a request to schedule.", "No Request Selected",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -180,7 +185,6 @@ namespace Counseling_Schedule_System.Forms
             }
             else
             {
-                string requestID = txtRequestID.Text;
                 string status = "Scheduled";
                 DateTime scheduledDate = DatePicker.Value.Date;
                 TimeSpan scheduledTime = TimePicker.Value.TimeOfDay;
@@ -202,13 +206,22 @@ namespace Counseling_Schedule_System.Forms
                         DateTime DateTimeCombined = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
 
                         cmd.Parameters.AddWithValue("@counselorID", _userID);
-                        cmd.Parameters.AddWithValue("@requestID", requestID);
+                        cmd.Parameters.AddWithValue("@requestID", selectedRequestID.Value);
                         cmd.Parameters.AddWithValue("@ScheduledDateTime", DateTimeCombined);
                         cmd.Parameters.AddWithValue("@status", status);
 
                         cmd.ExecuteNonQuery();
 
                         conn.Close();
+
+
+                        string email = GetStudentEmail(selectedRequestID.Value);
+
+                        SendEmail(
+                            email,
+                            "Counseling Scheduled",
+                            $"Your counseling has been scheduled on {DateTimeCombined}"
+                        );
                     }
                 }
                 catch (Exception ex)
@@ -238,21 +251,26 @@ namespace Counseling_Schedule_System.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if(txtNotes.Text == "")
+            {
+                return;
+            }
             Update("Completed");
             RefreshSchedule();
+            selectedScheduleID = null;
         }
 
         private void Update(string Status)
         {
-            if (txtRequestID2.Text == "")
+            if (!selectedScheduleID.HasValue)
             {
-                MessageBox.Show("Please sekect an ID", "No Schedule Selected",
+                MessageBox.Show("Please select an ID", "No Schedule Selected",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
             {
-                string requestID = txtRequestID2.Text; //for schedule
+
                 string status = Status;
 
                 try
@@ -264,15 +282,15 @@ namespace Counseling_Schedule_System.Forms
                         SqlCommand cmd = new SqlCommand(@"
                             UPDATE requestTbl
                             SET [Status] = @status,
-                            UpdatedAt = GETDATE(),
+                            CounselingNotes = @CounselingNotes,
+                            UpdatedAt = GETDATE()
                             WHERE requestID = @requestID"
                         , conn);
 
-                        DateTime DatetTimecombined = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
-
                         cmd.Parameters.AddWithValue("@counselorID", _userID);
-                        cmd.Parameters.AddWithValue("@requestID", requestID);
+                        cmd.Parameters.AddWithValue("@requestID", selectedScheduleID.Value);
                         cmd.Parameters.AddWithValue("@status", status);
+                        cmd.Parameters.AddWithValue("@CounselingNotes", txtNotes.Text);
 
                         cmd.ExecuteNonQuery();
 
@@ -328,109 +346,104 @@ namespace Counseling_Schedule_System.Forms
             btnRequestRefresh_Click(null, null); // refresh table
         }
 
-        private void dgvRequests_CellClick(object sender, DataGridViewCellEventArgs e) //GENERATED
-        {}
+        private int? selectedRequestID;
+        private void dgvRequests_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                selectedRequestID = Convert.ToInt32(
+                    dgvRequests.Rows[e.RowIndex].Cells["requestID"].Value
+                );
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Update("Cancelled by Counselor");
+            if (!selectedScheduleID.HasValue)
+            {
+                MessageBox.Show("Please select a schedule first.");
+                return;
+            }
+
+            Update("Cancelled");
             RefreshSchedule();
+
+            string email = GetStudentEmail(selectedScheduleID.Value);
+
+            SendEmail(
+                email,
+                $"Counseling Cancelled",
+                $"Your counseling session has been marked as Cancelled."
+            );
+
+            selectedScheduleID = null;
         }
 
         private void dgvSchedules_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 &&
-            dgvSchedules.Rows[e.RowIndex].Cells["requestID"].Value != null)
+        }
+        private int? selectedScheduleID;
+        private void dgvSchedules_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
             {
-                int requestID = Convert.ToInt32(
+                selectedScheduleID = Convert.ToInt32(
                     dgvSchedules.Rows[e.RowIndex].Cells["requestID"].Value
                 );
-
-                string result = FormMessageBoxCompleteCancel.Show(
-                    "What would you like to do?"
-                );
-
-                if (result == "Complete")
-                    {
-                        // mark as completed
-                    }
-                else if (result == "Cancel"){
-                    // cancel schedule
-                }
-
-                if (true)
-                {
-                        string status = "Completed";
-                        try
-                        {
-                            using (SqlConnection sqlCon = new SqlConnection(connectionString))
-                            {
-                                sqlCon.Open();
-                                SqlDataAdapter sqlDa = new SqlDataAdapter
-                                ("UPDATE requestTbl " +
-                                "SET [Status] = @status, " +
-                                "UpdatedAt = GETDATE() " +
-                                "WHERE requestID = @requestID", sqlCon);
-
-                                sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
-                                sqlDa.SelectCommand.Parameters.AddWithValue("@requestID", requestID);
-                                sqlDa.SelectCommand.Parameters.AddWithValue("@status", status);
-
-                                DataTable dtbl = new DataTable();
-                                sqlDa.Fill(dtbl);
-
-                                dgvSchedules.DataSource = dtbl;
-
-                                RefreshSchedule();
-                                MessageBox.Show("Schedule marked as completed!", "Success",
-                                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error loading requests.\n\n" + ex.Message,
-                                        "Database Error",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Error);
-                        }
-                }
-                if (true)
-                {
-                    string status = "Cancelled";
-                    try
-                    {
-                        using (SqlConnection sqlCon = new SqlConnection(connectionString))
-                        {
-                            sqlCon.Open();
-                            SqlDataAdapter sqlDa = new SqlDataAdapter
-                            ("UPDATE requestTbl " +
-                            "SET [Status] = @status, " +
-                            "UpdatedAt = GETDATE() " +
-                            "WHERE requestID = @requestID", sqlCon);
-
-                            sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
-                            sqlDa.SelectCommand.Parameters.AddWithValue("@requestID", requestID);
-                            sqlDa.SelectCommand.Parameters.AddWithValue("@status", status);
-
-                            DataTable dtbl = new DataTable();
-                            sqlDa.Fill(dtbl);
-
-                            dgvSchedules.DataSource = dtbl;
-                            RefreshSchedule();
-
-                            MessageBox.Show("Schedule cancelled!", "Success",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error loading requests.\n\n" + ex.Message,
-                                    "Database Error",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
-                    }
-                }
             }
+        }
+
+        private void txtNotes_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SendEmail(string toEmail, string subject, string body)
+        {
+            try
+            {
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("counselingguidanceoffice@gmail.com");
+                msg.To.Add(toEmail);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.Credentials = new NetworkCredential("counselingguidanceoffice@gmail.com", "epqrpcohttikqgkh");
+                smtp.EnableSsl = true;
+
+                smtp.Send(msg);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to send the mail:\n" + ex.Message);
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
+
+        private string GetStudentEmail(int ID)
+        {
+            string email = "";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(@"
+            SELECT s.Email
+            FROM requestTbl r
+            INNER JOIN studentTbl s ON r.StudentID = s.studentID
+            WHERE r.requestID = @ID", conn);
+
+                cmd.Parameters.AddWithValue("@ID", ID);
+
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                    email = result.ToString();
+            }
+
+            return email;
         }
     }
 }

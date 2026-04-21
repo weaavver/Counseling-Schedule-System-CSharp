@@ -50,6 +50,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
+            this.txtNotes = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchedules)).BeginInit();
             this.panel1.SuspendLayout();
@@ -156,7 +158,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.Red;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(106, 379);
+            this.btnCancel.Location = new System.Drawing.Point(227, 376);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 22;
@@ -182,7 +184,7 @@
             this.btnComplete.BackColor = System.Drawing.Color.Green;
             this.btnComplete.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnComplete.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnComplete.Location = new System.Drawing.Point(14, 379);
+            this.btnComplete.Location = new System.Drawing.Point(122, 430);
             this.btnComplete.Name = "btnComplete";
             this.btnComplete.Size = new System.Drawing.Size(75, 23);
             this.btnComplete.TabIndex = 24;
@@ -225,6 +227,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkGray;
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.txtNotes);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label3);
@@ -298,6 +302,25 @@
             this.DatePicker.TabIndex = 29;
             this.DatePicker.ValueChanged += new System.EventHandler(this.DatePicker_ValueChanged);
             // 
+            // txtNotes
+            // 
+            this.txtNotes.Location = new System.Drawing.Point(121, 405);
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(181, 20);
+            this.txtNotes.TabIndex = 34;
+            this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(12, 408);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(103, 13);
+            this.label7.TabIndex = 35;
+            this.label7.Text = "Counseling Notes:";
+            // 
             // CounselorDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,5 +366,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtNotes;
     }
 }

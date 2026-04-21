@@ -52,7 +52,6 @@ namespace Counseling_Schedule_System.Forms
                 MessageBox.Show("Login successful!");
 
                 CounselorDashboard dashboard = new CounselorDashboard(userID.Value);
-                dashboard.Opacity = 0;
                 dashboard.Show();
                 this.Hide();
             }
