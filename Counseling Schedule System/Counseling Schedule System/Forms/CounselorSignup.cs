@@ -101,8 +101,8 @@ namespace Counseling_Schedule_System.Forms
             string connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
 
             string sql = "INSERT INTO counselorTbl " +
-            "(CounselorName, Gender, Specialization, PRCLicenseNumber, MobileNo, Email, Username, [Password]) " +
-            "VALUES(@Name, @Gender, @Specialization, @PRCLicenseNumber, @MobileNumber, @Email, @Username, @Password)";
+            "(FirstName, LastName, Gender, Specialization, PRCLicenseNumber, MobileNo, Email, Username, [Password]) " +
+            "VALUES(@FirstName, @LastName, @Gender, @Specialization, @PRCLicenseNumber, @MobileNumber, @Email, @Username, @Password)";
 
             try
             {

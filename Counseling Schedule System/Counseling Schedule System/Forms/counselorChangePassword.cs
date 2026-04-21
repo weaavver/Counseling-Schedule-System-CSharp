@@ -12,21 +12,14 @@ using System.Windows.Forms;
 
 namespace Counseling_Schedule_System.Forms
 {
-    public partial class studentChangePassword : Form
+    public partial class counselorChangePassword : Form
     {
         string connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
         private string email;
-        public studentChangePassword(string email)
+        public counselorChangePassword(string email)
         {
             InitializeComponent();
             this.email = email;
-
-        }
-
-        private void btnConfirm_Click(object sender, EventArgs e)
-        {
-            ChangePasswordByEmail();
-
         }
 
         private void ChangePasswordByEmail()
@@ -46,7 +39,7 @@ namespace Counseling_Schedule_System.Forms
                 return;
             }
 
-            if (newPassword.Length < 8)
+            if(newPassword.Length < 8)
             {
                 MessageBox.Show("Password must be at least 8 characters long.");
                 return;
@@ -56,7 +49,7 @@ namespace Counseling_Schedule_System.Forms
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
 
             //Update query using Email
-            string sql = "UPDATE studentTbl SET Password = @Password WHERE Email = @Email";
+            string sql = "UPDATE counselorTbl SET Password = @Password WHERE Email = @Email";
 
             try
             {
@@ -96,6 +89,11 @@ namespace Counseling_Schedule_System.Forms
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void btnConfirm_Click_1(object sender, EventArgs e)
+        {
+            ChangePasswordByEmail();
         }
     }
 }

@@ -93,7 +93,10 @@ namespace Counseling_Schedule_System.Forms
 
         private void forgotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            CounselorForgotPassword newForm = new CounselorForgotPassword();
 
+            newForm.Show();
+            this.Dispose();
         }
     }
 }
