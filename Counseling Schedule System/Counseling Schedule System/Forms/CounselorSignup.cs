@@ -174,25 +174,9 @@ namespace Counseling_Schedule_System.Forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            CounselorSignup form = new CounselorSignup();
-            form.Opacity = 0;
+            CounselorLogin form = new CounselorLogin();
             form.Show();
-
-            Timer fadeTimer = new Timer();
-            fadeTimer.Interval = 20;
-
-            fadeTimer.Tick += (s, ev) =>
-            {
-                if (form.Opacity < 1)
-                    form.Opacity += 0.05;
-                else
-                {
-                    fadeTimer.Stop();
-                    this.Hide();
-                }
-            };
-
-            fadeTimer.Start();
+            this.Hide();
         }
 
         private void label1_Click(object sender, EventArgs e)

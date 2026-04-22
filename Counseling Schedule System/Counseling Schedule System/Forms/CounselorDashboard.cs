@@ -12,8 +12,6 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Counseling_Schedule_System.Forms
 {
@@ -179,10 +177,10 @@ namespace Counseling_Schedule_System.Forms
             ConfirmRequest();
             RefreshSchedule();
             RefreshRequests();
-            selectedRequestID = null;
+            selectedRequestID = null; 
         }
 
-        private void ConfirmRequest()
+        private void ConfirmRequest() //Confirming pending requests
         {
             if (!selectedRequestID.HasValue)
             {
@@ -217,14 +215,23 @@ namespace Counseling_Schedule_System.Forms
                         cmd.Parameters.AddWithValue("@ScheduledDateTime", DateTimeCombined);
                         cmd.Parameters.AddWithValue("@status", status);
 
-                        cmd.ExecuteNonQuery();
+                        int rows = cmd.ExecuteNonQuery();
+
+                        if (rows == 0)
+                        {
+                            MessageBox.Show("No record was updated. Check requestID.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Request scheduled successfully!");
+                        }
 
                         conn.Close();
 
 
                         string email = GetStudentEmail(selectedRequestID.Value);
 
-                        SendEmail(
+                        SendEmail( //Send email to notify
                             email,
                             "Counseling Scheduled",
                             $"Your counseling has been scheduled on {DateTimeCombined}"
@@ -317,40 +324,6 @@ namespace Counseling_Schedule_System.Forms
         private void lblGreet_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void TakeRequest(int requestID) //GENERATED
-        {
-            string status = "Scheduled";
-            DateTime scheduledDate = DatePicker.Value.Date;
-            TimeSpan scheduledTime = TimePicker.Value.TimeOfDay;
-
-            using (SqlConnection sqlCon = new SqlConnection(connectionString))
-            {
-                sqlCon.Open();
-
-                SqlCommand cmd = new SqlCommand(
-                "UPDATE requestTbl " +
-                "SET counselorID = @counselorID, " +
-                "ScheduledDate = @scheduledDate, " +
-                "ScheduledTime = @scheduledTime, " +
-                "[Status] = @status, " +
-                "UpdatedAt = GETDATE() " +
-                "WHERE requestID = @requestID", sqlCon);
-
-                cmd.Parameters.AddWithValue("@counselorID", _userID);
-                cmd.Parameters.AddWithValue("@requestID", requestID);
-                cmd.Parameters.AddWithValue("@scheduledDate", scheduledDate);
-                cmd.Parameters.AddWithValue("@scheduledTime", scheduledTime);
-                cmd.Parameters.AddWithValue("@status", status);
-
-                cmd.ExecuteNonQuery();
-            }
-
-            MessageBox.Show("Request successfully scheduled!", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            btnRequestRefresh_Click(null, null); // refresh table
         }
 
         private int? selectedRequestID;

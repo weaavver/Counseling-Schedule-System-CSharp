@@ -38,7 +38,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(150, 152);
+            this.txtEmail.Location = new System.Drawing.Point(139, 151);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(187, 22);
             this.txtEmail.TabIndex = 9;
@@ -46,7 +46,7 @@
             // btnNVM
             // 
             this.btnNVM.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNVM.Location = new System.Drawing.Point(262, 188);
+            this.btnNVM.Location = new System.Drawing.Point(251, 187);
             this.btnNVM.Name = "btnNVM";
             this.btnNVM.Size = new System.Drawing.Size(75, 23);
             this.btnNVM.TabIndex = 10;
@@ -58,7 +58,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(58, 81);
+            this.label1.Location = new System.Drawing.Point(47, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(163, 30);
             this.label1.TabIndex = 6;
@@ -69,7 +69,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(48, 155);
+            this.label3.Location = new System.Drawing.Point(37, 154);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 13);
             this.label3.TabIndex = 7;
@@ -78,7 +78,7 @@
             // btnSendOTP
             // 
             this.btnSendOTP.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendOTP.Location = new System.Drawing.Point(150, 188);
+            this.btnSendOTP.Location = new System.Drawing.Point(139, 187);
             this.btnSendOTP.Name = "btnSendOTP";
             this.btnSendOTP.Size = new System.Drawing.Size(75, 23);
             this.btnSendOTP.TabIndex = 8;
@@ -90,13 +90,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(379, 451);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.btnNVM);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSendOTP);
             this.Name = "CounselorForgotPassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CounselorForgotPassword";
             this.ResumeLayout(false);
             this.PerformLayout();
