@@ -50,7 +50,7 @@
             // 
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(316, 363);
+            this.btnLogin.Location = new System.Drawing.Point(353, 368);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(139, 47);
             this.btnLogin.TabIndex = 9;
@@ -63,7 +63,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 45F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(182, 67);
+            this.label1.Location = new System.Drawing.Point(219, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(528, 81);
             this.label1.TabIndex = 8;
@@ -73,7 +73,7 @@
             // 
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(480, 363);
+            this.btnRegister.Location = new System.Drawing.Point(517, 368);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(139, 47);
             this.btnRegister.TabIndex = 7;
@@ -96,7 +96,7 @@
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(876, 550);
+            this.panel1.Size = new System.Drawing.Size(990, 601);
             this.panel1.TabIndex = 15;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -118,7 +118,7 @@
             this.forgotPass.AutoSize = true;
             this.forgotPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forgotPass.LinkColor = System.Drawing.Color.Black;
-            this.forgotPass.Location = new System.Drawing.Point(486, 326);
+            this.forgotPass.Location = new System.Drawing.Point(523, 331);
             this.forgotPass.Name = "forgotPass";
             this.forgotPass.Size = new System.Drawing.Size(133, 21);
             this.forgotPass.TabIndex = 19;
@@ -130,7 +130,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Counseling_Schedule_System.Properties.Resources.password;
-            this.pictureBox2.Location = new System.Drawing.Point(249, 271);
+            this.pictureBox2.Location = new System.Drawing.Point(286, 276);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(66, 60);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -141,7 +141,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(255, 218);
+            this.pictureBox1.Location = new System.Drawing.Point(292, 223);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(54, 52);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -151,7 +151,7 @@
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(316, 228);
+            this.txtUsername.Location = new System.Drawing.Point(353, 233);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(303, 38);
@@ -160,7 +160,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(316, 282);
+            this.txtPassword.Location = new System.Drawing.Point(353, 287);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(303, 38);
@@ -172,7 +172,7 @@
             this.chkPass.AutoSize = true;
             this.chkPass.BackColor = System.Drawing.Color.Transparent;
             this.chkPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPass.Location = new System.Drawing.Point(316, 326);
+            this.chkPass.Location = new System.Drawing.Point(353, 331);
             this.chkPass.Name = "chkPass";
             this.chkPass.Size = new System.Drawing.Size(138, 25);
             this.chkPass.TabIndex = 14;
@@ -184,9 +184,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 550);
+            this.ClientSize = new System.Drawing.Size(974, 576);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CounselorLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

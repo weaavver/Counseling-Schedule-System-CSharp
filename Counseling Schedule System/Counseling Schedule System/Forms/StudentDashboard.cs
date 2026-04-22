@@ -1,4 +1,5 @@
-﻿using Counseling_Schedule_System.Models;
+﻿using Counseling_Schedule_System;
+using Counseling_Schedule_System.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,7 @@ namespace Counseling_Schedule_System.Forms
             scheduledDateTime.Format = DateTimePickerFormat.Custom;
             scheduledDateTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             LoadRequest();
+            PanelScheduleBoard.Visible = true;
 
             greet();
         }
@@ -280,10 +282,15 @@ namespace Counseling_Schedule_System.Forms
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            _userID = null; //reset the userID to null
-            StudentLogin login = new StudentLogin();
-            login.Show();
-            this.Hide();
+            DialogResult result = MessageBox.Show("Do you want to logout?", "Confirmation", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.OK)
+            {
+                _userID = null; //reset the userID to null
+                StudentLogin login = new StudentLogin();
+                login.Show();
+                this.Hide();
+            }
         }
     }
 }

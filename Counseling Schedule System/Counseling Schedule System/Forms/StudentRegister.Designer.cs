@@ -69,8 +69,8 @@
             this.Title.AutoSize = true;
             this.Title.BackColor = System.Drawing.Color.Transparent;
             this.Title.Font = new System.Drawing.Font("Segoe UI", 27F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.Title.Location = new System.Drawing.Point(311, 9);
+            this.Title.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Title.Location = new System.Drawing.Point(326, 4);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(300, 48);
             this.Title.TabIndex = 0;
@@ -314,26 +314,26 @@
             this.panel1.Controls.Add(this.txtFName);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(-6, -6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(875, 550);
+            this.panel1.Size = new System.Drawing.Size(1000, 650);
             this.panel1.TabIndex = 20;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Yellow;
+            this.panel2.BackColor = System.Drawing.Color.Beige;
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.Title);
-            this.panel2.Location = new System.Drawing.Point(-9, -6);
+            this.panel2.Location = new System.Drawing.Point(14, 10);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(895, 67);
+            this.panel2.Size = new System.Drawing.Size(968, 57);
             this.panel2.TabIndex = 27;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(273, 18);
+            this.pictureBox1.Location = new System.Drawing.Point(290, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(37, 38);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -416,9 +416,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 550);
+            this.ClientSize = new System.Drawing.Size(984, 611);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StudentRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

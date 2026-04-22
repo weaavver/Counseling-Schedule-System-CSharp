@@ -31,11 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             this.linkRegister = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.linkLogin = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +44,7 @@
             this.linkRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkRegister.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkRegister.LinkColor = System.Drawing.Color.Black;
-            this.linkRegister.Location = new System.Drawing.Point(431, 27);
+            this.linkRegister.Location = new System.Drawing.Point(885, 27);
             this.linkRegister.Name = "linkRegister";
             this.linkRegister.Size = new System.Drawing.Size(58, 16);
             this.linkRegister.TabIndex = 1;
@@ -57,32 +55,22 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Counseling_Schedule_System.Properties.Resources.pdmlogo;
-            this.pictureBox1.Location = new System.Drawing.Point(14, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(6, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(53, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Counseling_Schedule_System.Properties.Resources.pdmbg;
-            this.pictureBox2.Location = new System.Drawing.Point(-152, 59);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(845, 569);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Yellow;
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.linkRegister);
             this.panel1.Controls.Add(this.linkLogin);
-            this.panel1.Location = new System.Drawing.Point(-2, 0);
+            this.panel1.Location = new System.Drawing.Point(8, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(502, 61);
+            this.panel1.Size = new System.Drawing.Size(968, 57);
             this.panel1.TabIndex = 3;
             // 
             // linkLogin
@@ -92,7 +80,7 @@
             this.linkLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLogin.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLogin.LinkColor = System.Drawing.Color.Black;
-            this.linkLogin.Location = new System.Drawing.Point(376, 27);
+            this.linkLogin.Location = new System.Drawing.Point(839, 27);
             this.linkLogin.Name = "linkLogin";
             this.linkLogin.Size = new System.Drawing.Size(40, 16);
             this.linkLogin.TabIndex = 0;
@@ -104,16 +92,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 621);
-            this.Controls.Add(this.pictureBox2);
+            this.ClientSize = new System.Drawing.Size(984, 611);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainPage";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -123,7 +108,6 @@
         #endregion
         private System.Windows.Forms.LinkLabel linkRegister;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.LinkLabel linkLogin;
     }

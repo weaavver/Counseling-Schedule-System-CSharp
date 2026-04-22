@@ -24,10 +24,13 @@ namespace Counseling_Schedule_System.Forms
         public CounselorDashboard(int? userID)
         {
             InitializeComponent();
+            dgvRequests.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSchedules.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            pnlSchedule.Visible = false; 
             _userID = userID;
-            RefreshSchedule();
-            RefreshRequests();
-
+            RefreshSchedule(); //refresh scheule table
+            RefreshRequests(); //refresh request table
+            AutoCancelOldRequests(); //self explanatory
             greet();
         }
 
@@ -104,7 +107,6 @@ namespace Counseling_Schedule_System.Forms
                     sqlDa.SelectCommand.Parameters.AddWithValue("@counselorID", _userID);
                     DataTable dtbl = new DataTable();
                     sqlDa.Fill(dtbl);
-                    dgvSchedules.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                     dgvSchedules.AllowUserToAddRows = false; // Removes the last row that spawns along with dgv
                     dgvSchedules.ReadOnly = true;
                     dgvSchedules.DataSource = dtbl;
@@ -128,8 +130,13 @@ namespace Counseling_Schedule_System.Forms
                     sqlCon.Open();
 
                     SqlCommand cmd = new SqlCommand(@"
-                        SELECT r.*,
-                        CONCAT(s.FirstName, ' ', s.LastName) AS Name
+                        SELECT 
+                        CONCAT(s.FirstName, ' ', s.LastName) AS Name,
+                        r.requestID,
+                        r.PreferredDateTime,
+                        r.Reason AS Issue,
+                        r.[Status],
+                        r.CreatedAt
                         FROM requestTbl r
                         JOIN studentTbl s ON r.StudentID = s.studentID
                         JOIN counselorTbl c ON c.counselorID = @counselorID
@@ -251,7 +258,7 @@ namespace Counseling_Schedule_System.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if(txtNotes.Text == "")
+            if (txtNotes.Text == "")
             {
                 return;
             }
@@ -448,10 +455,70 @@ namespace Counseling_Schedule_System.Forms
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            _userID = null; //reset userID to null for security purposes
-            CounselorLogin login = new CounselorLogin();
-            login.Show();
-            this.Hide();
+            DialogResult result = MessageBox.Show("Do you want to logout?", "Confirmation", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.OK)
+            {
+                _userID = null; //reset the userID to null
+                CounselorLogin login = new CounselorLogin();
+                login.Show();
+                this.Hide();
+            }
+        }
+
+        private void txtPending_TextChanged(object sender, EventArgs e)
+        {}
+
+        private void AutoCancelOldRequests()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    using (SqlTransaction tran = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            string sql = @"
+                        UPDATE requestTbl
+                        SET Status = 'Cancelled',
+                            UpdatedAt = GETDATE()
+                        WHERE Status IN ('Pending', 'Scheduled')
+                          AND CreatedAt <= DATEADD(DAY, -30, GETDATE())";
+
+                            using (SqlCommand cmd = new SqlCommand(sql, conn, tran))
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            tran.Commit();
+                        }
+                        catch
+                        {
+                            tran.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error auto-cancelling old requests:\n" + ex.Message);
+            }
+        }
+
+        private void btnShowRequests_Click(object sender, EventArgs e)
+        {
+            pnlSchedule.Visible = false;
+            pnlRequests.Visible = true;
+        }
+
+        private void btnShowSchedule_Click(object sender, EventArgs e)
+        {
+            pnlSchedule.Visible = true;
+            pnlRequests.Visible = false;
         }
     }
-}
+}    

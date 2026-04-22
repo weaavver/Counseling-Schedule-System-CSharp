@@ -39,24 +39,8 @@ namespace Counseling_Schedule_System
         private void Register()
         {
             StudentRegister register = new StudentRegister();
-            register.Opacity = 0;
             register.Show();
-
-            Timer fadeTimer = new Timer();
-            fadeTimer.Interval = 20;
-
-            fadeTimer.Tick += (s, ev) =>
-            {
-                if (register.Opacity < 1)
-                    register.Opacity += 0.05;
-                else
-                {
-                    fadeTimer.Stop();
-                    this.Hide();
-                }
-            };
-
-            fadeTimer.Start();
+            this.Hide();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -176,6 +160,11 @@ namespace Counseling_Schedule_System
             ForgotPassword newForm = new ForgotPassword();
             newForm.Show();
             this.Hide();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
