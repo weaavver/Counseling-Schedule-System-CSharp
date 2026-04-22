@@ -37,7 +37,7 @@ namespace Counseling_Schedule_System.Models
         //Validations
         public bool IsValid()
         {
-            if (string.IsNullOrWhiteSpace(FirstName))
+            if (string.IsNullOrEmpty(FirstName))
             {
                 MessageBox.Show("Name cannot be empty!");
                 return false;
@@ -49,7 +49,7 @@ namespace Counseling_Schedule_System.Models
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(LastName))
+            if (string.IsNullOrEmpty(LastName))
             {
                 MessageBox.Show("Name cannot be empty!");
                 return false;

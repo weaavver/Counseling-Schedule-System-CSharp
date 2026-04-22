@@ -20,8 +20,8 @@ namespace Counseling_Schedule_System.Forms
     public partial class CounselorDashboard : Form
     {
         string connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
-        private int _userID;
-        public CounselorDashboard(int userID)
+        private int? _userID;
+        public CounselorDashboard(int? userID)
         {
             InitializeComponent();
             _userID = userID;
@@ -444,6 +444,14 @@ namespace Counseling_Schedule_System.Forms
             }
 
             return email;
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            _userID = null; //reset userID to null for security purposes
+            CounselorLogin login = new CounselorLogin();
+            login.Show();
+            this.Hide();
         }
     }
 }

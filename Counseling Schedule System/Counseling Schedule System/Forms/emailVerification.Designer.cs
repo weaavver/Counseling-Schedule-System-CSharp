@@ -85,6 +85,7 @@
             this.txtOTP.Name = "txtOTP";
             this.txtOTP.Size = new System.Drawing.Size(167, 33);
             this.txtOTP.TabIndex = 4;
+            this.txtOTP.TextChanged += new System.EventHandler(this.txtOTP_TextChanged);
             // 
             // label3
             // 
@@ -158,6 +159,7 @@
             this.ClientSize = new System.Drawing.Size(606, 356);
             this.Controls.Add(this.panel1);
             this.Name = "emailVerification";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "emailVerification";
             this.Load += new System.EventHandler(this.emailVerification_Load);
             this.panel1.ResumeLayout(false);

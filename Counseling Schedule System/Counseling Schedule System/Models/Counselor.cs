@@ -34,13 +34,13 @@ namespace Counseling_Schedule_System.Models
         // Validation method that shows MessageBox for each error
         public bool IsValid()
         {
-            if (string.IsNullOrWhiteSpace(FirstName))
+            if (string.IsNullOrEmpty(FirstName))
             {
                 MessageBox.Show("First Name cannot be empty!");
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(LastName))
+            if (string.IsNullOrEmpty(LastName))
             {
                 MessageBox.Show("Last Name cannot be empty!");
                 return false;

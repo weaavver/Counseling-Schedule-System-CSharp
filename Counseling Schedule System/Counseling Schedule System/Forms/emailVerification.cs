@@ -78,7 +78,7 @@ namespace Counseling_Schedule_System.Forms
                 return;
             }
 
-            if (txtOTP.Text == generatedOTP)
+            if (txtOTP.Text.Trim() == generatedOTP)
             {
                 MessageBox.Show("Email verified!");
 
@@ -89,6 +89,11 @@ namespace Counseling_Schedule_System.Forms
             {
                 MessageBox.Show("Invalid OTP");
             }
+        }
+
+        private void txtOTP_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

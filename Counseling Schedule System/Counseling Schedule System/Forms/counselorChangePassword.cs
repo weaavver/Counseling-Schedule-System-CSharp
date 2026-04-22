@@ -81,7 +81,7 @@ namespace Counseling_Schedule_System.Forms
                 txtNewPassword.Clear();
                 txtConfirmPassword.Clear();
 
-                StudentLogin form = new StudentLogin();
+                CounselorLogin form = new CounselorLogin();
                 form.Show();
                 this.Hide();
             }
@@ -94,6 +94,13 @@ namespace Counseling_Schedule_System.Forms
         private void btnConfirm_Click_1(object sender, EventArgs e)
         {
             ChangePasswordByEmail();
+        }
+
+        private void btnBackToLogin_Click(object sender, EventArgs e)
+        {
+            CounselorLogin form = new CounselorLogin();
+            form.Show();
+            this.Hide();
         }
     }
 }

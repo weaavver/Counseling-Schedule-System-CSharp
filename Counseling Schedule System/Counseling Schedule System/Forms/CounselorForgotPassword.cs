@@ -33,11 +33,11 @@ namespace Counseling_Schedule_System.Forms
             }
             else
             {
-                emailVerification otpForm = new emailVerification(txtEmail.Text);
+                emailVerification otpForm = new emailVerification(txtEmail.Text.Trim());
 
                 if (otpForm.ShowDialog() == DialogResult.OK)
                 {
-                    counselorChangePassword form = new counselorChangePassword(txtEmail.Text);
+                    counselorChangePassword form = new counselorChangePassword(txtEmail.Text.Trim());
                     form.Show();
                     this.Hide();
                 }

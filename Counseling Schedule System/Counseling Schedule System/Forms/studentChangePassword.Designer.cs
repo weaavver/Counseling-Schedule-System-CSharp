@@ -43,6 +43,7 @@
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(203, 25);
             this.txtNewPassword.TabIndex = 0;
+            this.txtNewPassword.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -82,6 +83,7 @@
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(203, 25);
             this.txtConfirmPassword.TabIndex = 4;
+            this.txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // btnBackToLogin
             // 
@@ -92,6 +94,7 @@
             this.btnBackToLogin.TabIndex = 5;
             this.btnBackToLogin.Text = "Cancel";
             this.btnBackToLogin.UseVisualStyleBackColor = true;
+            this.btnBackToLogin.Click += new System.EventHandler(this.btnBackToLogin_Click);
             // 
             // studentChangePassword
             // 

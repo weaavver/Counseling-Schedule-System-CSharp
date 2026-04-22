@@ -97,5 +97,12 @@ namespace Counseling_Schedule_System.Forms
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        private void btnBackToLogin_Click(object sender, EventArgs e)
+        {
+            StudentLogin form = new StudentLogin();
+            form.Show();
+            this.Hide();
+        }
     }
 }

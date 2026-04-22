@@ -47,11 +47,11 @@ namespace Counseling_Schedule_System.Forms
             }
             else
             {
-                emailVerification otpForm = new emailVerification(txtEmail.Text);
+                emailVerification otpForm = new emailVerification(txtEmail.Text.Trim());
 
                 if (otpForm.ShowDialog() == DialogResult.OK)
                 {
-                    studentChangePassword form = new studentChangePassword(txtEmail.Text);
+                    studentChangePassword form = new studentChangePassword(txtEmail.Text.Trim());
                     form.Show();
                     this.Hide();
                 }
@@ -60,6 +60,11 @@ namespace Counseling_Schedule_System.Forms
                     MessageBox.Show("Email verification failed.");
                 }
             }
+
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

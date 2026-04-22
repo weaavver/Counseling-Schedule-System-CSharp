@@ -19,8 +19,8 @@ namespace Counseling_Schedule_System.Forms
     public partial class StudentDashboard : Form
     {
         string connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
-        private int _userID;
-        public StudentDashboard(int userID)
+        private int? _userID; //added ? to allow null value for userID
+        public StudentDashboard(int? userID)
         {
             InitializeComponent();
             _userID = userID;
@@ -276,6 +276,14 @@ namespace Counseling_Schedule_System.Forms
                 MessageBox.Show("Error submitting request: " + ex.Message);
             }
         
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            _userID = null; //reset the userID to null
+            StudentLogin login = new StudentLogin();
+            login.Show();
+            this.Hide();
         }
     }
 }
