@@ -41,12 +41,12 @@
             // 
             this.linkRegister.ActiveLinkColor = System.Drawing.Color.White;
             this.linkRegister.AutoSize = true;
-            this.linkRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkRegister.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkRegister.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkRegister.LinkColor = System.Drawing.Color.Black;
             this.linkRegister.Location = new System.Drawing.Point(885, 27);
             this.linkRegister.Name = "linkRegister";
-            this.linkRegister.Size = new System.Drawing.Size(58, 16);
+            this.linkRegister.Size = new System.Drawing.Size(63, 20);
             this.linkRegister.TabIndex = 1;
             this.linkRegister.TabStop = true;
             this.linkRegister.Text = "Register";
@@ -64,7 +64,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.linkRegister);
             this.panel1.Controls.Add(this.linkLogin);
@@ -77,12 +77,12 @@
             // 
             this.linkLogin.ActiveLinkColor = System.Drawing.Color.White;
             this.linkLogin.AutoSize = true;
-            this.linkLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLogin.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLogin.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLogin.LinkColor = System.Drawing.Color.Black;
-            this.linkLogin.Location = new System.Drawing.Point(839, 27);
+            this.linkLogin.Location = new System.Drawing.Point(820, 27);
             this.linkLogin.Name = "linkLogin";
-            this.linkLogin.Size = new System.Drawing.Size(40, 16);
+            this.linkLogin.Size = new System.Drawing.Size(46, 20);
             this.linkLogin.TabIndex = 0;
             this.linkLogin.TabStop = true;
             this.linkLogin.Text = "Login";
@@ -92,6 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(984, 611);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

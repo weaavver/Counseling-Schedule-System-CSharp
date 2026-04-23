@@ -42,14 +42,12 @@
             this.btnLogout = new System.Windows.Forms.Button();
             this.lblGreet = new System.Windows.Forms.Label();
             this.pnlSchedule = new System.Windows.Forms.Panel();
-            this.txtRequestID = new System.Windows.Forms.TextBox();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnRequestRefresh = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvRequests = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.pnlRequests = new System.Windows.Forms.Panel();
@@ -74,7 +72,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.DarkGray;
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.pnlSchedule);
             this.panel2.Controls.Add(this.pnlRequests);
@@ -86,47 +84,52 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.btnShowRequests);
             this.panel3.Controls.Add(this.btnShowSchedule);
             this.panel3.Controls.Add(this.btnLogout);
             this.panel3.Controls.Add(this.lblGreet);
-            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Location = new System.Drawing.Point(16, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(990, 50);
+            this.panel3.Size = new System.Drawing.Size(960, 48);
             this.panel3.TabIndex = 33;
             // 
             // btnShowRequests
             // 
-            this.btnShowRequests.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowRequests.Location = new System.Drawing.Point(544, 17);
+            this.btnShowRequests.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnShowRequests.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowRequests.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnShowRequests.Location = new System.Drawing.Point(592, 13);
             this.btnShowRequests.Name = "btnShowRequests";
-            this.btnShowRequests.Size = new System.Drawing.Size(75, 22);
+            this.btnShowRequests.Size = new System.Drawing.Size(93, 26);
             this.btnShowRequests.TabIndex = 16;
             this.btnShowRequests.Text = "Schedule";
-            this.btnShowRequests.UseVisualStyleBackColor = true;
+            this.btnShowRequests.UseVisualStyleBackColor = false;
             this.btnShowRequests.Click += new System.EventHandler(this.btnShowRequests_Click);
             // 
             // btnShowSchedule
             // 
-            this.btnShowSchedule.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowSchedule.Location = new System.Drawing.Point(638, 17);
+            this.btnShowSchedule.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnShowSchedule.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowSchedule.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnShowSchedule.Location = new System.Drawing.Point(691, 12);
             this.btnShowSchedule.Name = "btnShowSchedule";
-            this.btnShowSchedule.Size = new System.Drawing.Size(75, 23);
+            this.btnShowSchedule.Size = new System.Drawing.Size(93, 27);
             this.btnShowSchedule.TabIndex = 15;
             this.btnShowSchedule.Text = "Requests";
-            this.btnShowSchedule.UseVisualStyleBackColor = true;
+            this.btnShowSchedule.UseVisualStyleBackColor = false;
             this.btnShowSchedule.Click += new System.EventHandler(this.btnShowSchedule_Click);
             // 
             // btnLogout
             // 
+            this.btnLogout.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(901, 16);
+            this.btnLogout.Location = new System.Drawing.Point(872, 15);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 23);
             this.btnLogout.TabIndex = 14;
             this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // lblGreet
@@ -134,8 +137,8 @@
             this.lblGreet.AutoSize = true;
             this.lblGreet.BackColor = System.Drawing.Color.Transparent;
             this.lblGreet.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGreet.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblGreet.Location = new System.Drawing.Point(3, 17);
+            this.lblGreet.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblGreet.Location = new System.Drawing.Point(19, 17);
             this.lblGreet.Name = "lblGreet";
             this.lblGreet.Size = new System.Drawing.Size(239, 18);
             this.lblGreet.TabIndex = 13;
@@ -144,39 +147,28 @@
             // 
             // pnlSchedule
             // 
-            this.pnlSchedule.BackColor = System.Drawing.Color.DimGray;
-            this.pnlSchedule.Controls.Add(this.txtRequestID);
+            this.pnlSchedule.BackColor = System.Drawing.Color.White;
             this.pnlSchedule.Controls.Add(this.btnConfirm);
             this.pnlSchedule.Controls.Add(this.btnRequestRefresh);
             this.pnlSchedule.Controls.Add(this.label1);
             this.pnlSchedule.Controls.Add(this.label6);
             this.pnlSchedule.Controls.Add(this.dgvRequests);
             this.pnlSchedule.Controls.Add(this.label3);
-            this.pnlSchedule.Controls.Add(this.label5);
             this.pnlSchedule.Controls.Add(this.TimePicker);
             this.pnlSchedule.Controls.Add(this.DatePicker);
-            this.pnlSchedule.Location = new System.Drawing.Point(16, 56);
+            this.pnlSchedule.Location = new System.Drawing.Point(16, 66);
             this.pnlSchedule.Name = "pnlSchedule";
-            this.pnlSchedule.Size = new System.Drawing.Size(960, 543);
+            this.pnlSchedule.Size = new System.Drawing.Size(960, 533);
             this.pnlSchedule.TabIndex = 36;
-            // 
-            // txtRequestID
-            // 
-            this.txtRequestID.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRequestID.Location = new System.Drawing.Point(140, 505);
-            this.txtRequestID.Name = "txtRequestID";
-            this.txtRequestID.Size = new System.Drawing.Size(102, 25);
-            this.txtRequestID.TabIndex = 21;
-            this.txtRequestID.TextChanged += new System.EventHandler(this.txtRequestID_TextChanged);
             // 
             // btnConfirm
             // 
-            this.btnConfirm.BackColor = System.Drawing.Color.Green;
+            this.btnConfirm.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnConfirm.Location = new System.Drawing.Point(348, 501);
+            this.btnConfirm.Location = new System.Drawing.Point(309, 470);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(75, 31);
+            this.btnConfirm.Size = new System.Drawing.Size(85, 31);
             this.btnConfirm.TabIndex = 23;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = false;
@@ -184,11 +176,12 @@
             // 
             // btnRequestRefresh
             // 
-            this.btnRequestRefresh.BackColor = System.Drawing.SystemColors.Control;
-            this.btnRequestRefresh.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRequestRefresh.Location = new System.Drawing.Point(267, 501);
+            this.btnRequestRefresh.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnRequestRefresh.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequestRefresh.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRequestRefresh.Location = new System.Drawing.Point(885, 18);
             this.btnRequestRefresh.Name = "btnRequestRefresh";
-            this.btnRequestRefresh.Size = new System.Drawing.Size(75, 31);
+            this.btnRequestRefresh.Size = new System.Drawing.Size(62, 22);
             this.btnRequestRefresh.TabIndex = 16;
             this.btnRequestRefresh.Text = "Refresh";
             this.btnRequestRefresh.UseVisualStyleBackColor = false;
@@ -209,10 +202,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(28, 467);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(28, 474);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 17);
+            this.label6.Size = new System.Drawing.Size(136, 21);
             this.label6.TabIndex = 32;
             this.label6.Text = "Scheduled Time:";
             // 
@@ -254,46 +247,34 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(28, 432);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 17);
+            this.label3.Size = new System.Drawing.Size(134, 21);
             this.label3.TabIndex = 31;
             this.label3.Text = "Scheduled Date:";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(22, 508);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 17);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "Input Request ID:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
             // TimePicker
             // 
-            this.TimePicker.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.TimePicker.Location = new System.Drawing.Point(140, 463);
+            this.TimePicker.Location = new System.Drawing.Point(178, 471);
             this.TimePicker.Name = "TimePicker";
-            this.TimePicker.Size = new System.Drawing.Size(99, 23);
+            this.TimePicker.Size = new System.Drawing.Size(125, 29);
             this.TimePicker.TabIndex = 30;
             // 
             // DatePicker
             // 
-            this.DatePicker.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatePicker.Location = new System.Drawing.Point(142, 429);
+            this.DatePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DatePicker.Location = new System.Drawing.Point(178, 429);
             this.DatePicker.Name = "DatePicker";
-            this.DatePicker.Size = new System.Drawing.Size(200, 23);
+            this.DatePicker.Size = new System.Drawing.Size(216, 29);
             this.DatePicker.TabIndex = 29;
             this.DatePicker.ValueChanged += new System.EventHandler(this.DatePicker_ValueChanged);
             // 
             // pnlRequests
             // 
-            this.pnlRequests.BackColor = System.Drawing.Color.Silver;
+            this.pnlRequests.BackColor = System.Drawing.Color.White;
             this.pnlRequests.Controls.Add(this.btnCancel);
             this.pnlRequests.Controls.Add(this.label7);
             this.pnlRequests.Controls.Add(this.txtRequestID2);
@@ -303,19 +284,19 @@
             this.pnlRequests.Controls.Add(this.btnComplete);
             this.pnlRequests.Controls.Add(this.label4);
             this.pnlRequests.Controls.Add(this.dgvSchedules);
-            this.pnlRequests.Location = new System.Drawing.Point(16, 56);
+            this.pnlRequests.Location = new System.Drawing.Point(16, 66);
             this.pnlRequests.Name = "pnlRequests";
-            this.pnlRequests.Size = new System.Drawing.Size(960, 543);
+            this.pnlRequests.Size = new System.Drawing.Size(960, 533);
             this.pnlRequests.TabIndex = 37;
             // 
             // btnCancel
             // 
-            this.btnCancel.BackColor = System.Drawing.Color.Red;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.BackColor = System.Drawing.Color.Brown;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(341, 418);
+            this.btnCancel.Location = new System.Drawing.Point(490, 424);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 39);
+            this.btnCancel.Size = new System.Drawing.Size(132, 39);
             this.btnCancel.TabIndex = 22;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -325,27 +306,28 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(28, 474);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(22, 433);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 17);
+            this.label7.Size = new System.Drawing.Size(149, 21);
             this.label7.TabIndex = 35;
             this.label7.Text = "Counseling Notes:";
             // 
             // txtRequestID2
             // 
-            this.txtRequestID2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRequestID2.Location = new System.Drawing.Point(149, 426);
+            this.txtRequestID2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRequestID2.Location = new System.Drawing.Point(177, 474);
             this.txtRequestID2.Name = "txtRequestID2";
-            this.txtRequestID2.Size = new System.Drawing.Size(102, 25);
+            this.txtRequestID2.Size = new System.Drawing.Size(102, 29);
             this.txtRequestID2.TabIndex = 20;
             // 
             // btnScheduleRefresh
             // 
-            this.btnScheduleRefresh.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScheduleRefresh.Location = new System.Drawing.Point(872, 9);
+            this.btnScheduleRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnScheduleRefresh.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnScheduleRefresh.Location = new System.Drawing.Point(885, 15);
             this.btnScheduleRefresh.Name = "btnScheduleRefresh";
-            this.btnScheduleRefresh.Size = new System.Drawing.Size(75, 32);
+            this.btnScheduleRefresh.Size = new System.Drawing.Size(62, 22);
             this.btnScheduleRefresh.TabIndex = 19;
             this.btnScheduleRefresh.Text = "Refresh";
             this.btnScheduleRefresh.UseVisualStyleBackColor = true;
@@ -353,10 +335,10 @@
             // 
             // txtNotes
             // 
-            this.txtNotes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNotes.Location = new System.Drawing.Point(155, 471);
+            this.txtNotes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNotes.Location = new System.Drawing.Point(177, 429);
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(181, 25);
+            this.txtNotes.Size = new System.Drawing.Size(284, 29);
             this.txtNotes.TabIndex = 34;
             this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
             // 
@@ -373,12 +355,12 @@
             // 
             // btnComplete
             // 
-            this.btnComplete.BackColor = System.Drawing.Color.Green;
-            this.btnComplete.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComplete.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnComplete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnComplete.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnComplete.Location = new System.Drawing.Point(342, 463);
+            this.btnComplete.Location = new System.Drawing.Point(490, 471);
             this.btnComplete.Name = "btnComplete";
-            this.btnComplete.Size = new System.Drawing.Size(75, 39);
+            this.btnComplete.Size = new System.Drawing.Size(132, 39);
             this.btnComplete.TabIndex = 24;
             this.btnComplete.Text = "Complete";
             this.btnComplete.UseVisualStyleBackColor = false;
@@ -388,10 +370,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(22, 429);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(27, 477);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 17);
+            this.label4.Size = new System.Drawing.Size(137, 21);
             this.label4.TabIndex = 26;
             this.label4.Text = "Input Request ID";
             // 
@@ -481,14 +463,12 @@
         private System.Windows.Forms.Button btnShowRequests;
         private System.Windows.Forms.Button btnShowSchedule;
         private System.Windows.Forms.Panel pnlSchedule;
-        private System.Windows.Forms.TextBox txtRequestID;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnRequestRefresh;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvRequests;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker TimePicker;
         private System.Windows.Forms.DateTimePicker DatePicker;
     }
