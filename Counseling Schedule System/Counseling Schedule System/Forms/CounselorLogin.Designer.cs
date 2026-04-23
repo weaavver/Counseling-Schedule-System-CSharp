@@ -40,22 +40,26 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.chkPass = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
             // 
+            this.btnLogin.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(353, 368);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(172, 334);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(139, 47);
             this.btnLogin.TabIndex = 9;
             this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // label1
@@ -63,7 +67,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 45F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(219, 72);
+            this.label1.Location = new System.Drawing.Point(41, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(528, 81);
             this.label1.TabIndex = 8;
@@ -71,29 +75,23 @@
             // 
             // btnRegister
             // 
+            this.btnRegister.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(517, 368);
+            this.btnRegister.ForeColor = System.Drawing.Color.White;
+            this.btnRegister.Location = new System.Drawing.Point(337, 334);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(139, 47);
             this.btnRegister.TabIndex = 7;
             this.btnRegister.Text = "Register";
-            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.UseVisualStyleBackColor = false;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkGray;
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Controls.Add(this.forgotPass);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.txtUsername);
-            this.panel1.Controls.Add(this.txtPassword);
-            this.panel1.Controls.Add(this.chkPass);
-            this.panel1.Controls.Add(this.btnRegister);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(990, 601);
@@ -118,7 +116,7 @@
             this.forgotPass.AutoSize = true;
             this.forgotPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forgotPass.LinkColor = System.Drawing.Color.Black;
-            this.forgotPass.Location = new System.Drawing.Point(523, 331);
+            this.forgotPass.Location = new System.Drawing.Point(343, 286);
             this.forgotPass.Name = "forgotPass";
             this.forgotPass.Size = new System.Drawing.Size(133, 21);
             this.forgotPass.TabIndex = 19;
@@ -130,7 +128,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Counseling_Schedule_System.Properties.Resources.password;
-            this.pictureBox2.Location = new System.Drawing.Point(286, 276);
+            this.pictureBox2.Location = new System.Drawing.Point(106, 231);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(66, 60);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -141,7 +139,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(292, 223);
+            this.pictureBox1.Location = new System.Drawing.Point(111, 177);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(54, 52);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -151,7 +149,7 @@
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(353, 233);
+            this.txtUsername.Location = new System.Drawing.Point(172, 187);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(303, 38);
@@ -160,7 +158,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(353, 287);
+            this.txtPassword.Location = new System.Drawing.Point(173, 242);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(303, 38);
@@ -172,7 +170,7 @@
             this.chkPass.AutoSize = true;
             this.chkPass.BackColor = System.Drawing.Color.Transparent;
             this.chkPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPass.Location = new System.Drawing.Point(353, 331);
+            this.chkPass.Location = new System.Drawing.Point(173, 286);
             this.chkPass.Name = "chkPass";
             this.chkPass.Size = new System.Drawing.Size(138, 25);
             this.chkPass.TabIndex = 14;
@@ -180,21 +178,39 @@
             this.chkPass.UseVisualStyleBackColor = false;
             this.chkPass.CheckedChanged += new System.EventHandler(this.chkPass_CheckedChanged);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.btnLogin);
+            this.panel2.Controls.Add(this.forgotPass);
+            this.panel2.Controls.Add(this.btnRegister);
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.chkPass);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.txtPassword);
+            this.panel2.Controls.Add(this.txtUsername);
+            this.panel2.Location = new System.Drawing.Point(195, 67);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(594, 469);
+            this.panel2.TabIndex = 21;
+            // 
             // CounselorLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 576);
+            this.ClientSize = new System.Drawing.Size(984, 596);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CounselorLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CounselorLogin";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -211,5 +227,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.LinkLabel forgotPass;
         private System.Windows.Forms.PictureBox btnExit;
+        private System.Windows.Forms.Panel panel2;
     }
 }

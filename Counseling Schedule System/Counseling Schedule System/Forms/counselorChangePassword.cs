@@ -49,7 +49,25 @@ namespace Counseling_Schedule_System.Forms
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
 
             //Update query using Email
-            string sql = "UPDATE counselorTbl SET Password = @Password WHERE Email = @Email";
+            string sql = @"
+            BEGIN TRY
+                BEGIN TRANSACTION;
+
+                UPDATE counselorTbl
+                SET Password = @Password
+                WHERE Email = @Email;
+
+                IF @@ROWCOUNT = 0
+                BEGIN
+                    THROW 50001, 'No user found with that email.', 1;
+                END
+
+                COMMIT TRANSACTION;
+            END TRY
+            BEGIN CATCH
+                ROLLBACK TRANSACTION;
+                THROW;
+            END CATCH;";
 
             try
             {

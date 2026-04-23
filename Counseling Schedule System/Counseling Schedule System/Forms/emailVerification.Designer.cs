@@ -67,7 +67,7 @@
             // 
             // btnVerify
             // 
-            this.btnVerify.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnVerify.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnVerify.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerify.ForeColor = System.Drawing.Color.White;
             this.btnVerify.Location = new System.Drawing.Point(267, 253);

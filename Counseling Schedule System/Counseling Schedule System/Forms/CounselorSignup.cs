@@ -100,9 +100,26 @@ namespace Counseling_Schedule_System.Forms
             // Database insertion
             string connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
 
-            string sql = "INSERT INTO counselorTbl " +
-            "(FirstName, LastName, Gender, Specialization, PRCLicenseNumber, MobileNo, Email, Username, [Password]) " +
-            "VALUES(@FirstName, @LastName, @Gender, @Specialization, @PRCLicenseNumber, @MobileNumber, @Email, @Username, @Password)";
+            string sql = @"
+            BEGIN TRY
+                BEGIN TRANSACTION;
+
+                INSERT INTO counselorTbl
+                    (FirstName, LastName, Gender, Specialization, PRCLicenseNumber, MobileNo, Email, Username, [Password])
+                VALUES
+                    (@FirstName, @LastName, @Gender, @Specialization, @PRCLicenseNumber, @MobileNumber, @Email, @Username, @Password);
+
+                IF @@ROWCOUNT = 0
+                BEGIN
+                    THROW 50003, 'Insert failed.', 1;
+                END
+
+                COMMIT TRANSACTION;
+            END TRY
+            BEGIN CATCH
+                ROLLBACK TRANSACTION;
+                THROW;
+            END CATCH;";
 
             try
             {

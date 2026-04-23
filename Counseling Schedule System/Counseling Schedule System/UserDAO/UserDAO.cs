@@ -82,7 +82,7 @@ namespace Counseling_Schedule_System.UserDAO
 
         public static int? StudentLogin(string username, string password)
         {
-            // FIX: removed hardcoded connection string, now using shared one above
+            //get the studentid and password using the username
             string sql = "SELECT studentID, password FROM studentTbl WHERE username = @username";
 
             try
@@ -102,19 +102,19 @@ namespace Counseling_Schedule_System.UserDAO
                                 int userID = Convert.ToInt32(reader["studentID"]);
                                 string storedHash = reader["password"].ToString();
 
-                                // Compare the entered password (unhashed) with the stored bcrypt hash
+                                //Compare the entered password (unhashed) with the stored bcrypt hash
                                 if (BCrypt.Net.BCrypt.Verify(password, storedHash))
                                 {
-                                    return userID; // login success
+                                    return userID; //login success
                                 }
                                 else
                                 {
-                                    return null; // wrong password
+                                    return null; //wrong password
                                 }
                             }
                             else
                             {
-                                return null; // no such user
+                                return null; //no such user
                             }
                         }
                     }

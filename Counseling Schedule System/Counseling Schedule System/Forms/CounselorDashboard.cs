@@ -200,13 +200,27 @@ namespace Counseling_Schedule_System.Forms
                     {
                         conn.Open();
                         SqlCommand cmd = new SqlCommand(@"
+                        BEGIN TRY
+                            BEGIN TRANSACTION;
+
                             UPDATE requestTbl
                             SET counselorID = @counselorID, 
-                            ScheduledDateTime = @ScheduledDateTime, 
-                            [Status] = @status, 
-                            UpdatedAt = GETDATE()
-                            WHERE requestID = @requestID"
-                        , conn);
+                                ScheduledDateTime = @ScheduledDateTime, 
+                                [Status] = @status, 
+                                UpdatedAt = GETDATE()
+                            WHERE requestID = @requestID;
+
+                            IF @@ROWCOUNT = 0
+                            BEGIN
+                                THROW 50007, 'Update failed. Request not found.', 1;
+                            END
+
+                            COMMIT TRANSACTION;
+                        END TRY
+                        BEGIN CATCH
+                            ROLLBACK TRANSACTION;
+                            THROW;
+                        END CATCH;", conn);
 
                         DateTime DateTimeCombined = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
 
@@ -294,12 +308,26 @@ namespace Counseling_Schedule_System.Forms
                         conn.Open();
 
                         SqlCommand cmd = new SqlCommand(@"
+                        BEGIN TRY
+                            BEGIN TRANSACTION;
+
                             UPDATE requestTbl
                             SET [Status] = @status,
-                            CounselingNotes = @CounselingNotes,
-                            UpdatedAt = GETDATE()
-                            WHERE requestID = @requestID"
-                        , conn);
+                                CounselingNotes = @CounselingNotes,
+                                UpdatedAt = GETDATE()
+                            WHERE requestID = @requestID;
+
+                            IF @@ROWCOUNT = 0
+                            BEGIN
+                                THROW 50008, 'Update failed. Request not found.', 1;
+                            END
+
+                            COMMIT TRANSACTION;
+                        END TRY
+                        BEGIN CATCH
+                            ROLLBACK TRANSACTION;
+                            THROW;
+                        END CATCH;", conn);
 
                         cmd.Parameters.AddWithValue("@counselorID", _userID);
                         cmd.Parameters.AddWithValue("@requestID", selectedScheduleID.Value);
@@ -363,15 +391,6 @@ namespace Counseling_Schedule_System.Forms
         {
         }
         private int? selectedScheduleID;
-        private void dgvSchedules_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                selectedScheduleID = Convert.ToInt32(
-                    dgvSchedules.Rows[e.RowIndex].Cells["requestID"].Value
-                );
-            }
-        }
 
         private void txtNotes_TextChanged(object sender, EventArgs e)
         {
@@ -492,6 +511,18 @@ namespace Counseling_Schedule_System.Forms
         {
             pnlSchedule.Visible = true;
             pnlRequests.Visible = false;
+        }
+
+        
+
+        private void dgvSchedules_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                selectedScheduleID = Convert.ToInt32(
+                    dgvSchedules.Rows[e.RowIndex].Cells["requestID"].Value
+                );
+            }
         }
     }
 }    

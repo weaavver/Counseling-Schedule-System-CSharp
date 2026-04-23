@@ -149,7 +149,7 @@ namespace Counseling_Schedule_System.Forms
                         using (SqlConnection conn = new SqlConnection(connectionString))
                         {
                             conn.Open();
-
+                            //PREVENTS STUDENT FROM CREATING MORE THAN ONE REQUEST/SCHEDULE
                             string checkSql = @"SELECT COUNT(*) FROM requestTbl 
                             WHERE StudentID = @StudentID AND Status = 'Pending'";
 
@@ -168,8 +168,24 @@ namespace Counseling_Schedule_System.Forms
 
                             DateTime finalDateTime = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
 
-                            string insertSql = @"INSERT INTO requestTbl (StudentID, PreferredDateTime, Reason)
-                             VALUES (@StudentID, @PreferredDateTime, @Reason)";
+                            string insertSql = @"
+                            BEGIN TRY
+                                BEGIN TRANSACTION;
+
+                                INSERT INTO requestTbl (StudentID, PreferredDateTime, Reason)
+                                VALUES (@StudentID, @PreferredDateTime, @Reason);
+
+                                IF @@ROWCOUNT = 0
+                                BEGIN
+                                    THROW 50004, 'Insert failed.', 1;
+                                END
+
+                                COMMIT TRANSACTION;
+                            END TRY
+                            BEGIN CATCH
+                                ROLLBACK TRANSACTION;
+                                THROW;
+                            END CATCH;";
 
                             using (SqlCommand cmd = new SqlCommand(insertSql, conn))
                             {
@@ -253,12 +269,26 @@ namespace Counseling_Schedule_System.Forms
                             conn.Open();
 
                             SqlCommand cmd = new SqlCommand(@"
-                            UPDATE requestTbl
-                            SET Status = 'Cancelled',
-                                UpdatedAt = GETDATE()
-                            WHERE StudentID = @StudentID
-                            AND Status = 'Pending';"
-                            , conn);
+                            BEGIN TRY
+                                BEGIN TRANSACTION;
+
+                                UPDATE requestTbl
+                                SET Status = 'Cancelled',
+                                    UpdatedAt = GETDATE()
+                                WHERE StudentID = @StudentID
+                                  AND Status = 'Pending';
+
+                                IF @@ROWCOUNT = 0
+                                BEGIN
+                                    THROW 50006, 'No pending request found to cancel.', 1;
+                                END
+
+                                COMMIT TRANSACTION;
+                            END TRY
+                            BEGIN CATCH
+                                ROLLBACK TRANSACTION;
+                                THROW;
+                            END CATCH;", conn);
 
                             DateTime DatetTimecombined = DatePicker.Value.Date + TimePicker.Value.TimeOfDay;
 

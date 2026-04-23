@@ -58,6 +58,7 @@
             this.btnNVM.TabIndex = 10;
             this.btnNVM.Text = "Nevermind";
             this.btnNVM.UseVisualStyleBackColor = false;
+            this.btnNVM.Click += new System.EventHandler(this.btnNVM_Click_1);
             // 
             // label3
             // 

@@ -47,5 +47,10 @@ namespace Counseling_Schedule_System.Forms
                 }
             }
         }
+
+        private void btnNVM_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -47,6 +47,32 @@ CREATE TABLE counselorTbl(
     CONSTRAINT UQ_CounselorUsername UNIQUE (Username)
 );
 
+--CREATE TABLE FOR REQUESTS
+CREATE TABLE requestTbl(
+    requestID INT IDENTITY(1,1) PRIMARY KEY,
+    StudentID INT NOT NULL,
+    CounselorID INT NULL,
+    PreferredDateTime DATETIME NOT NULL,
+    ScheduledDateTime DATETIME NULL,
+    [Status] VARCHAR(20) CHECK ([Status] IN ('Pending','Scheduled','Cancelled','Completed')) DEFAULT 'Pending',
+    Reason VARCHAR(255) NULL,
+    CounselingNotes VARCHAR(255) NULL,
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+
+    --ForeignKeys
+    CONSTRAINT FK_Request_Student 
+    FOREIGN KEY (StudentID) 
+    REFERENCES studentTbl(studentID)
+    ON DELETE CASCADE,
+
+    -- If counselor is deleted keep request but remove assignment
+    CONSTRAINT FK_Request_Counselor 
+    FOREIGN KEY (CounselorID) 
+    REFERENCES counselorTbl(counselorID)
+    ON DELETE SET NULL
+);
+
 INSERT INTO studentTbl 
 (FirstName, LastName, Gender, Section, StudentNo, MobileNo, Email, Username, [Password])
 VALUES
@@ -122,31 +148,7 @@ VALUES
 
 
 
---CREATE TABLE FOR REQUESTS
-CREATE TABLE requestTbl(
-    requestID INT IDENTITY(1,1) PRIMARY KEY,
-    StudentID INT NOT NULL,
-    CounselorID INT NULL,
-    PreferredDateTime DATETIME NOT NULL,
-    ScheduledDateTime DATETIME NULL,
-    [Status] VARCHAR(20) CHECK ([Status] IN ('Pending','Scheduled','Cancelled','Completed')) DEFAULT 'Pending',
-    Reason VARCHAR(255) NULL,
-    CounselingNotes VARCHAR(255) NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
-    UpdatedAt DATETIME NULL,
 
-    --ForeignKeys
-    CONSTRAINT FK_Request_Student 
-    FOREIGN KEY (StudentID) 
-    REFERENCES studentTbl(studentID)
-    ON DELETE CASCADE,
-
-    -- If counselor is deleted keep request but remove assignment
-    CONSTRAINT FK_Request_Counselor 
-    FOREIGN KEY (CounselorID) 
-    REFERENCES counselorTbl(counselorID)
-    ON DELETE SET NULL
-);
 
 SELECT Concat(FirstName,' ',LastName) FROM studentTbl WHERE studentID = @StudentID
 

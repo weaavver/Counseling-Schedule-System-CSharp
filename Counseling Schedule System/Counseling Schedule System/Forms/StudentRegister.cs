@@ -27,15 +27,6 @@ namespace Counseling_Schedule_System
         public StudentRegister()
         {
             InitializeComponent();
-            panel2.BackColor = ColorTranslator .FromHtml("#3D1B01");
-            Title.ForeColor = ColorTranslator.FromHtml("#FEFEFF");
-            btnConfirm.BackColor = ColorTranslator.FromHtml("#3D1B01");
-            btnClear.BackColor = ColorTranslator.FromHtml("#3D1B01");
-            btnLogin.BackColor = ColorTranslator.FromHtml("#3D1B01");
-
-            btnConfirm.ForeColor = ColorTranslator.FromHtml("#FEFEFF");
-            btnClear.ForeColor = ColorTranslator.FromHtml("#FEFEFF");
-            btnLogin.ForeColor = ColorTranslator.FromHtml("#FEFEFF");
 
         }
 
@@ -87,8 +78,26 @@ namespace Counseling_Schedule_System
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.Password);
 
             //Insertion
-            string sql = "INSERT INTO studentTbl(FirstName, LastName, Gender, Section, StudentNo, MobileNo, Email, Username, Password) " +
-              "VALUES(@FName, @LName, @Gender, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password)";
+            string sql = @"
+            BEGIN TRY
+                BEGIN TRANSACTION;
+
+                INSERT INTO studentTbl
+                    (FirstName, LastName, Gender, Section, StudentNo, MobileNo, Email, Username, Password)
+                VALUES
+                    (@FName, @LName, @Gender, @Section, @StudentNo, @MobileNo, @Email, @Username, @Password);
+
+                IF @@ROWCOUNT = 0
+                BEGIN
+                    THROW 50002, 'Insert failed.', 1;
+                END
+
+                COMMIT TRANSACTION;
+            END TRY
+            BEGIN CATCH
+                ROLLBACK TRANSACTION;
+                THROW;
+            END CATCH;";
 
             try
             {
