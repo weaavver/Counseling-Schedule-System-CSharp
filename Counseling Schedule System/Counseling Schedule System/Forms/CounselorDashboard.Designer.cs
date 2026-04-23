@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CounselorDashboard));
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -41,15 +41,6 @@
             this.btnShowSchedule = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.lblGreet = new System.Windows.Forms.Label();
-            this.pnlSchedule = new System.Windows.Forms.Panel();
-            this.btnConfirm = new System.Windows.Forms.Button();
-            this.btnRequestRefresh = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dgvRequests = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TimePicker = new System.Windows.Forms.DateTimePicker();
-            this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.pnlRequests = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,13 +51,22 @@
             this.btnComplete = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvSchedules = new System.Windows.Forms.DataGridView();
+            this.pnlSchedule = new System.Windows.Forms.Panel();
+            this.btnConfirm = new System.Windows.Forms.Button();
+            this.btnRequestRefresh = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dgvRequests = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TimePicker = new System.Windows.Forms.DateTimePicker();
+            this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.pnlSchedule.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).BeginInit();
             this.pnlRequests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchedules)).BeginInit();
+            this.pnlSchedule.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,133 +144,6 @@
             this.lblGreet.TabIndex = 13;
             this.lblGreet.Text = "HELLO, [COUNSELOR NAME]";
             this.lblGreet.Click += new System.EventHandler(this.lblGreet_Click);
-            // 
-            // pnlSchedule
-            // 
-            this.pnlSchedule.BackColor = System.Drawing.Color.White;
-            this.pnlSchedule.Controls.Add(this.btnConfirm);
-            this.pnlSchedule.Controls.Add(this.btnRequestRefresh);
-            this.pnlSchedule.Controls.Add(this.label1);
-            this.pnlSchedule.Controls.Add(this.label6);
-            this.pnlSchedule.Controls.Add(this.dgvRequests);
-            this.pnlSchedule.Controls.Add(this.label3);
-            this.pnlSchedule.Controls.Add(this.TimePicker);
-            this.pnlSchedule.Controls.Add(this.DatePicker);
-            this.pnlSchedule.Location = new System.Drawing.Point(16, 66);
-            this.pnlSchedule.Name = "pnlSchedule";
-            this.pnlSchedule.Size = new System.Drawing.Size(960, 533);
-            this.pnlSchedule.TabIndex = 36;
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnConfirm.Location = new System.Drawing.Point(309, 470);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(85, 31);
-            this.btnConfirm.TabIndex = 23;
-            this.btnConfirm.Text = "Confirm";
-            this.btnConfirm.UseVisualStyleBackColor = false;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
-            // btnRequestRefresh
-            // 
-            this.btnRequestRefresh.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnRequestRefresh.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRequestRefresh.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnRequestRefresh.Location = new System.Drawing.Point(885, 18);
-            this.btnRequestRefresh.Name = "btnRequestRefresh";
-            this.btnRequestRefresh.Size = new System.Drawing.Size(62, 22);
-            this.btnRequestRefresh.TabIndex = 16;
-            this.btnRequestRefresh.Text = "Refresh";
-            this.btnRequestRefresh.UseVisualStyleBackColor = false;
-            this.btnRequestRefresh.Click += new System.EventHandler(this.btnRequestRefresh_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 30);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Pending Requests";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(28, 474);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(136, 21);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Scheduled Time:";
-            // 
-            // dgvRequests
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRequests.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRequests.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvRequests.Location = new System.Drawing.Point(15, 42);
-            this.dgvRequests.Name = "dgvRequests";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRequests.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvRequests.Size = new System.Drawing.Size(932, 370);
-            this.dgvRequests.TabIndex = 14;
-            this.dgvRequests.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRequests_CellClick);
-            this.dgvRequests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRequests_CellContentClick);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 432);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 21);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "Scheduled Date:";
-            // 
-            // TimePicker
-            // 
-            this.TimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.TimePicker.Location = new System.Drawing.Point(178, 471);
-            this.TimePicker.Name = "TimePicker";
-            this.TimePicker.Size = new System.Drawing.Size(125, 29);
-            this.TimePicker.TabIndex = 30;
-            // 
-            // DatePicker
-            // 
-            this.DatePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatePicker.Location = new System.Drawing.Point(178, 429);
-            this.DatePicker.Name = "DatePicker";
-            this.DatePicker.Size = new System.Drawing.Size(216, 29);
-            this.DatePicker.TabIndex = 29;
-            this.DatePicker.ValueChanged += new System.EventHandler(this.DatePicker_ValueChanged);
             // 
             // pnlRequests
             // 
@@ -411,6 +284,133 @@
             this.dgvSchedules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSchedules_CellClick_1);
             this.dgvSchedules.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSchedules_CellContentClick);
             // 
+            // pnlSchedule
+            // 
+            this.pnlSchedule.BackColor = System.Drawing.Color.White;
+            this.pnlSchedule.Controls.Add(this.btnConfirm);
+            this.pnlSchedule.Controls.Add(this.btnRequestRefresh);
+            this.pnlSchedule.Controls.Add(this.label1);
+            this.pnlSchedule.Controls.Add(this.label6);
+            this.pnlSchedule.Controls.Add(this.dgvRequests);
+            this.pnlSchedule.Controls.Add(this.label3);
+            this.pnlSchedule.Controls.Add(this.TimePicker);
+            this.pnlSchedule.Controls.Add(this.DatePicker);
+            this.pnlSchedule.Location = new System.Drawing.Point(16, 66);
+            this.pnlSchedule.Name = "pnlSchedule";
+            this.pnlSchedule.Size = new System.Drawing.Size(960, 533);
+            this.pnlSchedule.TabIndex = 36;
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirm.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnConfirm.Location = new System.Drawing.Point(309, 470);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(85, 31);
+            this.btnConfirm.TabIndex = 23;
+            this.btnConfirm.Text = "Confirm";
+            this.btnConfirm.UseVisualStyleBackColor = false;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            // 
+            // btnRequestRefresh
+            // 
+            this.btnRequestRefresh.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnRequestRefresh.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequestRefresh.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRequestRefresh.Location = new System.Drawing.Point(885, 18);
+            this.btnRequestRefresh.Name = "btnRequestRefresh";
+            this.btnRequestRefresh.Size = new System.Drawing.Size(62, 22);
+            this.btnRequestRefresh.TabIndex = 16;
+            this.btnRequestRefresh.Text = "Refresh";
+            this.btnRequestRefresh.UseVisualStyleBackColor = false;
+            this.btnRequestRefresh.Click += new System.EventHandler(this.btnRequestRefresh_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(187, 30);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Pending Requests";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(28, 474);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(136, 21);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Scheduled Time:";
+            // 
+            // dgvRequests
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRequests.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRequests.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvRequests.Location = new System.Drawing.Point(15, 42);
+            this.dgvRequests.Name = "dgvRequests";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRequests.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvRequests.Size = new System.Drawing.Size(932, 370);
+            this.dgvRequests.TabIndex = 14;
+            this.dgvRequests.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRequests_CellClick);
+            this.dgvRequests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRequests_CellContentClick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(28, 432);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(134, 21);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Scheduled Date:";
+            // 
+            // TimePicker
+            // 
+            this.TimePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.TimePicker.Location = new System.Drawing.Point(178, 471);
+            this.TimePicker.Name = "TimePicker";
+            this.TimePicker.Size = new System.Drawing.Size(125, 29);
+            this.TimePicker.TabIndex = 30;
+            // 
+            // DatePicker
+            // 
+            this.DatePicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DatePicker.Location = new System.Drawing.Point(178, 429);
+            this.DatePicker.Name = "DatePicker";
+            this.DatePicker.Size = new System.Drawing.Size(216, 29);
+            this.DatePicker.TabIndex = 29;
+            this.DatePicker.ValueChanged += new System.EventHandler(this.DatePicker_ValueChanged);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel2);
@@ -433,12 +433,12 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.pnlSchedule.ResumeLayout(false);
-            this.pnlSchedule.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).EndInit();
             this.pnlRequests.ResumeLayout(false);
             this.pnlRequests.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchedules)).EndInit();
+            this.pnlSchedule.ResumeLayout(false);
+            this.pnlSchedule.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

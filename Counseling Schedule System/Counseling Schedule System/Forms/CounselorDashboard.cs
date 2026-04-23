@@ -188,6 +188,14 @@ namespace Counseling_Schedule_System.Forms
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            DialogResult result = MessageBox.Show("Do you want to confirm this request?", "Confirmation", MessageBoxButtons.YesNo);
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
             else
             {
                 string status = "Scheduled";
@@ -296,6 +304,14 @@ namespace Counseling_Schedule_System.Forms
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            DialogResult result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
             else
             {
 
@@ -337,6 +353,7 @@ namespace Counseling_Schedule_System.Forms
                         cmd.ExecuteNonQuery();
 
                         conn.Close();
+                        MessageBox.Show("Sucessfully " + status);
                     }
                 }
                 catch (Exception ex)
