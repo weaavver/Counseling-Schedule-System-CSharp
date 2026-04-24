@@ -180,6 +180,9 @@
     <EmbeddedResource Include="Forms\ForgotPassword.resx">
       <DependentUpon>ForgotPassword.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormMessageBoxCompleteCancel.resx">
+      <DependentUpon>FormMessageBoxCompleteCancel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMessageBoxRetryAndForgotPass.resx">
       <DependentUpon>FormMessageBoxRetryAndForgotPass.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +232,17 @@
     <None Include="Images\Counselor.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\10.jpg" />
+    <None Include="Resources\1.jpg" />
+    <None Include="Resources\51.jpg" />
+    <None Include="Resources\7.jpg" />
+    <None Include="Resources\14.jpg" />
+    <None Include="Resources\3.jpg" />
+    <None Include="Resources\41.jpg" />
+    <None Include="Resources\4.jpg" />
+    <None Include="Resources\5.jpg" />
+    <None Include="Resources\9.png" />
+    <None Include="Resources\8.jpg" />
     <None Include="Images\login.png" />
     <Content Include="pdmlogo.ico" />
   </ItemGroup>

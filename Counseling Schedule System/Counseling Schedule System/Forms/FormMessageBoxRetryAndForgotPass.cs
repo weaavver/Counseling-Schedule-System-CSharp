@@ -61,5 +61,18 @@ namespace Counseling_Schedule_System.Forms
                 return box.Result;
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FormMessageBoxRetryAndForgotPass
+            // 
+            this.BackColor = System.Drawing.Color.Bisque;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "FormMessageBoxRetryAndForgotPass";
+            this.ResumeLayout(false);
+
+        }
     }
 }

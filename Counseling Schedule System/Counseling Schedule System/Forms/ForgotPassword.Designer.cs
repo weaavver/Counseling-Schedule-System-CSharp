@@ -34,11 +34,11 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnNVM = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -67,7 +67,7 @@
             // 
             this.btnSendOTP.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnSendOTP.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendOTP.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSendOTP.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSendOTP.Location = new System.Drawing.Point(132, 102);
             this.btnSendOTP.Name = "btnSendOTP";
             this.btnSendOTP.Size = new System.Drawing.Size(87, 28);
@@ -89,7 +89,7 @@
             // 
             this.btnNVM.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnNVM.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNVM.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnNVM.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnNVM.Location = new System.Drawing.Point(248, 102);
             this.btnNVM.Name = "btnNVM";
             this.btnNVM.Size = new System.Drawing.Size(87, 28);
@@ -100,7 +100,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(235)))), ((int)(((byte)(242)))));
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -109,18 +109,9 @@
             this.panel1.TabIndex = 6;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(13, 13);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(354, 52);
-            this.panel2.TabIndex = 6;
-            // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.BackColor = System.Drawing.Color.Turquoise;
             this.panel3.Controls.Add(this.txtEmail);
             this.panel3.Controls.Add(this.btnSendOTP);
             this.panel3.Controls.Add(this.label3);
@@ -129,6 +120,15 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(354, 235);
             this.panel3.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Turquoise;
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Location = new System.Drawing.Point(13, 13);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(354, 52);
+            this.panel2.TabIndex = 6;
             // 
             // ForgotPassword
             // 
@@ -141,10 +141,10 @@
             this.Text = "Reset Password";
             this.Load += new System.EventHandler(this.ForgotPassword_Load);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
